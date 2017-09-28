@@ -5,11 +5,8 @@ const Activity = db.define('activity', {
   name: {
     type: Sequelize.STRING
   },
-  description: {
-    type: Sequelize.TEXT
-  },
   image: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(1234),
     isUrl: true
   }
 })

@@ -5,6 +5,13 @@ const Event = db.define('event', {
   name: {
     type: Sequelize.STRING
   },
+  description: {
+    type: Sequelize.TEXT
+  },
+  image: {
+    type: Sequelize.STRING(1234),
+    isUrl: true
+  },
   location: {
     type: Sequelize.STRING
   },

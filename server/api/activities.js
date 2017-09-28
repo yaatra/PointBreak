@@ -29,3 +29,35 @@ router.get('/:id', (req, res, next) => {
     .then(activity => res.json(activity))
     .catch(next)
 })
+
+router.post('/', (req, res, next) => {
+  Activity.create(req.body)
+    .then(activity => res.json(activity))
+    .catch(next)
+})
+
+router.put('/:id', (req, res, next) => {
+  Activity.update(req.body, {
+    where: {
+      id: req.params.id
+    },
+    returning: true
+  })
+    .then(result => {
+      const activity = result[1][0]
+      res.json(activity)
+    })
+    .catch(next)
+})
+
+router.delete('/:id', (req, res, next) => {
+  Activity.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(function() {
+      res.sendStatus(200);
+    })
+    .catch(next);
+})
