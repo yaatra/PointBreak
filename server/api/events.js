@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {Event} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  User.findAll({
+  Event.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
@@ -12,12 +12,12 @@ router.get('/', (req, res, next) => {
       nested: true
     }]
   })
-    .then(users => res.json(users))
+    .then(events => res.json(events))
     .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
-  User.findOne({
+  Event.findOne({
     where: {
       id: req.params.id
     },
@@ -26,32 +26,32 @@ router.get('/:id', (req, res, next) => {
       nested: true
     }]
   })
-    .then(user => res.json(user))
+    .then(event => res.json(event))
     .catch(next)
 })
 
 router.post('/', (req, res, next) => {
-  User.create(req.body)
-    .then(user => res.json(user))
+  Event.create(req.body)
+    .then(event => res.json(event))
     .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
-  User.update(req.body, {
+  Event.update(req.body, {
     where: {
       id: req.params.id
     },
     returning: true
   })
     .then(result => {
-      const user = result[1][0]
-      res.json(user)
+      const event = result[1][0]
+      res.json(event)
     })
     .catch(next)
 })
 
 router.delete('/:id', (req, res, next) => {
-  User.destroy({
+  Event.destroy({
     where: {
       id: req.params.id
     }
