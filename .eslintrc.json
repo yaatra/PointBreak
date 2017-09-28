@@ -1,3 +1,10 @@
 {
-  "extends": "fullstack"
+  "extends": "fullstack",
+  "rules": {
+    "semi": [1, "never"],
+    "class-methods-use-this": [0, "always"],
+    "no-loop-func": [0, "always"],
+    "quote-props": [0, "always"],
+    "no-shadow": [0, "always"]
+  }
 }
