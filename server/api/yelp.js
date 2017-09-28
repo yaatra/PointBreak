@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
   for (let i=0; i<total;i+=20){
     console.log(i)
     promiseList.push(
-      (axios.get(`https://api.yelp.com/v3/businesses/search?location=new-york,category_filter=publicservicesgovt,landmarks,limit=50,offset=${i}`, { 'headers': { 'Authorization': accessToken}}))
+      (axios.get(`https://api.yelp.com/v3/businesses/search?location=new-york,category_filter=active,limit=50,offset=${i}`, { 'headers': { 'Authorization': accessToken}}))
       .then(res => res.data)
       .then(res => {
         console.log(i,'***********',res.businesses)
