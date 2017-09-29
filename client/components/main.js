@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Navbar} from './'
+import {Navbar, HomePage} from './'
 
 /**
  * COMPONENT
@@ -17,8 +17,7 @@ const Main = (props) => {
   return (
     <div>
       <Navbar />
-      <h1>BOILERMAKER</h1>
-      <hr />
+      {/* <HomePage /> */}
       {children}
     </div>
   )
