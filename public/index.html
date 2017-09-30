@@ -11,18 +11,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <title>Boilermaker</title>
     <script defer src="/bundle.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script> -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChkdWyYsS3XXiY83c_U_1ATu8De1KzUuM&libraries=places"></script>
+    <!-- <script>
+        var input = document.getElementById('autocomplete');
+        var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+            var place = autocomplete.getPlace();
+        })
+    </script> -->
   </head>
   <body>
     <div id="app"></div>
-    <input type="text" id="autocomplete"/>
-    <script>
-      var input = document.getElementById('autocomplete');
-      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
-      google.maps.event.addListener(autocomplete, 'place_changed', function(){
-         var place = autocomplete.getPlace();
-      })
-    </script>
+
   </body>
 </html>
 
