@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserDetails from './userDetails'
 import {loadUserData} from '../store'
+import EventsList from './eventsList'
 
 /**
  * COMPONENT
@@ -14,21 +15,22 @@ export class UserHome extends Component {
 
   render () {
     const {user} = this.props
+    console.log('**** USER *****', user)
 
     const selectedEvents = []
     const followingEvents = []
     if (user.events !== undefined) {
       user.events.forEach(event => {
-        (event.addociatedEvent.type === 'selected') ? selectedEvents.push(event) : followingEvents.push(event)
+        (event.associatedEvent.type === 'selected') ? selectedEvents.push(event) : followingEvents.push(event)
       })
       console.log('selectedEvents: ', selectedEvents)
       console.log('followedEvents: ', followingEvents)
     }
     return (
-      <div>
+      <div className='container'>
         <UserDetails user={user} />
-        {/* <RenderEvent followingEvent={followingEvents} /> */}
-        {/* <RenderEvent selectedEvents={selectedEvents} /> */}
+        {followingEvents.length ? <EventsList events={followingEvents} heading="Following Events" /> : null}
+        {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events" /> : null}
       </div>
     )
   }
@@ -40,7 +42,6 @@ export class UserHome extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    email: state.user.email
   }
 }
 const mapDispatch = (dispatch) => {
@@ -57,5 +58,4 @@ export default connect(mapState, mapDispatch)(UserHome)
  */
 UserHome.propTypes = {
   user: PropTypes.object,
-  email: PropTypes.string
 }
