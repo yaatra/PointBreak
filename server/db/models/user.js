@@ -28,6 +28,24 @@ const User = db.define('user', {
   },
   isProfessional: {
     type: Sequelize.BOOLEAN
+  },
+  bmi: {
+    type: Sequelize.INTEGER
+  },
+  height: {
+    type: Sequelize.DOUBLE
+  },
+  weight: {
+    type: Sequelize.DOUBLE
+  },
+  age: {
+    type: Sequelize.INTEGER
+  },
+  image: {
+    type: Sequelize.TEXT
+  },
+  introduction: {
+    type: Sequelize.TEXT
   }
 })
 

@@ -1,6 +1,10 @@
 const User = require('./user')
-const Activity = require('./activity')
 const Event = require('./event')
+const Destination = require('./destination')
+const Category = require('./category')
+const AssociatedEvent = require('./associatedEvent')
+const PreferredDestination = require('./preferredDestination')
+const PreferredCategory = require('./preferredCategory')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -16,14 +20,26 @@ const Event = require('./event')
  * instead of: const User = require('../db/models/user')
  */
 
-Event.belongsTo(User)
-User.hasMany(Event)
+User.belongsToMany(Event, {through: AssociatedEvent})
+Event.belongsToMany(User, {through: AssociatedEvent})
 
-Event.belongsTo(Activity)
-Activity.hasMany(Event)
+User.belongsToMany(Destination, {through: PreferredDestination})
+Destination.belongsToMany(User, {through: PreferredDestination})
+
+User.belongsToMany(Category, {through: PreferredCategory})
+Category.belongsToMany(User, {through: PreferredCategory})
+
+Event.belongsTo(Category)
+Category.hasMany(Event)
+
+Event.belongsTo(Destination)
 
 module.exports = {
   User,
-  Activity,
-  Event
+  Event,
+  Destination,
+  Category,
+  AssociatedEvent,
+  PreferredDestination,
+  PreferredCategory
 }

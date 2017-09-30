@@ -2,6 +2,11 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Event = db.define('event', {
+  // id:{
+  //   type: Sequelize.INTEGER,
+  //   primaryKey: true,
+  //   autoIncrement: true
+  // },
   name: {
     type: Sequelize.STRING
   },
@@ -9,14 +14,19 @@ const Event = db.define('event', {
     type: Sequelize.TEXT
   },
   image: {
-    type: Sequelize.STRING(1234),
+    type: Sequelize.TEXT,
     isUrl: true
-  },
-  location: {
-    type: Sequelize.STRING
   },
   date: {
     type: Sequelize.DATE
+  },
+  day: {
+    type: Sequelize.ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
+    defaultValue: 'Monday'
+  },
+  recurrence: {
+    type: Sequelize.ENUM('daily', 'weekly', 'monthly', 'one time'),
+    defaultValue: 'one time'
   },
   difficulty: {
     type: Sequelize.INTEGER,
