@@ -1,13 +1,7 @@
 'use strict'
 const database = require('./server/db')
 const db = require('./server/db/models')
-const User = db.User
-const Category = db.Category
-const Event = db.Event
-const Destination = db.Destination
-const AssociatedEvent = db.AssociatedEvent
-const PreferredDestination = db.PreferredDestination
-const PreferredCategory = db.PreferredCategory
+const {User, Event, Category, Destination, AssociatedEvent, PreferredCategory, PreferredDestination} = db
 
 //Create seed data
 let data = {
@@ -33,29 +27,29 @@ let data = {
     {name: 'Surfing', image: 'https://coresites-cdn.factorymedia.com/mpora_new/wp-content/uploads/2017/02/vladimir-kudinov-65978.jpg'},
     {name: 'Racing', image: 'https://cdn-2.motorsport.com/images/amp/2QbekwWY/s6/nascar-cup-fontana-2016-start-austin-dillon-richard-childress-racing-chevrolet-leads.jpg'},
   ],
-  associatedEventData: [
-    {eventId: 1, userId: 1, type: 'selected'},
-    {eventId: 2, userId: 1},
-    {eventId: 3, userId: 2, type: 'selected'},
-    {eventId: 4, userId: 2}
-  ],
   destinationData: [
     {city: 'New York', state: 'NY'},
     {city: 'London', state: 'England'},
     {city: 'San Francisco', state: 'CA'},
     {city: 'Shanghai', state: 'Shanghai'}
   ],
+  associatedEventData: [
+    {userId: 1, eventId: 1, type: 'selected'},
+    {userId: 2, eventId: 2, type: 'followed'},
+    {userId: 3, eventId: 3, type: 'selected'},
+    {userId: 4, eventId: 4, type: 'followed'}
+  ],
   preferredCategoryData: [
-    {categoryId: 1, userId: 2},
-    {categoryId: 2, userId: 2},
-    {categoryId: 3, userId: 1},
-    {categoryId: 4, userId: 1}
+    {userId: 1, categoryId: 1},
+    {userId: 1, categoryId: 2},
+    {userId: 2, categoryId: 3},
+    {userId: 2, categoryId: 4}
   ],
   preferredDestinationData: [
-    {destinationId: 1, userId: 2},
-    {destinationId: 2, userId: 2},
-    {destinationId: 3, userId: 1},
-    {destinationId: 4, userId: 1}
+    {userId: 3, destinationId: 1},
+    {userId: 3, destinationId: 2},
+    {userId: 4, destinationId: 3},
+    {userId: 4, destinationId: 4}
   ]
 }
 
@@ -69,6 +63,7 @@ User.sync({
     return User.create(user)
   })
 )})
+.then(() => console.log('completed User sync'))
 .then(() => Category.sync({
   force: true
 }))
@@ -78,7 +73,7 @@ User.sync({
       return Category.create(category)
     })
 )})
-.then(() => console.log('completed Category Sync'))
+.then(() => console.log('completed Category sync'))
 .then(() => Destination.sync({
   force: true
 }))
@@ -88,7 +83,7 @@ User.sync({
       return Destination.create(destination)
     })
 )})
-.then(() => console.log('completed Destination Sync'))
+.then(() => console.log('completed Destination sync'))
 .then(() => Event.sync({
   force: true
 }))
@@ -98,7 +93,7 @@ User.sync({
       return Event.create(event)
     })
 )})
-.then(() => console.log('completed Event Sync'))
+.then(() => console.log('completed Event sync'))
 .then(() => AssociatedEvent.sync({
   force: true
 }))
@@ -108,7 +103,7 @@ User.sync({
       return AssociatedEvent.create(associatedEvent)
     })
 )})
-.then(() => console.log('completed Associated Category Sync'))
+.then(() => console.log('completed AssociatedEvent sync'))
 .then(() => PreferredCategory.sync({
   force: true
 }))
@@ -118,7 +113,7 @@ User.sync({
       return PreferredCategory.create(preferredCategory)
     })
 )})
-.then(() => console.log('completed Preferred Category Sync'))
+.then(() => console.log('completed PreferredCategory sync'))
 .then(() => PreferredDestination.sync({
   force: true
 }))
@@ -128,7 +123,7 @@ User.sync({
       return PreferredDestination.create(preferredDestination)
     })
 )})
-.then(() => console.log('completed Preferred Destination Sync'))
+.then(() => console.log('completed PreferredDestination sync'))
 .catch(err => console.error('There was totally a problem', err, err.stack))
 .finally(() => {
   database.close()

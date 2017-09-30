@@ -12,8 +12,8 @@ router.get('/', (req, res, next) => {
       nested: true
     }]
   })
-    .then(events => res.json(events))
-    .catch(next)
+  .then(events => res.json(events))
+  .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
@@ -26,14 +26,14 @@ router.get('/:id', (req, res, next) => {
       nested: true
     }]
   })
-    .then(event => res.json(event))
-    .catch(next)
+  .then(event => res.json(event))
+  .catch(next)
 })
 
 router.post('/', (req, res, next) => {
   Event.create(req.body)
-    .then(event => res.json(event))
-    .catch(next)
+  .then(event => res.json(event))
+  .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
@@ -43,11 +43,11 @@ router.put('/:id', (req, res, next) => {
     },
     returning: true
   })
-    .then(result => {
-      const event = result[1][0]
-      res.json(event)
-    })
-    .catch(next)
+  .then(result => {
+    const event = result[1][0]
+    res.json(event)
+  })
+  .catch(next)
 })
 
 router.delete('/:id', (req, res, next) => {
@@ -56,8 +56,8 @@ router.delete('/:id', (req, res, next) => {
       id: req.params.id
     }
   })
-    .then(function() {
-      res.sendStatus(200)
-    })
-    .catch(next)
+  .then(function() {
+    res.sendStatus(200)
+  })
+  .catch(next)
 })
