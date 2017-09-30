@@ -18,6 +18,7 @@ export class SimpleForm extends React.Component {
   }
  
   render() {
+    console.log("this.state:", this.state)
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
