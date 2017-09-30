@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {Activity} = require('../db/models')
+const {Category} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Activity.findAll({
+  Category.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
@@ -12,12 +12,12 @@ router.get('/', (req, res, next) => {
       nested: true
     }]
   })
-    .then(activities => res.json(activities))
+    .then(categories => res.json(categories))
     .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
-  Activity.findOne({
+  Category.findOne({
     where: {
       id: req.params.id
     },
@@ -26,38 +26,38 @@ router.get('/:id', (req, res, next) => {
       nested: true
     }]
   })
-    .then(activity => res.json(activity))
+    .then(category => res.json(category))
     .catch(next)
 })
 
 router.post('/', (req, res, next) => {
-  Activity.create(req.body)
-    .then(activity => res.json(activity))
+  Category.create(req.body)
+    .then(category => res.json(category))
     .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
-  Activity.update(req.body, {
+  Category.update(req.body, {
     where: {
       id: req.params.id
     },
     returning: true
   })
     .then(result => {
-      const activity = result[1][0]
-      res.json(activity)
+      const category = result[1][0]
+      res.json(category)
     })
     .catch(next)
 })
 
 router.delete('/:id', (req, res, next) => {
-  Activity.destroy({
+  Category.destroy({
     where: {
       id: req.params.id
     }
   })
     .then(function() {
-      res.sendStatus(200);
+      res.sendStatus(200)
     })
-    .catch(next);
+    .catch(next)
 })
