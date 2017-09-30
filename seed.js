@@ -12,10 +12,10 @@ const PreferredCategory = db.PreferredCategory
 //Create seed data
 let data = {
   userData: [
-    {firstName: 'Eren', lastName: 'Chen', email: 'eren@gmail.com', isAdmin: true, isProfessional: true, password: '123'},
-    {firstName: 'Ranjeet', lastName: 'Sodhi', email: 'ranjeet@gmail.com', isAdmin: true, isProfessional: false, password: '123'},
-    {firstName: 'Bojan', lastName: 'Jovanovic', email: 'bojan@gmail.com', isAdmin: true, isProfessional: true, password: '123'},
-    {firstName: 'David', lastName: 'Eiber', email: 'david@gmail.com', isAdmin: true, isProfessional: false, password: '123'}
+    {firstName: 'Eren', lastName: 'Chen', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
+    {firstName: 'Ranjeet', lastName: 'Sodhi', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, image: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
+    {firstName: 'Bojan', lastName: 'Jovanovic', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
+    {firstName: 'David', lastName: 'Eiber', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'}
   ],
   eventData: [
     {name: 'Race The Rabbit', image: 'https://i.ytimg.com/vi/x_CFMV_BSPE/maxresdefault.jpg', description: 'Racing event in Bangkok', date: '2017-11-03 14:34:22', difficulty: 7, categoryId: 1, destinationId: 1},
