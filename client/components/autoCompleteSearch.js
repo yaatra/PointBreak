@@ -1,59 +1,7 @@
-// import React from 'react'
-// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
- 
-// export class SimpleForm extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = { address: 'San Francisco, CA' }
-//     this.onChange = (address) => this.setState({ address })
-//   }
- 
-//   handleFormSubmit = (event) => {
-//     event.preventDefault()
- 
-//     geocodeByAddress(this.state.address)
-//       .then(results => getLatLng(results[0]))
-//       .then(latLng => console.log('Success', latLng))
-//       .catch(error => console.error('Error', error))
-//   }
- 
-//   render() {
-//     const cssClasses = {
-//       root: 'form-group',
-//       input: 'form-control',
-//       autocompleteContainer: 'my-autocomplete-container'
-//     }
-//     const myStyles = {
-//       root: { position: 'absolute' },
-//       input: { width: '100%' },
-//       autocompleteContainer: { backgroundColor: 'green' },
-//       autocompleteItem: { color: 'black' },
-//       autocompleteItemActive: { color: 'blue' }
-//     }
-//     console.log("this.state:", this.state)
-//     const inputProps = {
-//       value: this.state.address,
-//       onChange: this.onChange,
-//       type: 'search',
-//       placeholder: 'Search Places...',
-//       autoFocus: true,
-//     }
- 
-//     return (
-//       <form onSubmit={this.handleFormSubmit}>
-//         <PlacesAutocomplete inputProps={inputProps} 
-//         classNames={cssClasses}
-//         styles={myStyles} />
-//         <button type="submit">Submit</button>
-//       </form>
-//     )
-//   }
-// }
-
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-class SimpleForm extends React.Component {
+class AutoCompleteSearch extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -176,4 +124,4 @@ class SimpleForm extends React.Component {
   }
 }
 
-export default SimpleForm
+export default AutoCompleteSearch
