@@ -10,7 +10,7 @@ const EventsList = props => {
               <div className='thumbnail col-sm-3' key={event.id}>
                   {event.name}
                   <hr />
-                  <img src={event.image} className='img-responsive' height='300' width='300' />
+                  <img src={event.image_url || event.image} className='img-responsive' height='300' width='300' />
               </div>
           )
       })}
