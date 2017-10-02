@@ -6796,12 +6796,12 @@ Object.defineProperty(exports, 'HomePage', {
   }
 });
 
-var _autocomplete = __webpack_require__(183);
+var _autoCompleteSearch = __webpack_require__(374);
 
-Object.defineProperty(exports, 'SimpleForm', {
+Object.defineProperty(exports, 'AutoCompleteSearch', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_autocomplete).default;
+    return _interopRequireDefault(_autoCompleteSearch).default;
   }
 });
 
@@ -10245,10 +10245,11 @@ var EventsList = function EventsList(props) {
     'div',
     { className: 'container' },
     _react2.default.createElement(
-      'h1',
+      'h4',
       null,
       heading
     ),
+    _react2.default.createElement('hr', null),
     events.map(function (event) {
       return _react2.default.createElement(
         'div',
@@ -19150,272 +19151,7 @@ AuthForm.propTypes = {
 };
 
 /***/ }),
-/* 183 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactPlacesAutocomplete = __webpack_require__(319);
-
-var _reactPlacesAutocomplete2 = _interopRequireDefault(_reactPlacesAutocomplete);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // import React from 'react'
-// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
-// export class SimpleForm extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = { address: 'San Francisco, CA' }
-//     this.onChange = (address) => this.setState({ address })
-//   }
-
-//   handleFormSubmit = (event) => {
-//     event.preventDefault()
-
-//     geocodeByAddress(this.state.address)
-//       .then(results => getLatLng(results[0]))
-//       .then(latLng => console.log('Success', latLng))
-//       .catch(error => console.error('Error', error))
-//   }
-
-//   render() {
-//     const cssClasses = {
-//       root: 'form-group',
-//       input: 'form-control',
-//       autocompleteContainer: 'my-autocomplete-container'
-//     }
-//     const myStyles = {
-//       root: { position: 'absolute' },
-//       input: { width: '100%' },
-//       autocompleteContainer: { backgroundColor: 'green' },
-//       autocompleteItem: { color: 'black' },
-//       autocompleteItemActive: { color: 'blue' }
-//     }
-//     console.log("this.state:", this.state)
-//     const inputProps = {
-//       value: this.state.address,
-//       onChange: this.onChange,
-//       type: 'search',
-//       placeholder: 'Search Places...',
-//       autoFocus: true,
-//     }
-
-//     return (
-//       <form onSubmit={this.handleFormSubmit}>
-//         <PlacesAutocomplete inputProps={inputProps} 
-//         classNames={cssClasses}
-//         styles={myStyles} />
-//         <button type="submit">Submit</button>
-//       </form>
-//     )
-//   }
-// }
-
-var SimpleForm = function (_React$Component) {
-  _inherits(SimpleForm, _React$Component);
-
-  function SimpleForm(props) {
-    _classCallCheck(this, SimpleForm);
-
-    var _this = _possibleConstructorReturn(this, (SimpleForm.__proto__ || Object.getPrototypeOf(SimpleForm)).call(this, props));
-
-    _this.state = {
-      address: '',
-      geocodeResults: null,
-      loading: false
-    };
-    _this.handleSelect = _this.handleSelect.bind(_this);
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.renderGeocodeFailure = _this.renderGeocodeFailure.bind(_this);
-    _this.renderGeocodeSuccess = _this.renderGeocodeSuccess.bind(_this);
-    return _this;
-  }
-
-  _createClass(SimpleForm, [{
-    key: 'handleSelect',
-    value: function handleSelect(address) {
-      var _this2 = this;
-
-      this.setState({
-        address: address,
-        loading: true
-      });
-
-      (0, _reactPlacesAutocomplete.geocodeByAddress)(address).then(function (results) {
-        return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
-      }).then(function (_ref) {
-        var lat = _ref.lat,
-            lng = _ref.lng;
-
-        console.log('Success Yay', { lat: lat, lng: lng });
-        _this2.setState({
-          geocodeResults: _this2.renderGeocodeSuccess(lat, lng),
-          loading: false
-        });
-      }).catch(function (error) {
-        console.log('Oh no!', error);
-        _this2.setState({
-          geocodeResults: _this2.renderGeocodeFailure(error),
-          loading: false
-        });
-      });
-
-      /* NOTE: Using callback (Deprecated version) */
-      // geocodeByAddress(address,  (err, { lat, lng }) => {
-      //   if (err) {
-      //     console.log('Oh no!', err)
-      //     this.setState({
-      //       geocodeResults: this.renderGeocodeFailure(err),
-      //       loading: false
-      //     })
-      //   }
-      //   console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
-      //   this.setState({
-      //     geocodeResults: this.renderGeocodeSuccess(lat, lng),
-      //     loading: false
-      //   })
-      // })
-    }
-  }, {
-    key: 'handleChange',
-    value: function handleChange(address) {
-      this.setState({
-        address: address,
-        geocodeResults: null
-      });
-    }
-  }, {
-    key: 'renderGeocodeFailure',
-    value: function renderGeocodeFailure(err) {
-      return _react2.default.createElement(
-        'div',
-        { className: 'alert alert-danger', role: 'alert' },
-        _react2.default.createElement(
-          'strong',
-          null,
-          'Error!'
-        ),
-        ' ',
-        err
-      );
-    }
-  }, {
-    key: 'renderGeocodeSuccess',
-    value: function renderGeocodeSuccess(lat, lng) {
-      return _react2.default.createElement(
-        'div',
-        { className: 'alert alert-success', role: 'alert' },
-        _react2.default.createElement(
-          'strong',
-          null,
-          'Success!'
-        ),
-        ' Geocoder found latitude and longitude: ',
-        _react2.default.createElement(
-          'strong',
-          null,
-          lat,
-          ', ',
-          lng
-        )
-      );
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var cssClasses = {
-        root: 'form-group',
-        input: 'Demo__search-input',
-        autocompleteContainer: 'Demo__autocomplete-container'
-      };
-
-      var AutocompleteItem = function AutocompleteItem(_ref2) {
-        var formattedSuggestion = _ref2.formattedSuggestion;
-        return _react2.default.createElement(
-          'div',
-          { className: 'Demo__suggestion-item' },
-          _react2.default.createElement('i', { className: 'fa fa-map-marker Demo__suggestion-icon' }),
-          _react2.default.createElement(
-            'strong',
-            null,
-            formattedSuggestion.mainText
-          ),
-          ' ',
-          _react2.default.createElement(
-            'small',
-            { className: 'text-muted' },
-            formattedSuggestion.secondaryText
-          )
-        );
-      };
-
-      var inputProps = {
-        type: "text",
-        value: this.state.address,
-        onChange: this.handleChange,
-        onBlur: function onBlur() {
-          console.log('Blur event!');
-        },
-        onFocus: function onFocus() {
-          console.log('Focused!');
-        },
-        autoFocus: true,
-        placeholder: "Search Places",
-        name: 'Demo__input',
-        id: "my-input-id"
-      };
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'page-wrapper' },
-        _react2.default.createElement(
-          'div',
-          { className: 'container' },
-          _react2.default.createElement(_reactPlacesAutocomplete2.default, {
-            onSelect: this.handleSelect,
-            autocompleteItem: AutocompleteItem,
-            onEnterKeyDown: this.handleSelect,
-            classNames: cssClasses,
-            inputProps: inputProps
-          }),
-          this.state.loading ? _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement('i', { className: 'fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner' })
-          ) : null,
-          !this.state.loading && this.state.geocodeResults ? _react2.default.createElement(
-            'div',
-            { className: 'geocoding-results' },
-            this.state.geocodeResults
-          ) : null
-        )
-      );
-    }
-  }]);
-
-  return SimpleForm;
-}(_react2.default.Component);
-
-exports.default = SimpleForm;
-
-/***/ }),
+/* 183 */,
 /* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19454,10 +19190,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var HomePage = exports.HomePage = function (_Component) {
     _inherits(HomePage, _Component);
 
-    function HomePage(props) {
+    function HomePage() {
         _classCallCheck(this, HomePage);
 
-        return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
+        return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).apply(this, arguments));
     }
 
     _createClass(HomePage, [{
@@ -19480,17 +19216,11 @@ var HomePage = exports.HomePage = function (_Component) {
                     null,
                     'Home Page'
                 ),
-                _react2.default.createElement(_.SimpleForm, null),
+                _react2.default.createElement(_.AutoCompleteSearch, null),
                 _react2.default.createElement(
                     'div',
                     { className: 'eventList' },
-                    _react2.default.createElement(
-                        'h4',
-                        null,
-                        'Trending Events'
-                    ),
-                    _react2.default.createElement('hr', null),
-                    this.props.allEvents ? _react2.default.createElement(_.EventsList, { events: trendingEvents }) : null
+                    this.props.allEvents ? _react2.default.createElement(_.EventsList, { events: trendingEvents, heading: 'Trending Events' }) : null
                 )
             );
         }
@@ -19514,6 +19244,11 @@ var mapDispatch = function mapDispatch(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(HomePage);
+
+
+HomePage.PropTypes = {
+    allEvents: _propTypes2.default.array
+};
 
 /***/ }),
 /* 185 */
@@ -21261,7 +20996,7 @@ exports = module.exports = __webpack_require__(197)();
 
 
 // module
-exports.push([module.i, "body {\n  font-family: sans-serif; }\n  body a {\n    text-decoration: none; }\n  body label {\n    display: block; }\n  body nav a {\n    display: inline-block;\n    margin: 1em; }\n  body form div {\n    margin: 1em;\n    display: inline-block; }\n\n.page-wrapper {\n  z-index: 99; }\n\n.eventList {\n  z-index: -99; }\n", ""]);
+exports.push([module.i, "html {\n  background-color: #fff;\n  font-weight: 300;\n  -webkit-font-smoothing: antialiased;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  text-align: center; }\n\nbody {\n  font-family: sans-serif; }\n  body a {\n    text-decoration: none; }\n  body label {\n    display: block; }\n  body nav a {\n    display: inline-block;\n    margin: 1em; }\n  body form div {\n    margin: 1em;\n    display: inline-block; }\n\nbody, #root, .page-wrapper {\n  height: 100%;\n  background-color: #fcfcfc; }\n\n.btn:hover {\n  background-color: #e53935;\n  border-color: #e53935; }\n\n.Demo__github-icon {\n  font-size: 24px; }\n\n.Demo__github-link {\n  color: #262626;\n  font-size: 20px; }\n\n.Demo__github-link:hover,\n.Demo__github-link:active {\n  color: #4078c0;\n  text-decoration: none; }\n\n.Demo__suggestion-icon {\n  margin-right: 8px; }\n\n.fa.fa-map-marker.header {\n  color: #e53935; }\n\n.Demo__search-input,\n.Demo__search-input:focus,\n.Demo__search-input:active {\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);\n  border: honeydew;\n  display: block;\n  width: 100%;\n  padding: 16px;\n  font-size: 16px;\n  border-radius: 2px;\n  outline: none; }\n\n.Demo__autocomplete-container {\n  border-bottom: honeydew;\n  border-left: honeydew;\n  border-right: honeydew;\n  border-top: 1px solid #e6e6e6;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  border-radius: 0 0 2px 2px; }\n\n.Demo__suggestion-item {\n  padding: 4px;\n  text-align: left; }\n\n.Demo__spinner {\n  color: #18bc9c;\n  font-size: 30px; }\n\n@media (max-width: 480px) {\n  .autocomplete-container {\n    text-align: left; } }\n\n@media (min-width: 768px) {\n  .alert {\n    margin-left: auto;\n    margin-right: auto;\n    width: 50%;\n    -webkit-animation: fadein .75s;\n    -moz-animation: fadein .75s;\n    -ms-animation: fadein .75s;\n    -o-animation: fadein .75s;\n    animation: fadein .75s; }\n  .btn {\n    margin-top: 1.5rem; }\n  .form-group {\n    display: inline-block;\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 5rem;\n    width: 50%; } }\n\n.geocoding-results {\n  text-align: left; }\n\n@keyframes fadein {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@-moz-keyframes fadein {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@-webkit-keyframes fadein {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@-ms-keyframes fadein {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@-o-keyframes fadein {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n", ""]);
 
 // exports
 
@@ -40597,6 +40332,222 @@ function toArray(list, index) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactPlacesAutocomplete = __webpack_require__(319);
+
+var _reactPlacesAutocomplete2 = _interopRequireDefault(_reactPlacesAutocomplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AutoCompleteSearch = function (_React$Component) {
+  _inherits(AutoCompleteSearch, _React$Component);
+
+  function AutoCompleteSearch(props) {
+    _classCallCheck(this, AutoCompleteSearch);
+
+    var _this = _possibleConstructorReturn(this, (AutoCompleteSearch.__proto__ || Object.getPrototypeOf(AutoCompleteSearch)).call(this, props));
+
+    _this.state = {
+      address: '',
+      geocodeResults: null,
+      loading: false
+    };
+    _this.handleSelect = _this.handleSelect.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.renderGeocodeFailure = _this.renderGeocodeFailure.bind(_this);
+    _this.renderGeocodeSuccess = _this.renderGeocodeSuccess.bind(_this);
+    return _this;
+  }
+
+  _createClass(AutoCompleteSearch, [{
+    key: 'handleSelect',
+    value: function handleSelect(address) {
+      var _this2 = this;
+
+      this.setState({
+        address: address,
+        loading: true
+      });
+
+      (0, _reactPlacesAutocomplete.geocodeByAddress)(address).then(function (results) {
+        return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
+      }).then(function (_ref) {
+        var lat = _ref.lat,
+            lng = _ref.lng;
+
+        console.log('Success Yay', { lat: lat, lng: lng });
+        _this2.setState({
+          geocodeResults: _this2.renderGeocodeSuccess(lat, lng),
+          loading: false
+        });
+      }).catch(function (error) {
+        console.log('Oh no!', error);
+        _this2.setState({
+          geocodeResults: _this2.renderGeocodeFailure(error),
+          loading: false
+        });
+      });
+
+      /* NOTE: Using callback (Deprecated version) */
+      // geocodeByAddress(address,  (err, { lat, lng }) => {
+      //   if (err) {
+      //     console.log('Oh no!', err)
+      //     this.setState({
+      //       geocodeResults: this.renderGeocodeFailure(err),
+      //       loading: false
+      //     })
+      //   }
+      //   console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
+      //   this.setState({
+      //     geocodeResults: this.renderGeocodeSuccess(lat, lng),
+      //     loading: false
+      //   })
+      // })
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(address) {
+      this.setState({
+        address: address,
+        geocodeResults: null
+      });
+    }
+  }, {
+    key: 'renderGeocodeFailure',
+    value: function renderGeocodeFailure(err) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'alert alert-danger', role: 'alert' },
+        _react2.default.createElement(
+          'strong',
+          null,
+          'Error!'
+        ),
+        ' ',
+        err
+      );
+    }
+  }, {
+    key: 'renderGeocodeSuccess',
+    value: function renderGeocodeSuccess(lat, lng) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'alert alert-success', role: 'alert' },
+        _react2.default.createElement(
+          'strong',
+          null,
+          'Success!'
+        ),
+        ' Geocoder found latitude and longitude: ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          lat,
+          ', ',
+          lng
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var cssClasses = {
+        root: 'form-group',
+        input: 'Demo__search-input',
+        autocompleteContainer: 'Demo__autocomplete-container'
+      };
+
+      var AutocompleteItem = function AutocompleteItem(_ref2) {
+        var formattedSuggestion = _ref2.formattedSuggestion;
+        return _react2.default.createElement(
+          'div',
+          { className: 'Demo__suggestion-item' },
+          _react2.default.createElement('i', { className: 'fa fa-map-marker Demo__suggestion-icon' }),
+          _react2.default.createElement(
+            'strong',
+            null,
+            formattedSuggestion.mainText
+          ),
+          ' ',
+          _react2.default.createElement(
+            'small',
+            { className: 'text-muted' },
+            formattedSuggestion.secondaryText
+          )
+        );
+      };
+
+      var inputProps = {
+        type: "text",
+        value: this.state.address,
+        onChange: this.handleChange,
+        onBlur: function onBlur() {
+          console.log('Blur event!');
+        },
+        onFocus: function onFocus() {
+          console.log('Focused!');
+        },
+        autoFocus: true,
+        placeholder: "Search Places",
+        name: 'Demo__input',
+        id: "my-input-id"
+      };
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'page-wrapper' },
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(_reactPlacesAutocomplete2.default, {
+            onSelect: this.handleSelect,
+            autocompleteItem: AutocompleteItem,
+            onEnterKeyDown: this.handleSelect,
+            classNames: cssClasses,
+            inputProps: inputProps
+          }),
+          this.state.loading ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('i', { className: 'fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner' })
+          ) : null,
+          !this.state.loading && this.state.geocodeResults ? _react2.default.createElement(
+            'div',
+            { className: 'geocoding-results' },
+            this.state.geocodeResults
+          ) : null
+        )
+      );
+    }
+  }]);
+
+  return AutoCompleteSearch;
+}(_react2.default.Component);
+
+exports.default = AutoCompleteSearch;
 
 /***/ })
 /******/ ]);
