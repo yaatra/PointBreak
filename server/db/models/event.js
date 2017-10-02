@@ -25,6 +25,15 @@ const Event = db.define('event', {
     type: Sequelize.INTEGER,
     max: 10,
     min: 1
+  },
+  location: {
+    type: Sequelize.TEXT
+  },
+  lat: {
+    type: Sequelize.DOUBLE
+  },
+  lng: {
+    type: Sequelize.DOUBLE
   }
 })
 

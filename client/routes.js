@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, HomePage} from './components'
+import {Main, Login, Signup, UserHome, HomePage, AllEventsInLocation} from './components'
 import {me} from './store'
 
 /**
@@ -26,6 +26,7 @@ class Routes extends Component {
             <Route exact path='/' component={HomePage} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
+            <Route exact path='/locations' component={AllEventsInLocation} />
             {
               isLoggedIn &&
                 <Switch>

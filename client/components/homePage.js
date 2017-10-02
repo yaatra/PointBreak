@@ -28,7 +28,7 @@ export class HomePage extends Component {
 
 const mapState = (state) => {
     return {
-        allEvents: state.events
+        allEvents: state.events.allEvents
     }
 }
 

@@ -4,8 +4,7 @@ const EventsList = props => {
   const {events, heading} = props
   return (
     <div className="container">
-      <h4>{heading}</h4>
-      <hr />
+      {heading ? <div><h4>{heading}</h4><hr /></div> : null}
       {events.map(event => {
           return (
               <div className='thumbnail col-sm-3' key={event.id}>

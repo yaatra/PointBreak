@@ -17,6 +17,21 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/locations', (req, res, next) => {
+  console.log('Specific Events data - ', req.query)
+  // WE NEED TO DO A BETTER ADDRESS MATCHING HERE (VER 2.0)
+  // FOR NOW IT IS AN EXACT MATCH to the location in the Event Model
+  Event.findAll({
+    where: {location: req.query.address},
+    include: [{
+      all: true,
+      nested: true
+    }]
+  })
+  .then(events => res.json(events))
+  .catch(next)
+})
+
 router.get('/:id', (req, res, next) => {
   Event.findOne({
     where: {
