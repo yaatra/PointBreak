@@ -6799,12 +6799,7 @@ Object.defineProperty(exports, 'HomePage', {
 
 var _autocomplete = __webpack_require__(181);
 
-Object.defineProperty(exports, 'SimpleForm', {
-  enumerable: true,
-  get: function get() {
-    return _autocomplete.SimpleForm;
-  }
-});
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
 var _eventsList = __webpack_require__(182);
 
@@ -6812,6 +6807,7 @@ var _eventsList2 = _interopRequireDefault(_eventsList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+exports.SimpleForm = _autocomplete2.default;
 exports.EventsList = _eventsList2.default;
 
 /***/ }),
@@ -19035,7 +19031,6 @@ AuthForm.propTypes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SimpleForm = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -19053,9 +19048,59 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // import React from 'react'
+// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-var SimpleForm = exports.SimpleForm = function (_React$Component) {
+// export class SimpleForm extends React.Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = { address: 'San Francisco, CA' }
+//     this.onChange = (address) => this.setState({ address })
+//   }
+
+//   handleFormSubmit = (event) => {
+//     event.preventDefault()
+
+//     geocodeByAddress(this.state.address)
+//       .then(results => getLatLng(results[0]))
+//       .then(latLng => console.log('Success', latLng))
+//       .catch(error => console.error('Error', error))
+//   }
+
+//   render() {
+//     const cssClasses = {
+//       root: 'form-group',
+//       input: 'form-control',
+//       autocompleteContainer: 'my-autocomplete-container'
+//     }
+//     const myStyles = {
+//       root: { position: 'absolute' },
+//       input: { width: '100%' },
+//       autocompleteContainer: { backgroundColor: 'green' },
+//       autocompleteItem: { color: 'black' },
+//       autocompleteItemActive: { color: 'blue' }
+//     }
+//     console.log("this.state:", this.state)
+//     const inputProps = {
+//       value: this.state.address,
+//       onChange: this.onChange,
+//       type: 'search',
+//       placeholder: 'Search Places...',
+//       autoFocus: true,
+//     }
+
+//     return (
+//       <form onSubmit={this.handleFormSubmit}>
+//         <PlacesAutocomplete inputProps={inputProps} 
+//         classNames={cssClasses}
+//         styles={myStyles} />
+//         <button type="submit">Submit</button>
+//       </form>
+//     )
+//   }
+// }
+
+var SimpleForm = function (_React$Component) {
   _inherits(SimpleForm, _React$Component);
 
   function SimpleForm(props) {
@@ -19063,42 +19108,175 @@ var SimpleForm = exports.SimpleForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SimpleForm.__proto__ || Object.getPrototypeOf(SimpleForm)).call(this, props));
 
-    _this.handleFormSubmit = function (event) {
-      event.preventDefault();
-
-      (0, _reactPlacesAutocomplete.geocodeByAddress)(_this.state.address).then(function (results) {
-        return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
-      }).then(function (latLng) {
-        return console.log('Success', latLng);
-      }).catch(function (error) {
-        return console.error('Error', error);
-      });
+    _this.state = {
+      address: '',
+      geocodeResults: null,
+      loading: false
     };
-
-    _this.state = { address: 'San Francisco, CA' };
-    _this.onChange = function (address) {
-      return _this.setState({ address: address });
-    };
+    _this.handleSelect = _this.handleSelect.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.renderGeocodeFailure = _this.renderGeocodeFailure.bind(_this);
+    _this.renderGeocodeSuccess = _this.renderGeocodeSuccess.bind(_this);
     return _this;
   }
 
   _createClass(SimpleForm, [{
+    key: 'handleSelect',
+    value: function handleSelect(address) {
+      var _this2 = this;
+
+      this.setState({
+        address: address,
+        loading: true
+      });
+
+      (0, _reactPlacesAutocomplete.geocodeByAddress)(address).then(function (results) {
+        return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
+      }).then(function (_ref) {
+        var lat = _ref.lat,
+            lng = _ref.lng;
+
+        console.log('Success Yay', { lat: lat, lng: lng });
+        _this2.setState({
+          geocodeResults: _this2.renderGeocodeSuccess(lat, lng),
+          loading: false
+        });
+      }).catch(function (error) {
+        console.log('Oh no!', error);
+        _this2.setState({
+          geocodeResults: _this2.renderGeocodeFailure(error),
+          loading: false
+        });
+      });
+
+      /* NOTE: Using callback (Deprecated version) */
+      // geocodeByAddress(address,  (err, { lat, lng }) => {
+      //   if (err) {
+      //     console.log('Oh no!', err)
+      //     this.setState({
+      //       geocodeResults: this.renderGeocodeFailure(err),
+      //       loading: false
+      //     })
+      //   }
+      //   console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
+      //   this.setState({
+      //     geocodeResults: this.renderGeocodeSuccess(lat, lng),
+      //     loading: false
+      //   })
+      // })
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(address) {
+      this.setState({
+        address: address,
+        geocodeResults: null
+      });
+    }
+  }, {
+    key: 'renderGeocodeFailure',
+    value: function renderGeocodeFailure(err) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'alert alert-danger', role: 'alert' },
+        _react2.default.createElement(
+          'strong',
+          null,
+          'Error!'
+        ),
+        ' ',
+        err
+      );
+    }
+  }, {
+    key: 'renderGeocodeSuccess',
+    value: function renderGeocodeSuccess(lat, lng) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'alert alert-success', role: 'alert' },
+        _react2.default.createElement(
+          'strong',
+          null,
+          'Success!'
+        ),
+        ' Geocoder found latitude and longitude: ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          lat,
+          ', ',
+          lng
+        )
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
-      console.log("this.state:", this.state);
+      var cssClasses = {
+        root: 'form-group',
+        input: 'Demo__search-input',
+        autocompleteContainer: 'Demo__autocomplete-container'
+      };
+
+      var AutocompleteItem = function AutocompleteItem(_ref2) {
+        var formattedSuggestion = _ref2.formattedSuggestion;
+        return _react2.default.createElement(
+          'div',
+          { className: 'Demo__suggestion-item' },
+          _react2.default.createElement('i', { className: 'fa fa-map-marker Demo__suggestion-icon' }),
+          _react2.default.createElement(
+            'strong',
+            null,
+            formattedSuggestion.mainText
+          ),
+          ' ',
+          _react2.default.createElement(
+            'small',
+            { className: 'text-muted' },
+            formattedSuggestion.secondaryText
+          )
+        );
+      };
+
       var inputProps = {
+        type: "text",
         value: this.state.address,
-        onChange: this.onChange
+        onChange: this.handleChange,
+        onBlur: function onBlur() {
+          console.log('Blur event!');
+        },
+        onFocus: function onFocus() {
+          console.log('Focused!');
+        },
+        autoFocus: true,
+        placeholder: "Search Places",
+        name: 'Demo__input',
+        id: "my-input-id"
       };
 
       return _react2.default.createElement(
-        'form',
-        { onSubmit: this.handleFormSubmit },
-        _react2.default.createElement(_reactPlacesAutocomplete2.default, { inputProps: inputProps }),
+        'div',
+        { className: 'page-wrapper' },
         _react2.default.createElement(
-          'button',
-          { type: 'submit' },
-          'Submit'
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(_reactPlacesAutocomplete2.default, {
+            onSelect: this.handleSelect,
+            autocompleteItem: AutocompleteItem,
+            onEnterKeyDown: this.handleSelect,
+            classNames: cssClasses,
+            inputProps: inputProps
+          }),
+          this.state.loading ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('i', { className: 'fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner' })
+          ) : null,
+          !this.state.loading && this.state.geocodeResults ? _react2.default.createElement(
+            'div',
+            { className: 'geocoding-results' },
+            this.state.geocodeResults
+          ) : null
         )
       );
     }
@@ -19106,6 +19284,8 @@ var SimpleForm = exports.SimpleForm = function (_React$Component) {
 
   return SimpleForm;
 }(_react2.default.Component);
+
+exports.default = SimpleForm;
 
 /***/ }),
 /* 182 */
@@ -19136,11 +19316,6 @@ var EventsList = function EventsList(props) {
     return _react2.default.createElement(
         "div",
         { className: "container" },
-        _react2.default.createElement(
-            "h1",
-            null,
-            "Trending Events"
-        ),
         events.map(function (event) {
             return _react2.default.createElement(
                 "div",
@@ -19209,6 +19384,7 @@ var HomePage = exports.HomePage = function (_Component) {
         key: 'render',
         value: function render() {
             // this.props.getAllEvents()
+            var trendingEvents = this.props.allEvents.splice(0, 4);
             console.log("fetchEvents:", _store.fetchEvents);
             console.log("this.props:", this.props);
             return _react2.default.createElement(
@@ -19220,7 +19396,17 @@ var HomePage = exports.HomePage = function (_Component) {
                     'Home Page'
                 ),
                 _react2.default.createElement(_.SimpleForm, null),
-                this.props.allEvents ? _react2.default.createElement(_.EventsList, { events: this.props.allEvents }) : null
+                _react2.default.createElement(
+                    'div',
+                    { className: 'eventList' },
+                    _react2.default.createElement(
+                        'h4',
+                        null,
+                        'Trending Events'
+                    ),
+                    _react2.default.createElement('hr', null),
+                    this.props.allEvents ? _react2.default.createElement(_.EventsList, { events: trendingEvents }) : null
+                )
             );
         }
     }]);
@@ -20921,7 +21107,7 @@ exports = module.exports = __webpack_require__(196)();
 
 
 // module
-exports.push([module.i, "body {\n  font-family: sans-serif; }\n  body a {\n    text-decoration: none; }\n  body label {\n    display: block; }\n  body nav a {\n    display: inline-block;\n    margin: 1em; }\n  body form div {\n    margin: 1em;\n    display: inline-block; }\n", ""]);
+exports.push([module.i, "body {\n  font-family: sans-serif; }\n  body a {\n    text-decoration: none; }\n  body label {\n    display: block; }\n  body nav a {\n    display: inline-block;\n    margin: 1em; }\n  body form div {\n    margin: 1em;\n    display: inline-block; }\n\n.page-wrapper {\n  z-index: 99; }\n\n.eventList {\n  z-index: -99; }\n", ""]);
 
 // exports
 
