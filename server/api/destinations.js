@@ -12,8 +12,8 @@ router.get('/', (req, res, next) => {
       nested: true
     }]
   })
-    .then(destinations => res.json(destinations))
-    .catch(next)
+  .then(destinations => res.json(destinations))
+  .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
@@ -26,6 +26,6 @@ router.get('/:id', (req, res, next) => {
       nested: true
     }]
   })
-    .then(destination => res.json(destination))
-    .catch(next)
+  .then(destination => res.json(destination))
+  .catch(next)
 })
