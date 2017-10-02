@@ -8,9 +8,7 @@ const AssociatedEvent = db.define('associatedEvent', {
     autoIncrement: true
   },
   type: {
-    type: Sequelize.ENUM('selected', 'followed'),
-    allowNull: false,
-    defaultValue: 'followed'
+    type: Sequelize.ENUM('selected', 'followed')
   }
 })
 

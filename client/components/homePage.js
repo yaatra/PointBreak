@@ -15,13 +15,19 @@ export class HomePage extends Component {
     
     render(){
         // this.props.getAllEvents()
+        let trendingEvents = this.props.allEvents.splice(0, 4)
         console.log("fetchEvents:", fetchEvents)
         console.log("this.props:", this.props)
         return(<div className='container'>
             <h1>Home Page</h1>
             <SimpleForm/>
-            {this.props.allEvents ? <EventsList events={this.props.allEvents}/> : null}
-        </div>)
+            <div className='eventList'>
+            <h4>Trending Events</h4>
+            <hr/>
+            {this.props.allEvents ? <EventsList events={trendingEvents}/> : null}
+            </div>
+        </div>
+        )
     }
 }
 

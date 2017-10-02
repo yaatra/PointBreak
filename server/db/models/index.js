@@ -1,10 +1,10 @@
 const User = require('./user')
 const Event = require('./event')
-const Destination = require('./destination')
 const Category = require('./category')
+const Destination = require('./destination')
 const AssociatedEvent = require('./associatedEvent')
-const PreferredDestination = require('./preferredDestination')
 const PreferredCategory = require('./preferredCategory')
+const PreferredDestination = require('./preferredDestination')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -23,23 +23,24 @@ const PreferredCategory = require('./preferredCategory')
 User.belongsToMany(Event, {through: AssociatedEvent})
 Event.belongsToMany(User, {through: AssociatedEvent})
 
-User.belongsToMany(Destination, {through: PreferredDestination})
-Destination.belongsToMany(User, {through: PreferredDestination})
-
 User.belongsToMany(Category, {through: PreferredCategory})
 Category.belongsToMany(User, {through: PreferredCategory})
+
+User.belongsToMany(Destination, {through: PreferredDestination})
+Destination.belongsToMany(User, {through: PreferredDestination})
 
 Event.belongsTo(Category)
 Category.hasMany(Event)
 
 Event.belongsTo(Destination)
+Destination.hasMany(Event)
 
 module.exports = {
   User,
   Event,
-  Destination,
   Category,
+  Destination,
   AssociatedEvent,
-  PreferredDestination,
-  PreferredCategory
+  PreferredCategory,
+  PreferredDestination
 }

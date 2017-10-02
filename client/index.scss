@@ -19,3 +19,11 @@ body {
     display: inline-block;
   }
 }
+
+.page-wrapper {
+  z-index: 99;
+}
+
+.eventList {
+  z-index: -99;
+}
