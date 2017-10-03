@@ -1,3 +1,13 @@
+html {
+  background-color: #fff;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  text-align: center;
+}
+
 body {
   font-family: sans-serif;
 
@@ -20,10 +30,134 @@ body {
   }
 }
 
-.page-wrapper {
-  z-index: 99;
+body, #root, .page-wrapper {
+  height: 100%;
+  background-color: #fcfcfc;
+}
+// .page-wrapper {
+//   z-index: 99;
+// }
+
+// .eventList {
+//   z-index: -99;
+// }
+
+.btn:hover {
+  background-color: #e53935;
+  border-color: #e53935;
 }
 
-.eventList {
-  z-index: -99;
+.Demo__github-icon {
+  font-size: 24px;
+}
+
+.Demo__github-link {
+  color: #262626;
+  font-size: 20px;
+}
+
+.Demo__github-link:hover,
+.Demo__github-link:active {
+  color: #4078c0;
+  text-decoration: none;
+}
+
+.Demo__suggestion-icon {
+  margin-right: 8px;
+}
+
+.fa.fa-map-marker.header {
+  color: #e53935;
+}
+
+.Demo__search-input,
+.Demo__search-input:focus,
+.Demo__search-input:active {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  border: honeydew;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 2px;
+  outline: none;
+}
+
+.Demo__autocomplete-container {
+  border-bottom: honeydew;
+  border-left: honeydew;
+  border-right: honeydew;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border-radius: 0 0 2px 2px;
+}
+
+.Demo__suggestion-item {
+  padding: 4px;
+  text-align: left;
+}
+
+.Demo__spinner {
+  color: #18bc9c;
+  font-size: 30px;
+}
+
+@media (max-width: 480px) {
+  .autocomplete-container {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .alert {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    -webkit-animation: fadein .75s;
+    -moz-animation: fadein .75s;
+    -ms-animation: fadein .75s;
+    -o-animation: fadein .75s;
+    animation: fadein .75s;
+  }
+
+  .btn {
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    width: 50%;
+  }
+}
+
+.geocoding-results {
+  text-align: left;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

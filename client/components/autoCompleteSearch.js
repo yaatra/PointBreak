@@ -1,65 +1,17 @@
-// import React from 'react'
-// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
- 
-// export class SimpleForm extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = { address: 'San Francisco, CA' }
-//     this.onChange = (address) => this.setState({ address })
-//   }
- 
-//   handleFormSubmit = (event) => {
-//     event.preventDefault()
- 
-//     geocodeByAddress(this.state.address)
-//       .then(results => getLatLng(results[0]))
-//       .then(latLng => console.log('Success', latLng))
-//       .catch(error => console.error('Error', error))
-//   }
- 
-//   render() {
-//     const cssClasses = {
-//       root: 'form-group',
-//       input: 'form-control',
-//       autocompleteContainer: 'my-autocomplete-container'
-//     }
-//     const myStyles = {
-//       root: { position: 'absolute' },
-//       input: { width: '100%' },
-//       autocompleteContainer: { backgroundColor: 'green' },
-//       autocompleteItem: { color: 'black' },
-//       autocompleteItemActive: { color: 'blue' }
-//     }
-//     console.log("this.state:", this.state)
-//     const inputProps = {
-//       value: this.state.address,
-//       onChange: this.onChange,
-//       type: 'search',
-//       placeholder: 'Search Places...',
-//       autoFocus: true,
-//     }
- 
-//     return (
-//       <form onSubmit={this.handleFormSubmit}>
-//         <PlacesAutocomplete inputProps={inputProps} 
-//         classNames={cssClasses}
-//         styles={myStyles} />
-//         <button type="submit">Submit</button>
-//       </form>
-//     )
-//   }
-// }
-
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import {connect} from 'react-redux'
+import {setSelectedLocation, fetchEventsByLocation} from '../store'
 
-class SimpleForm extends React.Component {
+class AutoCompleteSearch extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       address: '',
       geocodeResults: null,
-      loading: false
+      loading: false,
+      lat: 0,
+      lng: 0
     }
     this.handleSelect = this.handleSelect.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -79,8 +31,21 @@ class SimpleForm extends React.Component {
         console.log('Success Yay', { lat, lng })
         this.setState({
           geocodeResults: this.renderGeocodeSuccess(lat, lng),
+          lat: lat,
+          lng: lng,
           loading: false
         })
+      })
+      .then(() => {
+        //THIS IS WHERE WE CALL OUT REDUX ACTION HANDLER TO UPDATE THE STORE
+        console.log('*******', this.state.address, 'Lat/long: ', this.state.lat, ' ', this.state.lng)
+        const location = {
+          address: this.state.address,
+          lat: this.state.lat,
+          lng: this.state.lng
+        }
+        this.props.setLocation(location)
+        // >>>> IMPORT HISTORY AND REDIRECT HERE WITH THE DATA IN LOCATION
       })
       .catch((error) => {
         console.log('Oh no!', error)
@@ -89,6 +54,7 @@ class SimpleForm extends React.Component {
           loading: false
         })
       })
+
 
     /* NOTE: Using callback (Deprecated version) */
     // geocodeByAddress(address,  (err, { lat, lng }) => {
@@ -176,4 +142,21 @@ class SimpleForm extends React.Component {
   }
 }
 
-export default SimpleForm
+// export default AutoCompleteSearch
+/**
+ * CONTAINER
+ */
+const mapState = (state) => {
+  return {
+    location: state.location,
+  }
+}
+const mapDispatch = (dispatch) => {
+  return {
+    setLocation (location) {
+      dispatch(setSelectedLocation(location))
+      dispatch(fetchEventsByLocation(location))
+    }
+  }
+}
+export default connect(mapState, mapDispatch)(AutoCompleteSearch)
