@@ -1,15 +1,19 @@
 'use strict'
 const database = require('./server/db')
 const db = require('./server/db/models')
-const {User, Event, Category, Destination, AssociatedEvent, PreferredCategory, PreferredDestination, Language} = db
+const {User, Event, Category,
+   Destination, AssociatedEvent,
+   PreferredCategory,
+   PreferredDestination,
+   Language, AssociatedLanguage} = db
 
 //Create seed data
 let data = {
   userData: [
-    {firstName: 'Eren', lastName: 'Chen', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
-    {firstName: 'Ranjeet', lastName: 'Sodhi', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, image: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
-    {firstName: 'Bojan', lastName: 'Jovanovic', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
-    {firstName: 'David', lastName: 'Eiber', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'}
+    {firstName: 'Eren', lastName: 'Chen', gender: 'female', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
+    {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, image: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
+    {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
+    {firstName: 'David', lastName: 'Eiber', gender: 'female', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'}
   ],
   eventData: [
     {name: 'Race The Rabbit', image: 'https://i.ytimg.com/vi/x_CFMV_BSPE/maxresdefault.jpg', description: 'Racing event in Bangkok', date: '2017-11-03 14:34:22', difficulty: 7, categoryId: 1, destinationId: 1, location: 'New York, NY, United States', lat:40.7127837, lng:-74.00594130000002 },
@@ -31,7 +35,11 @@ let data = {
     {city: 'New York', state: 'NY'},
     {city: 'London', state: 'England'},
     {city: 'San Francisco', state: 'CA'},
-    {city: 'Shanghai', state: 'Shanghai'}
+    {city: 'Shanghai', state: 'Shanghai'},
+    {city: 'Kuala Lumpur', state: 'Malaysia'},
+    {city: 'Sydney', state: 'Australia'},
+    {city: 'Medellin', state: 'Colombia'},
+    {city: 'Rio de Janeiro', state: 'Brazil'},
   ],
   associatedEventData: [
     {userId: 1, eventId: 1, type: 'selected'},
@@ -43,13 +51,24 @@ let data = {
     {userId: 1, categoryId: 1},
     {userId: 1, categoryId: 2},
     {userId: 2, categoryId: 3},
-    {userId: 2, categoryId: 4}
+    {userId: 2, categoryId: 4},
+    {userId: 3, categoryId: 3},
+    {userId: 3, categoryId: 1},
+    {userId: 4, categoryId: 4},
+    {userId: 4, categoryId: 2},
   ],
   preferredDestinationData: [
+    {userId: 1, destinationId: 4},
+    {userId: 1, destinationId: 1},
+    {userId: 2, destinationId: 7},
+    {userId: 2, destinationId: 5},
+    {userId: 2, destinationId: 6},
     {userId: 3, destinationId: 1},
     {userId: 3, destinationId: 2},
-    {userId: 4, destinationId: 3},
-    {userId: 4, destinationId: 4}
+    {userId: 3, destinationId: 5},
+    {userId: 3, destinationId: 6},
+    {userId: 4, destinationId: 1},
+    {userId: 4, destinationId: 4},
   ],
   languageData: [
     {"code":"ab","name":"Abkhaz","nativeName":"аҧсуа"},
@@ -235,7 +254,15 @@ let data = {
     {"code":"yo","name":"Yoruba","nativeName":"Yorùbá"},
     {"code":"za","name":"Zhuang, Chuang","nativeName":"Saɯ cueŋƅ, Saw cuengh"}
   ],
-  AssociatedLanguageData: []
+  AssociatedLanguageData: [
+    {userId: 1, languageId: 30},
+    {userId: 1, languageId: 40},
+    {userId: 2, languageId: 59},
+    {userId: 2, languageId: 40},
+    {userId: 3, languageId: 140},
+    {userId: 3, languageId: 40},
+    {userId: 4, languageId: 40},
+  ]
 }
 
 //Force sync the db, and then create the data in the two tables.
@@ -319,6 +346,16 @@ User.sync({
     })
 )})
 .then(() => console.log('completed PreferredDestination sync'))
+.then(() => AssociatedLanguage.sync({
+  force: true
+}))
+.then(() => {
+  return Promise.all(
+    data.AssociatedLanguageData.map(associatedLanguage => {
+      return AssociatedLanguage.create(associatedLanguage)
+    })
+)})
+.then(() => console.log('completed AssociatedLanguage sync'))
 .catch(err => console.error('There was totally a problem', err, err.stack))
 .finally(() => {
   database.close()
