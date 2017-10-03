@@ -4,6 +4,7 @@ module.exports = router
 router.use('/users', require('./users'))
 router.use('/events', require('./events'))
 router.use('/categories', require('./categories'))
+router.use('/languages', require('./languages'))
 router.use('/destinations', require('./destinations'))
 router.use('/yelp', require('./yelp'))
 router.use('/news', require('./news'))
