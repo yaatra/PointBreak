@@ -1,30 +1,25 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {SimpleForm, EventsList} from './'
+import {AutoCompleteSearch, EventsList} from './'
 import {fetchEvents} from '../store'
 
 export class HomePage extends Component {
-    constructor(props){
-        super(props)
-    }
 
     componentDidMount(){
         this.props.getAllEvents()
     }
-    
+
     render(){
         // this.props.getAllEvents()
         let trendingEvents = this.props.allEvents.splice(0, 4)
         console.log("fetchEvents:", fetchEvents)
         console.log("this.props:", this.props)
-        return(<div className='container'>
+        return (<div className='container'>
             <h1>Home Page</h1>
-            <SimpleForm/>
+            <AutoCompleteSearch />
             <div className='eventList'>
-            <h4>Trending Events</h4>
-            <hr/>
-            {this.props.allEvents ? <EventsList events={trendingEvents}/> : null}
+            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" /> : null}
             </div>
         </div>
         )
@@ -33,7 +28,7 @@ export class HomePage extends Component {
 
 const mapState = (state) => {
     return {
-        allEvents: state.events
+        allEvents: state.events.allEvents
     }
 }
 
@@ -46,3 +41,7 @@ const mapDispatch = (dispatch) => {
 }
 
 export default connect(mapState, mapDispatch)(HomePage)
+
+HomePage.PropTypes = {
+    allEvents: PropTypes.array
+}

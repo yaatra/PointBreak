@@ -1,4 +1,5 @@
 const User = require('./user')
+const Fitbit = require('./fitbit')
 const Event = require('./event')
 const Category = require('./category')
 const Destination = require('./destination')
@@ -35,8 +36,11 @@ Category.hasMany(Event)
 Event.belongsTo(Destination)
 Destination.hasMany(Event)
 
+User.belongsTo(Fitbit, {as: 'fitbitInfo'})
+
 module.exports = {
   User,
+  Fitbit,
   Event,
   Category,
   Destination,
