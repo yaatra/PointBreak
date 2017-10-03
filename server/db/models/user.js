@@ -45,6 +45,14 @@ const User = db.define('user', {
   age: {
     type: Sequelize.INTEGER
   },
+  gender: {
+    type: Sequelize.ENUM('male', 'female'),
+    defaultValue: 'male',
+    allowNull: false
+  },
+  image: {
+    type: Sequelize.TEXT
+  },
   fitbitId: {
     type: Sequelize.STRING
   },
