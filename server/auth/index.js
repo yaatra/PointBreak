@@ -8,7 +8,7 @@ router.post('/login', (req, res, next) => {
     // include: [{all: true, nested: true}]
   })
     .then(user => {
-      console.log('******', user)
+      // console.log('user: ', user)
       if (!user) {
         res.status(401).send('User not found')
       } else if (!user.correctPassword(req.body.password)) {
@@ -42,3 +42,5 @@ router.get('/me', (req, res) => {
 })
 
 router.use('/google', require('./google'))
+
+router.use('/fitbit', require('./fitbit'))

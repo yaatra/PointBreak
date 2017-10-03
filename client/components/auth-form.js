@@ -26,6 +26,7 @@ const AuthForm = (props) => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href='/auth/google'>{displayName} with Google</a>
+      <a href='/auth/fitbit'>{displayName} with Fitbit</a>
     </div>
   )
 }
@@ -49,6 +50,7 @@ const mapSignup = (state) => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
+    user: state.user,
     error: state.user.error
   }
 }
