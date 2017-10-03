@@ -5,6 +5,8 @@ const Destination = require('./destination')
 const AssociatedEvent = require('./associatedEvent')
 const PreferredCategory = require('./preferredCategory')
 const PreferredDestination = require('./preferredDestination')
+const AssociatedLanguage = require('./associatedLanguage')
+const Language = require('./languages')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -35,12 +37,17 @@ Category.hasMany(Event)
 Event.belongsTo(Destination)
 Destination.hasMany(Event)
 
+User.belongsToMany(Language, {through: AssociatedLanguage})
+Language.belongsToMany(User, {through: AssociatedLanguage})
+
 module.exports = {
   User,
   Event,
   Category,
   Destination,
+  Language,
   AssociatedEvent,
   PreferredCategory,
-  PreferredDestination
+  PreferredDestination,
+  AssociatedLanguage
 }
