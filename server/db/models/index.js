@@ -1,4 +1,5 @@
 const User = require('./user')
+const Fitbit = require('./fitbit')
 const Event = require('./event')
 const Category = require('./category')
 const Destination = require('./destination')
@@ -40,8 +41,12 @@ Destination.hasMany(Event)
 User.belongsToMany(Language, {through: AssociatedLanguage})
 Language.belongsToMany(User, {through: AssociatedLanguage})
 
+User.belongsTo(Fitbit, {as: 'fitbitInfo'})
+
+
 module.exports = {
   User,
+  Fitbit,
   Event,
   Category,
   Destination,
