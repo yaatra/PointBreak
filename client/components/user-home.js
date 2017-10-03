@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserDetails from './userDetails'
 import {loadUserData} from '../store'
-import EventsList from './eventsList'
+import {EventsList, SocialConnection} from './'
 
 /**
  * COMPONENT
@@ -29,6 +29,7 @@ export class UserHome extends Component {
     return (
       <div className='container'>
         <UserDetails user={user} />
+        <SocialConnection />
         {followingEvents.length ? <EventsList events={followingEvents} heading="Following Events" /> : null}
         {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events" /> : null}
       </div>
