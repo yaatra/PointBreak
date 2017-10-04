@@ -30,8 +30,8 @@ export class UserHome extends Component {
       <div className='container'>
         <UserDetails user={user} />
         <SocialConnection />
-        {followingEvents.length ? <EventsList events={followingEvents} heading="Following Events" /> : null}
-        {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events" /> : null}
+        {followingEvents.length ? <EventsList events={followingEvents} heading="Following Events" size = "150" /> : null}
+        {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events" size = "150" /> : null}
       </div>
     )
   }
