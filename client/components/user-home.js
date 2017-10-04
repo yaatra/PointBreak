@@ -15,7 +15,7 @@ export class UserHome extends Component {
 
   render () {
     const {user} = this.props
-    console.log('**** USER *****', user)
+    //console.log('**** USER *****', user)
 
     const selectedEvents = []
     const followingEvents = []
@@ -23,8 +23,8 @@ export class UserHome extends Component {
       user.events.forEach(event => {
         (event.associatedEvent.type === 'selected') ? selectedEvents.push(event) : followingEvents.push(event)
       })
-      console.log('selectedEvents: ', selectedEvents)
-      console.log('followedEvents: ', followingEvents)
+      //console.log('selectedEvents: ', selectedEvents)
+      //console.log('followedEvents: ', followingEvents)
     }
     return (
       <div className='container'>

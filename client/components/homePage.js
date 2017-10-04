@@ -13,8 +13,8 @@ export class HomePage extends Component {
     render(){
         // this.props.getAllEvents()
         let trendingEvents = this.props.allEvents.splice(0, 4)
-        console.log("fetchEvents:", fetchEvents)
-        console.log("this.props:", this.props)
+        //console.log("fetchEvents:", fetchEvents)
+        //console.log("this.props:", this.props)
         return (<div className='container'>
             <h1>Home Page</h1>
             <AutoCompleteSearch />
