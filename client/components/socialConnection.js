@@ -1,32 +1,33 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { fetchSimilarThunk } from '../store';
-
+import {UsersList} from './'
 
 class SocialConnection extends Component {
     componentDidMount() {
-        if(this.props.user) {
+        if (this.props.user) {
             this.props.getSimilarPeople(this.props.user)
         }
     }
     render() {
-        return(<div>
-            <h4>People with similar interests</h4>
-            <hr/>
-        </div>)
+        const {similarUsers} = this.props
+        return (
+            <div>
+            {similarUsers.length ? <UsersList similarUsers={similarUsers} heading="People with similar interests" /> : null}
+            </div>
+        )
     }
 }
 
 
-const MapState = (state) =>{ 
+const MapState = (state) => {
     return {
-        similarPeople: state.similarUsers,
+        similarUsers: state.similarUsers,
         user: state.user
     }
 }
 
-const MapDispatch = (dispatch) =>{ 
+const MapDispatch = (dispatch) => {
     return {
         getSimilarPeople(user){
             dispatch(fetchSimilarThunk(user))
