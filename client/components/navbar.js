@@ -10,11 +10,12 @@ const Navbar = (props) => {
 
     return(<nav className="navbar navbar-default">
         <div className="container-fluid">
+        <Link to='/'>Main</Link>
         {
           isLoggedIn
             ? <div>
               {/* The navbar will show these links after you log in */}
-              <Link to='/home'>Home</Link>
+              <Link to='/home'>User Home</Link>
               <a href='#' onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -51,4 +52,4 @@ Navbar.propTypes = {
     handleClick: PropTypes.func.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     email: PropTypes.string
-}  
+}
