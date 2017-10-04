@@ -19,7 +19,7 @@ export class HomePage extends Component {
             <h1>Home Page</h1>
             <AutoCompleteSearch />
             <div className='eventList'>
-            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" size="300" /> : null}
+            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" /> : null}
             </div>
         </div>
         )

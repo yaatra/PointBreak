@@ -14,16 +14,16 @@ const FETCH_SIMILAR_USERS = 'FETCH_SIMILAR_USERS'
 const currentUserPoints = user => {
   let totalPoints = 0
   if (user.categories.length || user.destinations.length || user.languages.length) {
-        // 1 point per category
-  user.categories.forEach(category => totalPoints++)
-  // 1 point for destination
-  user.destinations.forEach(destination => totalPoints++)
-  // 2 points for age
-  user.age ? totalPoints += 2 : null
-  // 1 point for every language
-  user.languages.forEach(language => totalPoints++)
-  // 2 points for summary health
-  user.fitbitInfoId ? totalPoints += 2 : null
+    // 1 point per category
+    totalPoints += user.categories.length
+    // 1 point for destination
+    totalPoints += user.destinations.length
+    // 2 points for age
+    totalPoints += user.age ? 2 : 0
+    // 1 point for every language
+    totalPoints += user.languages.length
+    // 2 points for summary health
+    totalPoints += user.fitbitInfoId ? 2 : 0
   }
   return totalPoints
 }
@@ -74,7 +74,6 @@ const matchingFunction = (selectedUser, users) => {
         matchingArray.push([matchPercentage, user])
     })
     matchingArray.sort((el1, el2) => el1[0] - el2[0]).reverse()
-    console.log(matchingArray)
     return matchingArray
 }
 
@@ -86,10 +85,7 @@ export const fetchSimilarThunk = (selectedUser) => dispatch =>
         axios.get('/api/users')
         .then(res => res.data)
         .then(users => {
-            //console.log(users)
             let user = users.filter(user => user.id === selectedUser.id)[0]
-            console.log(user)
-            console.log(users)
             let usersData = matchingFunction(user, users)
             dispatch(fetchSimilarAction(usersData.slice(1)))
         })
@@ -100,10 +96,8 @@ export const fetchSimilarThunk = (selectedUser) => dispatch =>
  */
 export default function (state = similarUsers, action) {
     switch (action.type) {
-      case FETCH_SIMILAR_USERS: {
-        console.log('Inside the reducer: ', action.usersData)
+      case FETCH_SIMILAR_USERS:
         return action.usersData
-        }
       default:
         return state
     }
