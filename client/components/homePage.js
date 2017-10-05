@@ -6,7 +6,7 @@ import {fetchEvents} from '../store'
 
 export class HomePage extends Component {
 
-    componentDidMount(){
+    componentWillMount(){
         this.props.getAllEvents()
     }
 

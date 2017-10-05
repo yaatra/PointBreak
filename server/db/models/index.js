@@ -23,8 +23,8 @@ const Language = require('./languages')
  * instead of: const User = require('../db/models/user')
  */
 
-User.belongsToMany(Event, {through: AssociatedEvent})
-Event.belongsToMany(User, {through: AssociatedEvent})
+// User.belongsToMany(Event, {through: AssociatedEvent})
+// Event.belongsToMany(User, {through: AssociatedEvent})
 
 AssociatedEvent.belongsTo(User)
 AssociatedEvent.belongsTo(Event)

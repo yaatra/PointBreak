@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Event, AssociatedEvent, User} = require('../db/models')
+const {Event, AssociatedEvent} = require('../db/models')
 module.exports = router
 
 // Get all events
@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     // send everything to anyone who asks!
     include: [{
       all: true,
-      nested: true
+    //   nested: true
     }]
   })
   .then(events => res.json(events))

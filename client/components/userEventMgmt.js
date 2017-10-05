@@ -23,8 +23,8 @@ export class UserEventMgmt extends Component {
 
     return (
       <div>
-      Event Management Console
-    </div>
+        Event Management Console
+      </div>
     )
   }
 }
@@ -35,7 +35,7 @@ export class UserEventMgmt extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    events: state.events
+    events: state.events.eventsForUser
   }
 }
 const mapDispatch = (dispatch) => {
