@@ -35,23 +35,13 @@ router.get('/locations', (req, res, next) => {
 // Get all events for a specific user
 // ** SORT OF WORKS - BUT BOT
 router.get('/user/:id', (req, res, next) => {
-  Event.findAll({
-    include: [{
-      model: User,
-      through: {
-        where: {userId: req.params.id}
-      }
-    }]
+  AssociatedEvent.findAll({
+    where: {
+      userId: req.params.id
+    },
+    include: [Event]
   })
-  // Event.findAll({
-  //   include: [{
-  //     model: User,
-  //     attribute: ['id']
-  //   }],
-  //   raw: true,
-  //   where: {'$User.id$': req.params.id}
-  // })
-  .then(events => res.json(events))
+  .then(res.json.bind(res))
   .catch(next)
 })
 
