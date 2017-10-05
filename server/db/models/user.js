@@ -54,7 +54,7 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   bmi: {
-    type: Sequelize.DOUBLE(2)
+    type: Sequelize.DOUBLE
   },
   isAdmin: {
     type: Sequelize.BOOLEAN

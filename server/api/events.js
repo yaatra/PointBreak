@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {Event} = require('../db/models')
+const {Event, AssociatedEvent, User} = require('../db/models')
 module.exports = router
 
+// Get all events
 router.get('/', (req, res, next) => {
-  console.log('got to Events route'  )
   Event.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
@@ -17,8 +17,8 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
+// Get all events for a specific location
 router.get('/locations', (req, res, next) => {
-  console.log('Specific Events data - ', req.query)
   // WE NEED TO DO A BETTER ADDRESS MATCHING HERE (VER 2.0)
   // FOR NOW IT IS AN EXACT MATCH to the location in the Event Model
   Event.findAll({
@@ -32,6 +32,20 @@ router.get('/locations', (req, res, next) => {
   .catch(next)
 })
 
+// Get all events for a specific user
+// ** SORT OF WORKS - BUT BOT
+router.get('/user/:id', (req, res, next) => {
+  AssociatedEvent.findAll({
+    where: {
+      userId: req.params.id
+    },
+    include: [Event]
+  })
+  .then(res.json.bind(res))
+  .catch(next)
+})
+
+// Get one events
 router.get('/:id', (req, res, next) => {
   Event.findOne({
     where: {
@@ -46,12 +60,14 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
+// Create an event
 router.post('/', (req, res, next) => {
   Event.create(req.body)
   .then(event => res.json(event))
   .catch(next)
 })
 
+// Update an event
 router.put('/:id', (req, res, next) => {
   Event.update(req.body, {
     where: {
@@ -66,6 +82,7 @@ router.put('/:id', (req, res, next) => {
   .catch(next)
 })
 
+// Delete an events
 router.delete('/:id', (req, res, next) => {
   Event.destroy({
     where: {
