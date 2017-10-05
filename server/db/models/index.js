@@ -1,6 +1,7 @@
 const User = require('./user')
 const Fitbit = require('./fitbit')
 const Event = require('./event')
+const Message = require('./Message')
 const Category = require('./category')
 const Destination = require('./destination')
 const AssociatedEvent = require('./associatedEvent')
@@ -43,6 +44,10 @@ Language.belongsToMany(User, {through: AssociatedLanguage})
 
 User.belongsTo(Fitbit, {as: 'fitbitInfo'})
 
+Message.belongsTo(User)
+
+Message.belongsTo(Event)
+
 
 module.exports = {
   User,
@@ -51,6 +56,7 @@ module.exports = {
   Category,
   Destination,
   Language,
+  Message,
   AssociatedEvent,
   PreferredCategory,
   PreferredDestination,
