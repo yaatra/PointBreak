@@ -26,7 +26,11 @@ export class UserEventMgmt extends Component {
     return (
       <div>
         Event Management Console
-        {createdEvents.map(event => <p key={event.event.id}>{event.event.name}</p>) }
+        {createdEvents.map(event => (
+          <div key={event.event.id}>
+          <p>{event.event.name}</p>
+          </div>
+        ))}
       </div>
     )
   }
