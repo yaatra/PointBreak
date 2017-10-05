@@ -12,7 +12,7 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    // allowNull: false
+    allowNull: false
   },
   password: {
     type: Sequelize.STRING
@@ -50,14 +50,11 @@ const User = db.define('user', {
     defaultValue: 'male',
     allowNull: false
   },
-  image: {
-    type: Sequelize.TEXT
-  },
   fitbitId: {
     type: Sequelize.STRING
   },
   bmi: {
-    type: Sequelize.INTEGER
+    type: Sequelize.DOUBLE(2)
   },
   isAdmin: {
     type: Sequelize.BOOLEAN

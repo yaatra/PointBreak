@@ -10,6 +10,7 @@ passport.use(new FitbitStrategy({
   callbackURL: process.env.FITBIT_CALLBACK
 },
 function(accessToken, refreshToken, profile, done) {
+  console.log('*************Profile****************', profile)
   const fitbitId = profile.id
   const firstName = profile._json.user.firstName
   const lastName = profile._json.user.lastName
@@ -17,8 +18,10 @@ function(accessToken, refreshToken, profile, done) {
   const height = profile._json.user.height
   const weight = profile._json.user.weight
   const age = profile._json.user.age
+  const email = 'null'
+  const bmi = weight / (height * height) * 703
 
-  const userInfo = {firstName, lastName, avatar, age, weight, height, fitbitId}
+  const userInfo = {firstName, lastName, email, avatar, height, weight, age, bmi, fitbitId}
   const fitbitInfo = {accessToken, refreshToken}
 
   User.findOrCreate({

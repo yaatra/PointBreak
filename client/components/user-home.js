@@ -15,7 +15,7 @@ export class UserHome extends Component {
 
   render () {
     const {user} = this.props
-    //console.log('**** USER *****', user)
+    // console.log('**** USER *****', user)
 
     const selectedEvents = []
     const followingEvents = []
