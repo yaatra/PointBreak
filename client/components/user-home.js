@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserDetails from './userDetails'
 import {loadUserData} from '../store'
-import EventsList from './eventsList'
+import {EventsList, SocialConnection} from './'
 
 /**
  * COMPONENT
@@ -23,14 +23,15 @@ export class UserHome extends Component {
       user.events.forEach(event => {
         (event.associatedEvent.type === 'selected') ? selectedEvents.push(event) : followingEvents.push(event)
       })
-      console.log('selectedEvents: ', selectedEvents)
-      console.log('followedEvents: ', followingEvents)
+      //console.log('selectedEvents: ', selectedEvents)
+      //console.log('followedEvents: ', followingEvents)
     }
     return (
       <div className='container'>
         <UserDetails user={user} />
+        <SocialConnection />
         {followingEvents.length ? <EventsList events={followingEvents} heading="Following Events" /> : null}
-        {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events" /> : null}
+        {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events"  /> : null}
       </div>
     )
   }

@@ -5,11 +5,18 @@ const {User, Event, Category,
    Destination, AssociatedEvent,
    PreferredCategory,
    PreferredDestination,
-   Language, AssociatedLanguage} = db
+   Language, AssociatedLanguage, Fitbit} = db
 
 //Create seed data
 let data = {
+  fitbitData: [
+    {id: 1, accessToken: 1312, weekAverageSteps: 5000, monthAverageSteps: 30000},
+    {id: 2, accessToken: 1312, weekAverageSteps: 7000, monthAverageSteps: 35000},
+    {id: 3, accessToken: 1312, weekAverageSteps: 8000, monthAverageSteps: 49000},
+    {id: 4, accessToken: 1312, weekAverageSteps: 9000, monthAverageSteps: 55000}
+  ],
   userData: [
+
     {firstName: 'Eren', lastName: 'Chen', gender: 'female', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
     {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, avatar: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
     {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
@@ -261,13 +268,24 @@ let data = {
     {userId: 3, languageId: 140},
     {userId: 3, languageId: 40},
     {userId: 4, languageId: 40},
-  ]
+  ],
+
 }
 
 //Force sync the db, and then create the data in the two tables.
-User.sync({
+Fitbit.sync({
   force: true
 })
+.then(() => {
+  return Promise.all(
+    data.fitbitData.map(fitbit => {
+      return Fitbit.create(fitbit)
+    })
+)})
+.then(() => console.log('completed Fitbit sync'))
+.then(() => User.sync({
+  force: true
+}))
 .then(() => {
   return Promise.all(
   data.userData.map(user => {

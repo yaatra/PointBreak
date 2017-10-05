@@ -114,8 +114,12 @@ class AutoCompleteSearch extends React.Component {
       type: "text",
       value: this.state.address,
       onChange: this.handleChange,
-      onBlur: () => { console.log('Blur event!'); },
-      onFocus: () => { console.log('Focused!'); },
+      onBlur: () => { 
+        //console.log('Blur event!');
+      },
+      onFocus: () => { 
+        //console.log('Focused!');
+      },
       autoFocus: true,
       placeholder: "Search Places",
       name: 'Demo__input',
