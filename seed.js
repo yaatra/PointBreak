@@ -5,7 +5,7 @@ const {User, Event, Category,
    Destination, AssociatedEvent,
    PreferredCategory,
    PreferredDestination,
-   Language, AssociatedLanguage, Fitbit} = db
+   Language, AssociatedLanguage, Message, Fitbit} = db
 
 //Create seed data
 let data = {
@@ -272,6 +272,15 @@ let data = {
     {userId: 3, languageId: 40},
     {userId: 4, languageId: 40},
   ],
+  MessageData: [
+    {content: "Hi", userId: 1, eventId: 1},
+    {content: "What time is the game?", userId: 1, eventId: 1},
+    {content: "Hello", userId: 2, eventId: 1},
+    {content: "It's at 9:30PM", userId: 2, eventId: 1},
+    {content: "Hi guys", userId: 3, eventId: 2},
+    {content: "Anyone here?", userId: 3, eventId: 2},
+    {content: "Hello", userId: 4, eventId: 2},
+  ]
 
 }
 
@@ -373,6 +382,16 @@ Fitbit.sync({
   return Promise.all(
     data.AssociatedLanguageData.map(associatedLanguage => {
       return AssociatedLanguage.create(associatedLanguage)
+    })
+)})
+.then(() => console.log('completed AssociatedLanguage sync'))
+.then(() => Message.sync({
+  force: true
+}))
+.then(() => {
+  return Promise.all(
+    data.MessageData.map(message => {
+      return Message.create(message)
     })
 )})
 .then(() => console.log('completed AssociatedLanguage sync'))
