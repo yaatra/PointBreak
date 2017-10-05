@@ -19,12 +19,13 @@ export class UserHome extends Component {
 
     const selectedEvents = []
     const followingEvents = []
+    const createdEvents = []
     if (user.events !== undefined) {
       user.events.forEach(event => {
-        (event.associatedEvent.type === 'selected') ? selectedEvents.push(event) : followingEvents.push(event)
+        if (event.associatedEvent.type === 'selected') selectedEvents.push(event)
+        if (event.associatedEvent.type === 'followed') followingEvents.push(event)
+        if (event.associatedEvent.type === 'created') createdEvents.push(event)
       })
-      //console.log('selectedEvents: ', selectedEvents)
-      //console.log('followedEvents: ', followingEvents)
     }
     return (
       <div className='container'>
