@@ -10,10 +10,10 @@ const {User, Event, Category,
 //Create seed data
 let data = {
   userData: [
-    {firstName: 'Eren', lastName: 'Chen', gender: 'female', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
-    {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, image: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
-    {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
-    {firstName: 'David', lastName: 'Eiber', gender: 'female', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 23.7, height: 6.1, weight: 180, age: 25, image: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'}
+    {firstName: 'Eren', lastName: 'Chen', gender: 'female', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
+    {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, avatar: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
+    {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
+    {firstName: 'David', lastName: 'Eiber', gender: 'female', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'}
   ],
   eventData: [
     {name: 'Race The Rabbit', image: 'https://i.ytimg.com/vi/x_CFMV_BSPE/maxresdefault.jpg', description: 'Racing event in Bangkok', date: '2017-11-03 14:34:22', difficulty: 7, categoryId: 1, destinationId: 1, location: 'New York, NY, United States', lat:40.7127837, lng:-74.00594130000002 },
@@ -32,14 +32,13 @@ let data = {
     {name: 'Racing', image: 'https://cdn-2.motorsport.com/images/amp/2QbekwWY/s6/nascar-cup-fontana-2016-start-austin-dillon-richard-childress-racing-chevrolet-leads.jpg'},
   ],
   destinationData: [
-    {city: 'New York', state: 'NY'},
-    {city: 'London', state: 'England'},
-    {city: 'San Francisco', state: 'CA'},
-    {city: 'Shanghai', state: 'Shanghai'},
-    {city: 'Kuala Lumpur', state: 'Malaysia'},
-    {city: 'Sydney', state: 'Australia'},
-    {city: 'Medellin', state: 'Colombia'},
-    {city: 'Rio de Janeiro', state: 'Brazil'},
+    {city: 'New York', state: 'NY', country: 'United States',latitude: 40.7127837, longitude: -74.00594130000002},
+    {city: 'London', state: 'England',  country: 'United Kingdom',latitude: 51.5073509, longitude: -0.12775829999998223},
+    {city: 'San Francisco', state: 'CA', country: 'United States',latitude: 37.7749295, longitude: -122.41941550000001},
+    {city: 'Juno', state: 'AK', country: 'United States', latitude: 58.3019444, longitude: -134.4197221},
+    {city: 'Sydney', state: 'New South Wales', country: 'Australia', latitude: -33.8688197, longitude: 151.20929550000005},
+    {city: 'Medellín', state: 'Antioquia', country: 'Colombia', latitude: 6.244203, longitude: -75.58121189999997},
+    {city: 'Rio de Janeiro', state: 'State of Rio de Janeiro', country: 'Brazil', latitude: -22.9068467, longitude: -43.17289649999998}
   ],
   associatedEventData: [
     {userId: 1, eventId: 1, type: 'selected'},

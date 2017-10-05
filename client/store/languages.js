@@ -15,7 +15,6 @@ export const fetchLanguages = () => dispatch => {
     .catch(err => console.log(err))
 }
 
-
 export default function (state = languages, action){
     switch (action.type){
         case GET_LANGUAGES:

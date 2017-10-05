@@ -25,17 +25,24 @@ const googleConfig = {
 }
 
 const strategy = new GoogleStrategy(googleConfig, (token, refreshToken, profile, done) => {
+  console.log('*************Profile****************', profile)
   const googleId = profile.id
-  const name = profile.displayName
+  const name = profile.name
+  const firstName = name.givenName
+  const lastName = name.familyName
   const email = profile.emails[0].value
+  const avatar = profile.photos[0].value
 
-  User.find({where: {googleId}})
-    .then(user => user
-      ? done(null, user)
-      : User.create({name, email, googleId})
-        .then(user => done(null, user))
-    )
-    .catch(done)
+  const info = {firstName, lastName, email, avatar, googleId}
+
+  User.findOrCreate({
+    where: {email},
+    defaults: info
+  })
+  .spread((user, created) => {
+    done(null, user)
+  })
+  .catch(done)
 })
 
 passport.use(strategy)

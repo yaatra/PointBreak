@@ -11,7 +11,7 @@ const GET_USER_DATA = 'GET_USER_DATA'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const user = {}
 
 /**
  * ACTION CREATORS
@@ -37,15 +37,16 @@ dispatch =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
-export const auth = (email, password, method) =>
-  dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
-      .then(res => {
-        dispatch(getUser(res.data))
-        history.push('/home')
-      })
-      .catch(error =>
-        dispatch(getUser({error})))
+export const auth = (firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, method) =>
+  dispatch => {
+    axios.post(`/auth/${method}`, { firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations })
+    .then(res => {
+      dispatch(getUser(res.data))
+      history.push('/home')
+    })
+    .catch(error =>
+      dispatch(getUser({error})))
+  }
 
 export const logout = () =>
   dispatch =>
@@ -59,14 +60,14 @@ export const logout = () =>
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+export default function (state = user, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
     case GET_USER_DATA:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return user
     default:
       return state
   }
