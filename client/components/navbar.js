@@ -10,20 +10,33 @@ const Navbar = (props) => {
 
     return(<nav className="navbar navbar-default">
         <div className="container-fluid">
-        <Link to='/'>Main</Link>
+        <ul className="nav navbar-nav navbar-left">
+            <li>   
+            <Link to='/'>Main</Link>
+            </li>
+            </ul>    
         {
           isLoggedIn
-            ? <div>
+            ? <ul className="nav navbar-nav navbar-right">
               {/* The navbar will show these links after you log in */}
+              <li> 
               <Link to='/home'>User Home</Link>
+              </li>
+              <li>  
               <a href='#' onClick={handleClick}>Logout</a>
-            </div>
-            : <div>
+              </li> 
+            </ul>
+            : <ul className="nav navbar-nav navbar-right">
               {/* The navbar will show these links before you log in */}
+              <li> 
               <Link to='/login'>Login</Link>
+              </li>
+              <li>  
               <Link to='/signup'>Sign Up</Link>
-            </div>
+              </li> 
+              </ul>
         }
+        
         </div>
         </nav>)
 

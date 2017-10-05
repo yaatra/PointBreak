@@ -6,7 +6,7 @@ const EventsList = props => {
     <div className="container">
 
       {heading ? <div><h4>{heading}</h4><hr /></div> : null}
-
+      <div className='row'>
       {events.map(event => {
           return (
               <div className='thumbnail col-sm-3' key={event.id}>
@@ -16,6 +16,7 @@ const EventsList = props => {
               </div>
           )
       })}
+      </div>
     </div>
   )
 }
