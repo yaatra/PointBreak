@@ -5,6 +5,7 @@ const GET_EVENTS = "GET_EVENTS"
 const GET_EVENTS_BY_LOCATION = "GET_EVENTS_BY_LOCATION"
 const GET_EVENTS_FOR_USER = "GET_EVENTS_FOR_USER"
 const DELETE_EVENT = "DELETE_EVENT"
+const CREATE_EVENT = "CREATE_EVENT"
 
 const events = {
     allEvents: [],
@@ -16,6 +17,7 @@ const getEvents = events => ({ type: GET_EVENTS, events })
 const getEventsByLocation = eventsByLocation => ({ type: GET_EVENTS_BY_LOCATION, eventsByLocation })
 const getEventsForUser = eventsForUser => ({ type: GET_EVENTS_FOR_USER, eventsForUser })
 const deleteEvent = eventId => ({type: DELETE_EVENT, eventId})
+const createEvent = event => ({type: CREATE_EVENT, event})
 
 export const fetchEvents = () => dispatch => {
     return axios
@@ -44,12 +46,23 @@ export const fetchEventsForUser = (userId) => dispatch => {
         .catch(err => console.log(err))
 }
 
-export const deleteEventThunk = (eventId) => dispatch => {
+export const deleteEventThunk = (eventId, userId) => dispatch => {
     return axios
-    .delete(`/api/events/${eventId}`)
+    .delete(`/api/events/${eventId}/${userId}`)
+    .then(res => res.data)
+    .then(() => {
+        dispatch(deleteEvent(eventId))
+        history.push('/manageEvents')
+    })
+    .catch(err => console.log(err))
+}
+
+export const createEventThunk = (event) => dispatch => {
+    return axios
+    .post('/api/events', event)
     .then(res => res.data)
     .then(event => {
-        dispatch(deleteEvent(eventId))
+        dispatch(createEvent(event))
         history.push('/manageEvents')
     })
     .catch(err => console.log(err))
@@ -64,7 +77,10 @@ export default function (state = events, action){
         case GET_EVENTS_FOR_USER:
             return Object.assign({}, state, {eventsForUser: action.eventsForUser})
         case DELETE_EVENT:
+            console.log('inside reducer: ', action.eventId)
             return Object.assign({}, state, {eventsForUser: state.eventsForUser.filter(event => event.eventId !== action.eventId)})
+        case CREATE_EVENT:
+            return Object.assign({}, state, {eventsForUser: [...state.eventsForUser, ...action.eventsForUser]})
         default:
             return state
     }

@@ -161,3 +161,5 @@ body, #root, .page-wrapper {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+@import './datepicker.scss'

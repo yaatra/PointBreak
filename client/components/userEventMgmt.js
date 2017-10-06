@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchEventsForUser, deleteEventThunk} from '../store'
+import history from '../history'
+
 
 /**
  * COMPONENT
@@ -10,6 +12,7 @@ export class UserEventMgmt extends Component {
   constructor () {
     super()
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleCreate = this.handleCreate.bind(this)
   }
 
   componentDidMount(){
@@ -17,9 +20,11 @@ export class UserEventMgmt extends Component {
   }
 
   handleDelete(evt){
-    console.log(+evt.target.value)
     evt.preventDefault()
-    this.props.deleteSelectedEvent(+evt.target.value)
+    this.props.deleteSelectedEvent(+evt.target.value, +this.props.user.id)
+  }
+  handleCreate(){
+    history.push('/createEvent')
   }
 
   render () {
@@ -31,6 +36,7 @@ export class UserEventMgmt extends Component {
       })
     }
 
+
     return (
       <div className="content">
         <div className="container-fluid">
@@ -38,7 +44,7 @@ export class UserEventMgmt extends Component {
 
           {/*Create Event Button*/}
           <div className="col-md-12">
-            <button className="btn" value={user.id}>Create an event</button>
+            <button className="btn btn-default" value={user.id} onClick={this.handleCreate}>Create an event</button>
           </div>
           {/*End of create Event Button*/}
 
@@ -54,16 +60,18 @@ export class UserEventMgmt extends Component {
                       <th>Event Id</th>
                       <th>Event name</th>
                       <th>Event difficulty</th>
+                      <th>Short description</th>
                       <th>Event actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {createdEvents.map(event => (
-                      <tr key={event.event.id}>
-                        <td>{event.event.id}</td>
+                      <tr key={event.id}>
+                        <td>{event.eventId}</td>
                         <td>{event.event.name}</td>
                         <td>{event.event.difficulty}</td>
-                        <td><button className="btn btn-danger" value={event.event.id} onClick={this.handleDelete}>X</button></td>
+                        <td>{event.event.description.length > 20 ? event.event.description.substring(0, 20) + '...' : event.event.description}</td>
+                        <td><button className="btn btn-danger" value={event.eventId} onClick={this.handleDelete}>X</button></td>
                       </tr>
                     ))}
                   </tbody>
@@ -100,8 +108,8 @@ const mapDispatch = (dispatch) => {
     loadUserEvents (userId) {
       dispatch(fetchEventsForUser(userId))
     },
-    deleteSelectedEvent (eventId) {
-      dispatch(deleteEventThunk(eventId))
+    deleteSelectedEvent (eventId, userId) {
+      dispatch(deleteEventThunk(eventId, userId))
     }
   }
 }

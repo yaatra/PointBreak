@@ -84,11 +84,18 @@ router.put('/:id', (req, res, next) => {
 })
 
 // Delete an events
-router.delete('/:id', (req, res, next) => {
-  Event.destroy({
+router.delete('/:eventId/:userId', (req, res, next) => {
+  AssociatedEvent.destroy({
     where: {
-      id: req.params.id
+      eventId: req.params.eventId
     }
+  })
+  .then(() => {
+    Event.destroy({
+      where: {
+        id: req.params.eventId
+      }
+    })
   })
   .then(function() {
     res.sendStatus(200)
