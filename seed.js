@@ -49,9 +49,13 @@ let data = {
   associatedEventData: [
     {userId: 1, eventId: 1, type: 'selected'},
     {userId: 1, eventId: 2, type: 'created'},
+    {userId: 1, eventId: 7, type: 'created'},
     {userId: 2, eventId: 2, type: 'followed'},
     {userId: 2, eventId: 1, type: 'selected'},
     {userId: 2, eventId: 3, type: 'created'},
+    {userId: 2, eventId: 4, type: 'created'},
+    {userId: 2, eventId: 5, type: 'created'},
+    {userId: 2, eventId: 6, type: 'created'},
     {userId: 3, eventId: 3, type: 'selected'},
     {userId: 3, eventId: 4, type: 'followed'},
     {userId: 4, eventId: 4, type: 'followed'}
