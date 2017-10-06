@@ -50,7 +50,7 @@ export default function (state = events, action){
         case GET_EVENTS_BY_LOCATION:
             return Object.assign({}, state, {eventsByLocation: action.eventsByLocation})
         case GET_EVENTS_FOR_USER:
-            return Object.assign({}, state, {eventsByLocation: action.eventsForUser})
+            return Object.assign({}, state, {eventsForUser: action.eventsForUser})
         default:
             return state
     }
