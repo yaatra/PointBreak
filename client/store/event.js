@@ -1,42 +1,64 @@
 import axios from "axios"
-import history from "../history"
 
-const GET_EVENTS = "GET_EVENTS"
-const GET_EVENTS_BY_LOCATION = "GET_EVENTS_BY_LOCATION"
+const GET_EVENT = "GET_EVENT"
+const GET_YELP_EVENT = "GET_YELP_EVENT"
+const JOIN_EVENT = "JOIN_EVENT"
+const FOLLOW_EVENT = "FOLLOW_EVENT"
 
-const events = {
-    allEvents: [],
-    eventsByLocation: []
+const event = {
+  singleEvent: {},
+  singleYelpEvent: {},
+  pendingJoinEvent: {},
+  followedEvent: {}
 }
 
-const getEvents = events => ({ type: GET_EVENTS, events })
-const getEventsByLocation = eventsByLocation => ({ type: GET_EVENTS_BY_LOCATION, eventsByLocation })
+const getEvent = event => ({ type: GET_EVENT, event })
+const getYelpEvent = event => ({ type: GET_YELP_EVENT, event })
+const attendEvent = event => ({ type: JOIN_EVENT, event })
+const traceEvent = event => ({ type: FOLLOW_EVENT, event })
 
-export const fetchEvents = () => dispatch => {
+export const fetchEvent = id => dispatch => {
   return axios
-    .get("/api/events")
+    .get(`/api/events/${id}`)
     .then(res => res.data)
-    .then(events => dispatch(getEvents(events)))
+    .then(event => dispatch(getEvent(event)))
     .catch(err => console.log(err))
 }
 
-export const fetchEventsByLocation = (location) => dispatch => {
-    return axios
-      .get("/api/events/locations", {params: location})
-      .then(res => res.data)
-      .then(eventsByLocation => {
-        dispatch(getEventsByLocation(eventsByLocation))
-        history.push('/locations')
-      })
-      .catch(err => console.log(err))
-  }
+export const fetchYelpEvent = id => dispatch => {
+  return axios
+    .get(`/api/yelp/${id}`)
+    .then(res => res.data)
+    .then(event => dispatch(getYelpEvent(event)))
+    .catch(err => console.log(err))
+}
 
-export default function (state = events, action){
+export const joinEvent = (type, userId, eventId) => dispatch => {
+  return axios
+    .post("/api/events/join", {type, userId, eventId})
+    .then(res => res.data)
+    .then(event => dispatch(attendEvent(event)))
+    .catch(err => console.log(err))
+}
+
+export const followEvent = (type, userId, eventId) => dispatch => {
+  return axios
+    .post("/api/events/follow", {type, userId, eventId})
+    .then(res => res.data)
+    .then(event => dispatch(traceEvent(event)))
+    .catch(err => console.log(err))
+}
+
+export default function (state = event, action){
     switch (action.type){
-        case GET_EVENTS:
-            return Object.assign({}, state, {allEvents: action.events})
-        case GET_EVENTS_BY_LOCATION:
-            return Object.assign({}, state, {eventsByLocation: action.eventsByLocation})
+        case GET_EVENT:
+            return Object.assign({}, state, {singleEvent: action.event})
+        case GET_YELP_EVENT:
+            return Object.assign({}, state, {singleYelpEvent: action.event})
+        case JOIN_EVENT:
+            return Object.assign({}, state, {pendingJoinEvent: action.event})
+        case FOLLOW_EVENT:
+            return Object.assign({}, state, {followedEvent: action.event})
         default:
             return state
     }

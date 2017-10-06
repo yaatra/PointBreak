@@ -48,10 +48,10 @@ let data = {
     {city: 'Rio de Janeiro', state: 'State of Rio de Janeiro', country: 'Brazil', latitude: -22.9068467, longitude: -43.17289649999998}
   ],
   associatedEventData: [
-    {userId: 1, eventId: 1, type: 'selected'},
-    {userId: 2, eventId: 2, type: 'followed'},
-    {userId: 3, eventId: 3, type: 'selected'},
-    {userId: 4, eventId: 4, type: 'followed'}
+    {userId: 1, eventId: 2, type: 'selected'},
+    {userId: 2, eventId: 1, type: 'followed'},
+    {userId: 3, eventId: 4, type: 'selected'},
+    {userId: 4, eventId: 3, type: 'followed'}
   ],
   preferredCategoryData: [
     {userId: 1, categoryId: 1},

@@ -36,7 +36,7 @@ const mapDispatch = (dispatch) => {
     return {
         getAllEvents: () => {
             dispatch(fetchEvents())
-        },
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Event} = require('../db/models')
+const {AssociatedEvent} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -38,10 +39,22 @@ router.get('/:id', (req, res, next) => {
       id: req.params.id
     },
     include: [{
-      all: true,
-      nested: true
+      all: true
     }]
   })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+router.post('/join', (req, res, next) => {
+  console.log("**********************Join Event********************", req.body)
+  AssociatedEvent.create(req.body)
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+router.post('/follow', (req, res, next) => {
+  AssociatedEvent.create(req.body)
   .then(event => res.json(event))
   .catch(next)
 })
