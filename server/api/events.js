@@ -45,6 +45,7 @@ router.get('/user/:id', (req, res, next) => {
   .catch(next)
 })
 
+
 // Get one events
 router.get('/:id', (req, res, next) => {
   Event.findOne({

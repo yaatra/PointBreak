@@ -26,15 +26,13 @@ const Language = require('./languages')
 
 // User.belongsToMany(Event, {through: AssociatedEvent})
 // Event.belongsToMany(User, {through: AssociatedEvent})
+// AssociatedEvent.belongsTo(User)
+// AssociatedEvent.belongsTo(Event)
 
-//    ^^^^^^^
-// CAN NOT USE THESE WHILE
-// THESE ROUTES BELOW ARE ACTIVE
 AssociatedEvent.belongsTo(User)
 AssociatedEvent.belongsTo(Event)
 User.hasMany(AssociatedEvent)
 Event.hasMany(AssociatedEvent)
-
 
 User.belongsToMany(Category, {through: PreferredCategory})
 Category.belongsToMany(User, {through: PreferredCategory})
