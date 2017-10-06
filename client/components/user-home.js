@@ -22,20 +22,14 @@ export class UserHome extends Component {
     this.props.getAllUserData(userID)
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   //console.log("NEXT PROPS", nextProps)
-  //   this.setState({ events: nextProps.events })
-  //   // nextProps.events.forEach(e => {
-  //   //       if(e.event.type === 'selected') this.setState({ selectedEvents: [...this.state.selectedEvents, e.event] })
-  //   //       if(e.event.type === 'followed') this.setState({ followingEvents: [...this.state.followingEvents, e.event] })
-  //   // })
-  // }
+  componentWillReceiveProps(nextProps){
+    nextProps.events.forEach(e => {
+          if(e.type === 'selected') this.setState({ selectedEvents: [...this.state.selectedEvents, e.event] })
+          if(e.type === 'followed') this.setState({ followingEvents: [...this.state.followingEvents, e.event] })
+    })
+  }
 
   render () {
-    //const {user, event} = this.props
-    // console.log('**** USER *****', user)
-    console.log(this.props)
-
     if (this.props.events.length && this.props.user) {
       let selectedEvents = this.props.events.map(e => {
         if(e.type === 'selected') return e.event
@@ -82,4 +76,5 @@ export default connect(mapState, mapDispatch)(UserHome)
  */
 UserHome.propTypes = {
   user: PropTypes.object,
+  events: PropTypes.array
 }

@@ -1,42 +1,60 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {loadOtherUserData, fetchEventsForUser} from '../store'
 import {EventsList} from './'
 
-const OtherUserProfile = (props) => {
-  const userId = +props.match.params.id
-  const {similarUsers} = props
-  const selecteduser = similarUsers.filter(users => (users[1].id === userId))
-  const followingEventsHeading = `${selecteduser[0][1].firstName} likes these events`
 
-  return (
-    <div className = "container">
-      <h4>{selecteduser[0][1].firstName} {selecteduser[0][1].lastName}</h4>
-      <div className='thumbnail col-sm-3' key={userId}>
-        <img src={selecteduser[0][1].avatar || selecteduser[0][1].image} className='img-responsive' />
-        e-mail: {selecteduser[0][1].email}<br />
+class OtherUserProfile extends Component {
+  componentDidMount(){
+    this.props.getAllUserData(+this.props.match.params.id)
+  }
+  render(){
+    
+    if (this.props.user){
+    const {user, events} = this.props
+    const eventsForUser = events.map(e => {  return e.event })
+    //.filter(el=> el !== undefined)
+    const followingEventsHeading = `${user.firstName} likes these events`
+    return (<div className="container">
+      <h4>{user.firstName} {user.lastName}</h4>
+      <hr />
+      <div className="thumbnail col-sm-3">
+      <img src={user.avatar || user.image} className="img-responsive" />
+        e-mail: {user.email}<hr />
       </div>
       <div className = "col-sm-9">
-        Your match percent with {selecteduser[0][1].firstName} is <b>{ (selecteduser[0][0] * 100).toFixed(0)}%</b><br />
-        <b>height:</b> {selecteduser[0][1].height} ft<br />
-        <b>weight:</b> {selecteduser[0][1].weight} lbs<br />
-        <b>BMI:</b> {selecteduser[0][1].bmi}
+        <b>height:</b> {user.height} ft<br />
+        <b>weight:</b> {user.weight} lbs<br />
+        <b>BMI:</b> {user.bmi}
       </div>
       <div className = "row">
         <div className = "col-sm-12">
-          {selecteduser[0][1].events.length ? <EventsList events={selecteduser[0][1].events} heading={followingEventsHeading} /> : null}
+        {eventsForUser.length ? <EventsList events={eventsForUser} heading={followingEventsHeading} /> : null}
         </div>
-      </div>
-    </div>
-  )
+      </div>      
+    </div>)
+  } else { return null }
+}
 }
 
 const MapState = (state) => {
   return {
-      similarUsers: state.similarUsers
+      user: state.user.otherUser,
+      similarUsers: state.similarUsers,
+      events: state.events.eventsForUser
   }
 }
-export default connect(MapState)(OtherUserProfile)
+
+const MapDispatch = (dispatch) => {
+  return {
+    getAllUserData(userId){
+      dispatch(loadOtherUserData(userId))
+      dispatch(fetchEventsForUser(userId))
+    }
+  }
+}
+export default connect(MapState, MapDispatch)(OtherUserProfile)
 
 OtherUserProfile.propTypes = {
   similarUsers: PropTypes.array
