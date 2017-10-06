@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     // send everything to anyone who asks!
     include: [{
       all: true,
-      nested: true
+      //nested: true
     }]
   })
   .then(categories => res.json(categories))
@@ -23,7 +23,7 @@ router.get('/:id', (req, res, next) => {
     },
     include: [{
       all: true,
-      nested: true
+      //nested: true
     }]
   })
   .then(category => res.json(category))

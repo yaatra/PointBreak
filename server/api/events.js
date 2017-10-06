@@ -25,7 +25,7 @@ router.get('/locations', (req, res, next) => {
     where: {location: req.query.address},
     include: [{
       all: true,
-      nested: true
+      //nested: true
     }]
   })
   .then(events => res.json(events))
@@ -53,7 +53,7 @@ router.get('/:id', (req, res, next) => {
     },
     include: [{
       all: true,
-      nested: true
+      //nested: true
     }]
   })
   .then(event => res.json(event))
