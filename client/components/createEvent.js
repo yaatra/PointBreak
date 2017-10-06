@@ -44,9 +44,9 @@ export class CreateEvent extends Component {
     newEvent.day = evt.target.Day.value
     newEvent.recurrence = evt.target.Recurrence.value
     newEvent.difficulty = evt.target.Difficulty.value
-
+    newEvent.userId = this.props.user.id
     console.log('****', newEvent)
-    // this.props.createEventThunk()
+    this.props.createEvent(newEvent)
   }
 
   render () {

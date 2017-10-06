@@ -63,6 +63,7 @@ router.get('/:id', (req, res, next) => {
 
 // Create an event
 router.post('/', (req, res, next) => {
+
   Event.create(req.body)
   .then(event => res.json(event))
   .catch(next)

@@ -17,7 +17,7 @@ const getEvents = events => ({ type: GET_EVENTS, events })
 const getEventsByLocation = eventsByLocation => ({ type: GET_EVENTS_BY_LOCATION, eventsByLocation })
 const getEventsForUser = eventsForUser => ({ type: GET_EVENTS_FOR_USER, eventsForUser })
 const deleteEvent = eventId => ({type: DELETE_EVENT, eventId})
-const createEvent = event => ({type: CREATE_EVENT, event})
+const createEvent = createdEvent => ({type: CREATE_EVENT, createdEvent})
 
 export const fetchEvents = () => dispatch => {
     return axios
@@ -58,11 +58,12 @@ export const deleteEventThunk = (eventId, userId) => dispatch => {
 }
 
 export const createEventThunk = (event) => dispatch => {
+    // dispatch(createEvent(event))
     return axios
     .post('/api/events', event)
     .then(res => res.data)
-    .then(event => {
-        dispatch(createEvent(event))
+    .then(createdEvent => {
+        dispatch(createEvent(createdEvent))
         history.push('/manageEvents')
     })
     .catch(err => console.log(err))
@@ -80,7 +81,8 @@ export default function (state = events, action){
             console.log('inside reducer: ', action.eventId)
             return Object.assign({}, state, {eventsForUser: state.eventsForUser.filter(event => event.eventId !== action.eventId)})
         case CREATE_EVENT:
-            return Object.assign({}, state, {eventsForUser: [...state.eventsForUser, ...action.eventsForUser]})
+            console.log('inside reducer: ', action.createdEvent)
+            return Object.assign({}, state, {eventsForUser: [...state.eventsForUser, action.createdEvent]})
         default:
             return state
     }
