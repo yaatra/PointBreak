@@ -60,34 +60,15 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
-// TEST ROUTE
-router.post('/eventStatusChange', (req, res, next) => {
-  console.log(req.body)
-  res.json(req.body)
-})
-
-
 router.post('/join', (req, res, next) => {
   AssociatedEvent.findOrCreate({
     where: {
       userId: req.body.userId,
-      eventId: req.body.eventId
-    },
-    defaults: {
+      eventId: req.body.eventId,
       type: req.body.type
     }
   })
   .then((event, created) => {
-    if (!created && event.type !== req.body.type) {
-      event[0].update({
-        type: req.body.type
-      }, {
-        fields: ['type'],
-        returning: true
-      })
-      .then(event => res.json(event))
-    }
-
     return event[0]
   })
   .then(event => res.json(event))
@@ -98,23 +79,11 @@ router.post('/follow', (req, res, next) => {
   AssociatedEvent.findOrCreate({
     where: {
       userId: req.body.userId,
-      eventId: req.body.eventId
-    },
-    defaults: {
+      eventId: req.body.eventId,
       type: req.body.type
     }
   })
   .then((event, created) => {
-    if (!created && event.type !== req.body.type) {
-      event[0].update({
-        type: req.body.type
-      }, {
-        fields: ['type'],
-        returning: true
-      })
-      .then(event => res.json(event))
-    }
-
     return event[0]
   })
   .then(event => res.json(event))
@@ -150,6 +119,30 @@ router.put('/:id', (req, res, next) => {
     res.json(event)
   })
   .catch(next)
+})
+
+router.delete('/pending/:type/:userId/:eventId', (req, res, next) => {
+  AssociatedEvent.findOne({
+    where: req.params
+  })
+  .then(event => {
+    return event.destroy()
+  })
+  .then(() => {
+    res.sendStatus(200)
+  })
+})
+
+router.delete('/followed/:type/:userId/:eventId', (req, res, next) => {
+  AssociatedEvent.findOne({
+    where: req.params
+  })
+  .then(event => {
+    return event.destroy()
+  })
+  .then(() => {
+    res.sendStatus(200)
+  })
 })
 
 // Delete an events

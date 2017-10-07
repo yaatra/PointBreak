@@ -31,10 +31,8 @@ const Fitbit = db.define('fitbit', {
     type: Sequelize.INTEGER
   },
   totalSteps: {
-    type: Sequelize.INTEGER
-  },
-  weekStepsDate: {
-    type: Sequelize.DATE
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 

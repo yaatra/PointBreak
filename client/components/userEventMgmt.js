@@ -5,7 +5,6 @@ import {fetchEventsForUser, deleteEventThunk} from '../store'
 import history from '../history'
 import { NavLink } from 'react-router-dom'
 
-
 /**
  * COMPONENT
  */

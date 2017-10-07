@@ -5,6 +5,8 @@ const GET_EVENT = "GET_EVENT"
 const GET_YELP_EVENT = "GET_YELP_EVENT"
 const JOIN_EVENT = "JOIN_EVENT"
 const FOLLOW_EVENT = "FOLLOW_EVENT"
+const DELETE_PENDING_EVENT = "DELETE_PENDING_EVENT"
+const DELETE_FOLLOWED_EVENT = "DELETE_FOLLOWED_EVENT"
 const GET_EVENTS = "GET_EVENTS"
 const GET_EVENTS_BY_LOCATION = "GET_EVENTS_BY_LOCATION"
 const GET_EVENTS_FOR_USER = "GET_EVENTS_FOR_USER"
@@ -25,6 +27,8 @@ const getEvent = event => ({ type: GET_EVENT, event })
 const getYelpEvent = event => ({ type: GET_YELP_EVENT, event })
 const attendEvent = event => ({ type: JOIN_EVENT, event })
 const traceEvent = event => ({ type: FOLLOW_EVENT, event })
+const deletePendingEvent = event => ({ type: DELETE_PENDING_EVENT, event })
+const deleteFollowedEvent = event => ({ type: DELETE_FOLLOWED_EVENT, event })
 const getEvents = events => ({ type: GET_EVENTS, events })
 const getEventsByLocation = eventsByLocation => ({ type: GET_EVENTS_BY_LOCATION, eventsByLocation })
 const getEventsForUser = eventsForUser => ({ type: GET_EVENTS_FOR_USER, eventsForUser })
@@ -49,7 +53,7 @@ export const fetchYelpEvent = id => dispatch => {
 
 export const joinEvent = (type, userId, eventId) => dispatch => {
   return axios
-    .post("/api/events/join", {type, userId, eventId})
+    .post('/api/events/join', {type, userId, eventId})
     .then(res => res.data)
     .then(event => dispatch(attendEvent(event)))
     .catch(err => console.log(err))
@@ -57,9 +61,25 @@ export const joinEvent = (type, userId, eventId) => dispatch => {
 
 export const followEvent = (type, userId, eventId) => dispatch => {
   return axios
-    .post("/api/events/follow", {type, userId, eventId})
+    .post('/api/events/follow', {type, userId, eventId})
     .then(res => res.data)
     .then(event => dispatch(traceEvent(event)))
+    .catch(err => console.log(err))
+}
+
+export const removePendingEvent = (type, userId, eventId) => dispatch => {
+  return axios
+    .delete(`/api/events/pending/${type}/${userId}/${eventId}`)
+    .then(res => res.data)
+    .then(event => dispatch(deletePendingEvent(event)))
+    .catch(err => console.log(err))
+}
+
+export const removeFollowedEvent = (type, userId, eventId) => dispatch => {
+  return axios
+    .delete(`/api/events/followed/${type}/${userId}/${eventId}`)
+    .then(res => res.data)
+    .then(event => dispatch(deleteFollowedEvent(event)))
     .catch(err => console.log(err))
 }
 
@@ -122,6 +142,10 @@ export default function (state = events, action){
             return Object.assign({}, state, {pendingJoinEvent: action.event})
         case FOLLOW_EVENT:
             return Object.assign({}, state, {followedEvent: action.event})
+        case DELETE_PENDING_EVENT:
+            return Object.assign({}, state, {pendingJoinEvent: {}})
+        case DELETE_FOLLOWED_EVENT:
+            return Object.assign({}, state, {followedEvent: {}})
         case GET_EVENTS:
             return Object.assign({}, state, {allEvents: action.events})
         case GET_EVENTS_BY_LOCATION:
