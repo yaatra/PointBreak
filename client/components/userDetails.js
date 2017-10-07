@@ -14,6 +14,7 @@ const UserDetails = (props) => {
         <p>BMI: {user.bmi}</p>
         <p>Height: {user.height}</p>
         <p>Weight: {user.weight}</p>
+        <p>Gender: {user.gender}</p>
         <p>Age: {user.age}</p>
       </div>
       <div className="col-sm-9 text-right">
