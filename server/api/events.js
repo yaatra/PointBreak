@@ -60,13 +60,6 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
-// TEST ROUTE
-router.post('/eventStatusChange', (req, res, next) => {
-  console.log(req.body)
-  res.json(req.body)
-})
-
-
 router.post('/join', (req, res, next) => {
   AssociatedEvent.findOrCreate({
     where: {

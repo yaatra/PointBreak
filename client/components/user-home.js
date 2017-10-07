@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserDetails from './userDetails'
-import {loadUserData, fetchEventsForUser} from '../store'
+import {loadUserData, fetchEventsForUser, getFitbitDataThunk} from '../store'
 import {EventsList, SocialConnection} from './'
 
 /**
@@ -14,12 +14,14 @@ export class UserHome extends Component {
     this.state = {
       events: [],
       selectedEvents: [],
-      followingEvents: [] 
+      followingEvents: []
     }
   }
   componentDidMount(){
     const userID = this.props.user.id
-    this.props.getAllUserData(userID)
+    const fitbitinfoId = this.props.user.fitbitInfoId
+    console.log('****** Fitbit ID: ', fitbitinfoId)
+    this.props.getAllUserData(userID, fitbitinfoId)
   }
 
   componentWillReceiveProps(nextProps){
@@ -58,15 +60,17 @@ export class UserHome extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    events: state.events.eventsForUser
+    events: state.events.eventsForUser,
+    fitbitinfoId: state.user.fitbitInfoId
   }
 }
 const mapDispatch = (dispatch) => {
   return {
-    getAllUserData(userId) {
+    getAllUserData(userId, fitbitinfoId) {
       dispatch(loadUserData(userId))
+      dispatch(getFitbitDataThunk(fitbitinfoId))
       dispatch(fetchEventsForUser(userId))
-    },
+    }
   }
 }
 export default connect(mapState, mapDispatch)(UserHome)
@@ -76,5 +80,6 @@ export default connect(mapState, mapDispatch)(UserHome)
  */
 UserHome.propTypes = {
   user: PropTypes.object,
-  events: PropTypes.array
+  events: PropTypes.array,
+  fitbitinfoId: PropTypes.number
 }

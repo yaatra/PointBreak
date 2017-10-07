@@ -8,6 +8,7 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const GET_USER_DATA = 'GET_USER_DATA'
 const GET_OTHER_USER_DATA = 'GET_OTHER_USER_DATA'
+const GET_FITBIT_DATA = 'GET_FITBIT_DATA'
 
 /**
  * INITIAL STATE
@@ -21,23 +22,24 @@ const getUser = user => ({type: GET_USER, user})
 const getUserData = user => ({type: GET_USER_DATA, user})
 const removeUser = () => ({type: REMOVE_USER})
 const getOtherUserData = otherUser => ({type: GET_OTHER_USER_DATA, otherUser})
+const getFitbitData = fitbitData => ({type: GET_FITBIT_DATA, fitbitData})
 
 /**
  * THUNK CREATORS
- */ 
+ */
 export const loadUserData = (userId) =>
 dispatch =>
   axios.get(`/api/users/${userId}`)
     .then(res =>
       dispatch(getUserData(res.data || defaultUser)))
     .catch(err => console.log(err))
-    
+
 export const loadOtherUserData = (userId) =>
   dispatch =>
     axios.get(`/api/users/${userId}`)
       .then(res =>
         dispatch(getOtherUserData(res.data)))
-      .catch(err => console.log(err))        
+      .catch(err => console.log(err))
 
 export const me = () =>
   dispatch =>
@@ -66,6 +68,12 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+export const getFitbitDataThunk = (fitbitId) => dispatch =>
+    axios.get(`api/users/fitbit/${fitbitId}`)
+    .then(res => res.data)
+    .then(fitbitData => dispatch(getFitbitData(fitbitData)))
+    .catch(err => console.log(err))
+
 /**
  * REDUCER
  */
@@ -77,8 +85,10 @@ export default function (state = user, action) {
       return action.user
     case REMOVE_USER:
       return user
+    case GET_FITBIT_DATA:
+      return Object.assign({}, state, { fitbitInfo: action.fitbitData })
     case GET_OTHER_USER_DATA:
-      return Object.assign({}, state, { otherUser: action.otherUser })  
+      return Object.assign({}, state, { otherUser: action.otherUser })
     default:
       return state
   }

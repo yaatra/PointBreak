@@ -11,10 +11,6 @@ const Fitbit = db.define('fitbit', {
   steps: {
     type: Sequelize.INTEGER
   },
-  weekSteps: {
-    type: Sequelize.ARRAY(Sequelize.JSON),
-    defaultValue: []
-  },
   weekAverageSteps: {
     type: Sequelize.INTEGER
   },
@@ -35,6 +31,10 @@ const Fitbit = db.define('fitbit', {
   },
   weekStepsDate: {
     type: Sequelize.DATE
+  },
+  weekSteps: {
+    type: Sequelize.ARRAY(Sequelize.JSON),
+    defaultValue: []
   }
 })
 
