@@ -1,0 +1,1322 @@
+/*=== 2. UI KIT ===*/
+/*=== 2.1 BUTTON ===*/
+.btn{
+	font-family: 'Poppins', sans-serif;
+	line-height: 14px;
+	padding:15px 0;
+	color: $white-color;
+	font-weight: 500;
+	border:none;
+	text-transform: uppercase;
+	background-color:transparent;
+	border-radius:4px;
+	letter-spacing: 1px;
+	@include tablet{
+		padding:13px 0;
+		font-size: 12px;
+	}
+	@include desktops{
+		padding:15px 0;
+		font-size: 14px;
+	}
+	&:focus, &.active, &:active:focus, &:hover{
+		border: none;
+		outline: 0;
+		color: $white-color;
+		box-shadow: none;
+	}
+}
+.waves-button, .waves-button:hover, 
+.waves-button:visited, .waves-button-input{
+    font-size: 11px;
+    line-height: 11px;
+    color: $white-color;
+    @include tablet{
+		font-size: 12px;
+	}
+}
+.btn-primary{
+	background-color: $primary-color;
+	@include transition(all 0.3s ease-in-out);
+	>i{
+		margin-right: 10px;
+	}
+	&:hover{
+		background-color: $primary-color;
+	}
+	&:focus, &.active, &:active{
+		background-color: $primary-color;
+	}
+	&.btn-full{
+		float: left;
+		width: 100%;
+	}
+}
+.btn-secondary{
+	@include transition(all 0.3s ease-in-out);
+	background-color: $secondary-color;
+	>i{
+		margin-right: 10px;
+	}
+	&:hover{
+		background-color: $primary-color;
+	}
+	&:focus, &.active, &:active{
+		background-color: $primary-color;
+	}
+}
+.btn-border{
+	border: 2px solid $white-color;
+	padding:10px 0;
+	@include tablet{
+		padding:11px 0;
+	}
+	@include desktops{
+		padding:13px 0;
+	}
+	&:hover,&:focus{
+		border: 2px solid $white-color;
+	}
+	>i{
+		margin-right: 10px;
+	}
+}
+.btn-primary.active.focus, 
+.btn-primary.active:focus, 
+.btn-primary.active:hover, 
+.btn-primary:active.focus, 
+.btn-primary:active:focus, 
+.btn-primary:active:hover, 
+.open>.dropdown-toggle.btn-primary.focus, 
+.open>.dropdown-toggle.btn-primary:focus, 
+.open>.dropdown-toggle.btn-primary:hover{
+	border: none;
+	background-color: $primary-color;
+	outline: 0;
+}
+.empty{
+	text-indent:-999px;
+}
+.backToTop{
+	position: absolute;
+	left: 50%;
+	// margin-left: -50px;
+	top: -25px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	background-color: $primary-color;
+	@include border-radius(100%);
+	display: block;
+	@include opacity(0);
+	@include transition(all 0.3s ease-in-out);
+	-moz-transform: translate(-50%, 0);
+	-o-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
+	-webkit-transform: translate(-50%, 0);
+	transform: translate(-50%, 0);
+	i{
+		font-size: 35px;
+		font-weight: bold;
+		line-height: 45px;
+		color: $white-color;
+	}
+	&:hover{
+		i{
+			color: $white-color;
+		}
+	}
+}
+
+.buttonPart{
+	border-bottom: 1px solid $border-color;
+	padding: 0 0 20px 0;
+	@include tablet{
+		padding: 0 0 70px 0;
+	}
+}
+.squareBtn, .fullRoundBtn, .roundBtn{
+	margin: 0 0 30px 0;
+	text-align: center;
+}
+.btn-common{
+	color: $title-color;
+	border: 1px solid $border-color;
+	padding: 14px 38px;
+	background-color: transparent;
+	border-radius: 0;
+  letter-spacing: 1px;
+  margin: 0 auto 20px auto;
+	padding: 14px 38px;
+	font-size: 14px;
+  &:focus, &.active, &:active, &:hover{
+		color: $title-color;
+		border: 1px solid $border-color;
+	}
+	@include tablet{
+		margin: 0;
+		padding: 14px;
+		font-size: 9px;
+	}
+	@include desktops{
+		padding: 14px 38px;
+		font-size: 14px;
+	}
+}
+.btn-theme{
+	background-color: $primary-color;
+	border-color: $primary-color;
+	color: $white-color;
+	&:focus, &.active, &:active, &:hover{
+		background-color: $primary-color;
+		border-color: $primary-color;
+		color: $white-color;
+	}
+}
+.btn-gray{
+	background-color: #f5f5f5;
+	&:focus, &.active, &:active, &:hover{
+		background-color: #f5f5f5;
+	}
+}
+.btn-dark{
+	background-color: #444548;
+	border-color: #444548;
+	color: $white-color;
+	&:focus, &.active, &:active, &:hover{
+		background-color: #444548;
+		border-color: #444548;
+		color: $white-color;
+	}
+}
+.btn-full-round{
+	border-radius: 25px;
+}
+.btn-round{
+	border-radius: 4px;
+}
+.btn-transparent{
+	width: 100%;
+	border: 1px solid $white-color;
+	background-color: transparent;
+	display: block;
+	text-align: left;
+	margin: 12px 0;
+	@include tablet{
+		margin: 0;
+	}
+	&:hover, &:focus, &:active, &:active:focus{
+		border: 1px solid $white-color;
+		background-color: transparent;
+	}
+	i.icon-listy{
+		font-size: 44px;
+		float: left;
+		margin: 0 10px 0 40px;
+	}
+	span{
+		font-family: 'Muli', sans-serif;
+		font-size: 16px;
+		text-transform: lowercase;
+		text-align: left;
+		strong{
+			text-transform: capitalize;
+			font-weight: 400;
+			font-size: 26px;
+			line-height: 30px;
+		} 
+	}
+}
+/*=== 2.2 SECTION ===*/
+.tabSection{
+	background-color: $white-color;
+	padding: 50px 15px 0 15px;
+	hr{
+    border-color: $border-color;
+    margin: 0 0 50px 0;
+    @include tablet{
+    	margin: 0 0 100px 0;
+    }
+	}
+	@include tablet{
+		padding: 100px 15px 0 15px;
+	}
+}
+.uiTitle{
+	h2{
+	  letter-spacing: 2px;
+	  margin: 0 0 25px 0;
+	}
+}
+.paginationSection{
+	padding: 0 15px 50px 15px;
+	@include tablet{
+		padding: 0 15px 70px 15px;
+	}
+}
+.formArea{
+	padding: 50px 0;
+	@include tablet{
+		padding: 100px 0;
+	}
+}
+.pageTitleArea{
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center top;
+	padding-bottom:0;
+	position: relative;
+	padding: 105px 0;
+	background-repeat: no-repeat;
+}
+.pageTitle{
+	h1{
+		margin: 0;
+		text-align: center;
+		font-size: 55px;
+		line-height: 60px;
+		color: $white-color;
+		text-transform: uppercase;
+		font-family: 'Raleway';		
+	}
+}
+/*=== 2.3 FORM ===*/
+.form-group{
+	margin-bottom: 30px;
+	button{
+		width: auto;
+		padding: 18px 20px;
+		@include tablet{
+			width: 172px;
+			padding: 18px 0;
+		}
+	}
+}
+.form-control{
+	height: 50px;
+	box-shadow: none;
+	padding-left: 18px;
+	border-color: $border-color;
+	color: $text-color;
+	&:focus{
+		border-color: $border-color;
+	}
+}
+.dateSelect{
+	margin-bottom: 20px;
+	.form-control{
+		border-right: none;
+	}
+	.input-group-addon{
+		background-color: transparent;
+		border-color: $border-color;
+		border-radius: 0;
+	}
+}
+
+textarea{
+	&.form-control{
+		height: 150px;
+		line-height: 26px;
+	}
+}
+
+.formPart{
+  border-radius: 0;
+  border-color: $border-color;
+  border: none;
+  .panel-heading{
+  	border-radius: 0;
+  	height: 56px;
+  	padding: 0 30px;
+  	line-height: 56px;
+  	font-weight: 400;
+  	text-transform: uppercase;
+  	font-family: 'Montserrat', sans-serif;
+  	color: $title-color;
+  	letter-spacing: 1px;
+  	border-bottom: none;
+  	font-size: 14px;
+  	@include tablet{
+  		font-size: 20px;
+  	}
+  	span{
+  		font-weight: 700;
+  	}
+  }
+  .panel-body{
+  	padding: 30px;
+  	border: 1px solid $border-color;
+  	border-top: none;
+  }
+  .form-group{
+  	position: relative;
+  }
+  .form-control{
+  	padding-left: 38px;
+  }
+  i.fa{
+  	position: absolute;
+  	left: 0;
+  	top: 0;
+  	width: 38px;
+  	height: 100%;
+  	text-align: center;
+  	line-height: 44px;
+  	color: $text-color;
+  	color: #999;
+  }
+  .checkbox{
+  	margin: 0 0 20px 0;
+  	label{
+  		font-size: 13px;
+  		color: $black-color;
+  	}
+  }
+}
+.loginForm{
+	.form-group{
+		width: 100%;
+		position: relative;
+	}
+	i.fa{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 44px;
+		line-height: 50px;
+		text-align: center;
+	}
+	.form-control{
+		padding: 6px 12px 6px 44px;
+	}
+	.btn-block{
+		width: 100%;
+	}
+}
+#loginModal{
+	.modal-dialog{
+		width: auto;
+		@include tablet{
+			width: 380px;
+		}
+	}
+	.modal-title{
+		font-weight: 500;
+	}
+	.modal-header{
+		padding: 30px;
+		.close{
+			color: $title-color;
+			opacity: 1;
+		}
+	}
+	.modal-body{
+		padding: 15px 30px;
+	}
+	.modal-footer{
+		text-align: center;
+		padding: 20px 30px;
+		p{
+			margin-bottom: 0;
+		}
+	}
+}
+a.link{
+	&:hover{
+		color: $primary-color;
+	}
+}
+.loginPanel{
+	.form-group{
+		margin-bottom: 30px;
+		float: left; 
+		label{
+			font-weight: 400;
+			font-size: 15px;
+		}
+	}
+	.help-block{
+		font-weight: 400;
+		font-size: 15px;
+		font-style: italic;
+	}
+	a.link{
+		line-height: 44px;
+	}
+}
+.processArea{
+	border: 1px solid $border-color;
+	border-radius: 4px;
+	display: block;
+	float: left;
+	padding: 20px;
+	@include tablet{
+		padding: 20px 35px;
+	}
+	@include desktops{
+		padding: 80px 95px;
+	}
+	ul.list-inline{
+		li{
+			float: left;
+			padding: 0 0 35px 0;
+			border-bottom: 1px solid $border-color;
+			border-right: none;
+			width: 100%;
+			@include tablet{
+				padding: 0 35px 0 0;
+				border-right: 1px solid $border-color;
+				border-bottom: none;
+				width: 50%;
+			}
+			@include desktops{
+				padding: 0 75px 0 0;
+				border-right: 1px solid $border-color;
+				border-bottom: none;
+				width: 50%;
+			}
+			&:last-child{
+				padding: 30px 0 0 0;
+				border: none;
+				@include tablet{
+					padding: 0 0 0 20px;
+					border: none;
+				}
+				@include desktops{
+					padding: 0 0 0 75px;
+					border: none;
+				}
+			}
+		}
+	}
+	h2{
+		font-weight: 400;
+		text-transform: capitalize;
+		margin: 0 0 25px 0;
+	}
+	h3{
+		font-family: 'Muli', sans-serif;
+		font-weight: 400;
+		text-transform: lowercase;
+		font-size: 20px;
+		margin: 0 0 12px 0;
+		line-height: 26px;
+	}
+	p{
+		color: $primary-color;
+		font-size: 20px;
+		margin: 0 0 0 0;
+	}
+	.form-control{
+    padding: 6px 55px 6px 8px;
+	}
+	i.fa{
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: auto;
+		width: 44px;
+		line-height: 50px;
+		text-align: center;
+		font-size: 15px;
+		color: $secondary-color;
+	}
+	.checkbox{ 
+		margin: 0 0 30px 0;
+	}
+	.btn-primary{
+		padding: 18px 25px;
+		width: auto;
+
+	}
+	.mgnBtm0{
+		margin-bottom: 0;
+	}
+	.dateSelect{
+		.form-control{
+			padding: 6px 8px;
+		}
+	}
+	.input-group-addon{
+		padding: 6px 18px;
+	}
+	.input-group.date{
+		.input-group-addon{
+			i{
+				cursor: pointer;
+				width: 40px;
+				height: 50px;
+			}
+		}
+	}
+}
+/*=== 2.4 PAGINATION ===*/
+.paginationCommon{
+	nav{
+		border-top: 1px solid $border-color;
+		margin: 0 0 20px 0;
+		@include tablet{
+			margin: 0 0 70px 0;
+		}
+	}
+	&.blogPagination{
+		margin-bottom: 25px;
+		@include tablet{
+			margin-bottom: 0;
+			margin-top: 15px;
+		}
+		@include desktops{
+			margin-top: 0;
+		}
+		nav{
+			margin: 0;
+			border: none;
+			.pagination{
+				margin: 0;
+			}
+		}
+	}
+	.pagination{
+		margin: 30px 0;
+		li{
+			float: left;
+			margin: 0 5px 5px 0;
+			@include tablet{
+				margin: 0 10px 0 0;
+			}
+			a{
+				border-color: $border-color;
+				float: none;
+				color: $title-color;
+				font-weight: 400;
+				padding: 0;
+				display: block;
+				text-align: center;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 12px;
+				@include tablet{
+					width: 45px;
+					height: 45px;
+					line-height: 45px;
+					font-size: 16px;
+				}
+				&:hover {
+					color: $white-color;
+					background-color: $primary-color;
+					border-color: $primary-color;
+				}
+				&:focus{
+					background-color: $white-color;
+					border-color: $border-color;
+					color: $text-color;
+				}
+				span{
+					font-size: 17px;
+				}
+			}
+			&.active{
+				a, a:focus, a:hover{
+					color: $white-color;
+					background-color: $primary-color;
+					border-color: $primary-color;
+				}
+			}
+			&:first-child{
+				a{
+					border-radius: 0;
+				}
+			}
+			&:last-child{
+				a{
+					border-radius: 0;
+				}
+			}
+		}
+	}
+	&.paginationTwo{
+		.pagination{
+			li{
+				margin-right: 0;
+				a{
+					float: none;
+					display: inline-block;
+				}
+				&:first-child{
+					a{
+						border-radius: 25px 0 0 25px;
+					}
+				}
+				&:last-child{
+					a{
+						border-radius: 0 25px 25px 0;
+					}
+				}
+			}
+		}
+	}
+	&.paginationThree{
+		.pagination{
+			li{
+				a{
+					border-radius: 100%;
+				}
+			}
+		}
+	}
+	&.categoryPagination{
+		margin-top: 35px;
+	}
+}
+/*=== 2.5 ACCORDION ===*/
+.accordionCommon{
+	.panel{
+		margin-bottom: 30px;
+		border: none;
+	}
+	.panel-heading{
+		display: block;
+		padding: 15px 20px;
+		@include border-radius(8px);
+		font-weight: 600;
+		color: $white-color;
+		font-size: 14px;
+		text-transform: uppercase;
+		position: relative;
+		span.iconBlock{
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			@include border-radius(3px);
+			background-color: $white-color;
+			color: $white-color;
+			display: inline-block;
+			float: right;
+			@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+			&.iconTransparent{
+				background-color: transparent;
+				box-shadow: none;
+				color: $white-color;
+			}
+		}
+	}
+	span.separator{
+		width: 1px;
+		height: 100%;
+		background-color: rgba($white-color, .25);
+		position: absolute;
+		top: 0;
+		right: 60px;
+	}
+	.panel-body{
+		padding: 30px;
+		background-color: $white-color;
+		@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+		@include border-radius( 0 0 8px 8px);
+		p{
+			margin-bottom: 35px;
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/*=== 2.6 TABS ===*/
+.tabCommon{
+  margin: 0 0 50px 0;
+  @include tablet{
+  	margin: 0 0 100px 0;
+  }
+  .nav-tabs{
+  	li{
+  		a{
+  			border-color: $border-color;
+  			border-radius: 0;
+  			background-color: #f7f7f7;
+  			margin-right: 5px;
+  			color: $title-color;
+  			text-transform: uppercase;
+  			font-family: 'Montserrat', sans-serif;
+  			font-weight: 400;
+  			text-align: center;
+  			width: auto;
+				padding: 12px 12px;
+				font-size: 12px;
+  			&:hover{
+  				background-color: $white-color;
+  				border-bottom-color: $white-color;
+  			}
+  			@include tablet{
+  				width: 131px;
+  				padding: 12px 0;
+  				font-size: 14px;
+  			}
+  		}
+  		&.active{
+  			a{
+  				background-color: $white-color;
+  				border-bottom-color: $white-color;
+  			}
+  		}
+  	}
+  }
+  .tab-content{
+  	padding: 30px;
+  	border: 1px solid $border-color;
+  	border-top: none;
+  }
+  .tab-pane{
+  	h3{
+  		font-weight: 400;
+  		margin: 0 0 10px 0;
+  		font-size: 14px;
+  	}
+  	p{
+  		margin: 0;
+  	}
+  }
+  &.tabTwo{
+  	.nav-tabs{
+  		li{
+  			a{
+  				border-radius: 4px 4px 0 0;
+  				margin: 0 -1px 0 0;
+  			}
+  		}
+  	}
+  }
+  &.tabThree{
+  	.nav-tabs{
+  		li{
+  			a{
+  				height: 45px;
+					line-height: 45px;
+					position: relative;
+					padding: 0 12px;
+					@include tablet{
+						padding: 0;
+					}					
+					&:before{
+						content: "";
+						background-color: $primary-color;
+						height: 3px;
+						transform: scale(0);
+						position: absolute;
+						width: 100%;
+						left: 0px;
+						top: 0px;
+						transition: all 200ms ease 0s;
+					}
+  			}
+  			&.active{
+  				a{
+  					&:before{
+  						transform: scale(1);
+  					}
+  				}
+  			}
+  		}
+  	}
+  }
+	&.singleTab{
+		.nav-tabs{
+			border-bottom: none;
+			margin-bottom: 20px;
+			li{
+				a{
+					background-color: $white-color;
+					margin-right: 10px;
+					&:hover{
+						background-color: $primary-color;
+						border: 1px solid $primary-color;
+						color: $white-color;
+					}
+				}
+				&.active{
+					a{
+						background-color: $primary-color;
+						border: 1px solid $primary-color;
+						color: $white-color;
+					}
+				}
+			}
+		}
+		.tab-content{
+			border: none;
+			padding: 40px;
+		}
+		.tab-pane{
+			h4{
+				font-size: 24px;
+				color: $primary-color;
+				margin: 0 0 20px 0;
+				font-weight: 400;
+			}
+			p{
+				line-height: 26px;
+				margin: 0 0 25px 0;
+			}
+			.list-inline{
+				overflow: hidden;
+				width: 100%;
+				@include desktops{
+					width: 50%;
+				}
+				li{
+					float: left;
+					width: 100%;
+					@include tablet{
+						width: 50%;
+					}
+					i.fa{
+						margin-right: 10px;
+					}
+				}
+			}
+			.blogCommnets{
+				margin: 0;
+				h3{
+					font-size: 24px;
+					margin-bottom: 35px;
+					letter-spacing: 1px;
+				}
+				.media{
+					padding-bottom: 15px;
+					border-bottom: 1px dashed #b7b7b7;
+					margin-top: 15px;
+					@include tablet{
+						margin-top: 30px;
+					}
+				}
+				.media>.pull-left{
+					padding: 0 0 20px 0;
+					@include tablet{
+						padding: 0 20px 0 0;
+					}
+				}
+				.media-body{
+					h4{
+						font-weight: 400;
+						text-transform: uppercase;
+						margin: 0 0 15px 0;
+						font-size: 18px;
+						color: $title-color;
+					}
+					h5{
+						color: $text-color;
+						font-size: 13px;
+						font-weight: 400;
+						margin-bottom: 20px;
+						i.fa{
+							color: #cdcdcd;
+							margin-right: 7px;
+						}
+					}
+					.btn-link{
+						color: $primary-color;
+						text-transform: capitalize;
+					}
+				}
+				.mediaMargin{
+					@include tablet{
+						margin-left: 50px;
+					}
+					@include tablet{
+						margin-left: 100px;
+					}
+				}
+			}
+		}
+	}
+}
+/*=== 2.7 MODAL ===*/
+.modalCommon{
+	.modal-dialog{
+		width: 100%;
+		margin: 20px 10px 10px 0;
+		@include tablet{
+			margin: 25px 10px 10px 10px;
+		}
+	}
+	.modal-header{
+		position: relative;
+		border: none;
+		padding: 14px 15px;
+		background-color: $primary-color;
+	}
+	.modal-title{
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: $white-color;
+    text-transform: uppercase;
+	}
+	.modal-content{
+		padding: 2px 3px;
+		border-radius: 0;
+	}
+	button.close{
+		margin: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    background-color: #292929;
+    text-shadow: none;
+    color: $white-color;
+    opacity: 1;
+    border: 2px solid $white-color;
+    position: absolute;
+    box-shadow: 0 2px 10px rgba($black-color, .45);
+    top: -10px;
+  	right: -7px;
+    @include tablet{
+    	top: -20px;
+    	right: -20px;
+    }
+	}
+	.modal-footer{
+		border: none;
+		text-align: left;
+	}
+	.categoryTitle{
+		h5{
+			font-size: 20px;
+			color: $title-color;
+			font-weight: 400;
+			text-transform: uppercase;
+			margin: 0;
+	    letter-spacing: 1px;
+		}
+	}
+	.modal-body{
+		padding: 50px 15px 15px 15px;
+	}
+}
+
+/*=== 2.8 MEDIA ===*/
+.media{
+	.media-left{
+		width: 100%;
+		display: block;
+		padding-right:0;
+		position:relative;
+		margin-bottom: 20px;
+		@include tablet {
+			padding-right:15px;
+			display: table-cell;
+    		vertical-align: top;
+		}
+		@include desktops {
+			padding-right:25px;
+		}
+		img{
+			display: inline-block;
+			max-width: 100%;
+			position:relative;
+			width: 100%;
+		}
+	}
+	.media-body{
+		display: block;
+		width: 100%;
+		@include tablet {
+			width: 10000px;
+			display: table-cell;
+    		vertical-align: top;
+		}
+	}
+	.media-heading {
+	    margin-bottom: 15px;
+	    @include desktops {
+			margin-bottom: 25px;
+		}
+	}
+	.list-inline{
+		margin-bottom: 20px;
+		li{
+			font-size: 13px;
+			i{
+				margin-right: 8px;
+			}
+			a{
+				color: $text-color;
+			}
+		}
+	}
+	p{
+		margin-bottom: 0;
+	}
+}
+.listView{
+	margin-top:25px;
+	padding-bottom:25px;
+	&:last-child{
+		padding-bottom:0;
+	}
+	.media-left{
+	    @include tablet {
+			width: 30%;
+		}
+		@include desktops {
+			 width: 32%;
+		}
+	}
+	.media-heading {
+	    @include desktops {
+			margin-bottom: 20px;
+		}
+	}
+}
+.common-media{
+	margin-top:50px;
+	@include desktops {
+		margin-top:100px;
+	}
+	.media-left{
+		@include tablet {
+			width: 45%;
+		}
+		@include desktops {
+			width: 35%;
+		}
+	}
+}
+.sticker{
+	text-align:center;
+	display:inline-block;
+	font-weight:700;
+	color:$white-color;
+	background-color:$primary-color;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100px;
+	height:45px;
+	line-height:45px;
+	font-size:22px;
+	@include tablet {
+		width:80px;
+		height:35px;
+		height:35px;
+		font-size:18px;
+	}
+	@include desktops {
+		width:100px;
+		height:45px;
+		line-height:45px;
+		font-size:22px;
+	}		
+}
+/*=== 2.9 PAGER ===*/
+.pagerArea{
+	>.pager{
+		margin: 80px 0 250px 0;
+		li{
+			padding: 0 15px;
+			a{
+				width: 114px;
+				height: 45px;
+				padding: 0 20px;
+				border: none;
+				line-height: 45px;
+				@include box-shadow(0, 4px, 0, rgba($black-color, .1) );
+				background-color: $primary-color;
+				@include border-radius(6px);
+				font-size: 16px;
+				text-transform: uppercase;
+				color: $white-color;
+				@include transition(all 0.3s ease-in-out);
+				font-weight: 600;
+			}
+			&:first-child{
+				a{
+					i{
+						margin-right: 10px;
+					}
+				}
+			}
+			&:last-child{
+				a{
+					i{
+						margin-left: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*=== 2.10 ALERT ===*/
+.alertPart{
+	padding: 0 0 70px 0;
+}
+.alert-common{
+	color: $white-color;
+	font-size: 14px;
+  padding: 11px 15px;
+  margin: 0 auto 30px auto;
+  width: 95%;
+  border: none;
+  border-radius: 0;
+	span{
+		font-weight: 600;
+	}
+	&.alert-success{
+		background-color: #6fc96f;
+	}
+	&.alert-info{
+		background-color: #4da5c9;
+	}
+	&.alert-warning{
+		background-color: #e6b048;
+	}
+	&.alert-danger{
+		background-color: #e26857;
+	}
+}
+
+/*=== 2.11 PAGE HEADER ===*/
+.page-header{
+	border: none;
+	margin: 0 0 60px 0;
+	padding: 0;
+	h2{
+		font-weight: 400;
+		text-transform: capitalize;
+		font-size: 30px;
+		margin: 0;
+		small{
+			display: block;
+			font-size: 16px;
+			color: $secondary-color;
+			font-family: 'Muli', sans-serif;
+			margin-top: 15px;
+		}
+	}
+}
+/*=== 2.12 PANEL ===*/
+.panel{
+	&.loginPanel{
+		border: none;
+		.panel-heading{
+			height: 60px;
+			padding: 0;
+			line-height: 60px;
+			background-color: $primary-color;
+			color: $white-color;
+			text-transform: capitalize;
+			font-size: 20px;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 500;
+			border: none;
+		}
+		.panel-body{
+			border: 1px solid $border-color;
+			border-top: none;
+			border-bottom: none;
+			padding: 50px 20px 20px 20px;
+			@include tablet{
+				padding: 54px 40px 24px 40px;
+			}
+		}
+		.panel-footer{
+			background-color: transparent;
+			border: 1px solid $border-color;
+			padding: 0;
+			height: 60px;
+			line-height: 60px;
+			p{
+				margin: 0;
+				line-height: 60px;
+				font-size: 15px;
+			}
+		}
+	}
+}
+.loginSection{
+	.col-md-5.col-sm-6.col-xs-12{
+		padding: 0 15px;
+		@include desktops{
+			padding: 0 10px;
+		}
+	}
+	.form-group{
+		button.btn-primary{
+			border: 1px solid $border-color;
+			background-color: transparent;
+			color: $title-color;
+			width: 115px;
+			padding: 17px 0;
+		}
+	}
+}
+/*=== 2.13 PAGE TITLE ===*/
+.pageTitle{
+	h2{
+		margin-bottom: 0;
+		font-weight: 400;
+		text-transform: capitalize;
+		text-align: center;
+		font-size: 25px;
+		line-height: 30px;
+		@include tablet{
+			font-size: 40px;
+			line-height: 44px;
+		}
+	}
+}
+.pageTitleSection{
+	padding: 40px 0;
+	background-color: #f5f5f5;
+	&.bg-image{
+		width: 100%;
+		background-size: cover;
+		background-position: center top;
+		position: relative;
+		background-repeat: no-repeat;
+		padding: 63px 0;
+		.pageTitle{
+			h2{
+				color: $white-color;
+			}
+		}
+	}
+}
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+/*=== 2.14 LIST ===*/
+.list-address{
+	li{
+		position: relative;
+		padding-left: 33px;
+		margin: 17px 0;
+		color: $secondary-color;
+		font-size: 14px;
+		line-height: 26px;
+		i.fa{
+			position: absolute;
+			left: 0;
+			top: 6px;
+			color: $secondary-color;
+		}
+		a{
+			display: block;
+			color: $secondary-color;
+			&:hover{
+				color: $primary-color;
+			}
+		}
+	}
+}
+.checkbox, .radio{
+	margin-bottom: 15px;
+}

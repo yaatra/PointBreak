@@ -1,46 +1,46 @@
-html {
-  background-color: #fff;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  text-align: center;
-}
-
-body {
-  font-family: sans-serif;
-
-  a {
-    text-decoration: none;
-  }
-
-  label {
-    display: block;
-  }
-
-  nav a {
-    display: inline-block;
-    margin: 1em;
-  }
-
-  form div {
-    margin: 1em;
-    display: block;
-  }
-}
-
-body, #root, .page-wrapper {
-  height: 100%;
-  background-color: #fcfcfc;
-}
-// .page-wrapper {
-//   z-index: 99;
+// html {
+//   background-color: #fff;
+//   font-weight: 300;
+//   -webkit-font-smoothing: antialiased;
+//   width: 100%;
+//   height: 100%;
+//   overflow-x: hidden;
+//   text-align: center;
 // }
 
-// .eventList {
-//   z-index: -99;
+// body {
+//   font-family: sans-serif;
+
+//   a {
+//     text-decoration: none;
+//   }
+
+//   label {
+//     display: block;
+//   }
+
+//   nav a {
+//     display: inline-block;
+//     margin: 1em;
+//   }
+
+//   form div {
+//     margin: 1em;
+//     display: block;
+//   }
 // }
+
+// body, #root, .page-wrapper {
+//   height: 100%;
+//   background-color: #fcfcfc;
+// }
+.page-wrapper {
+  z-index: 300;
+}
+
+.eventList {
+  z-index: -99;
+}
 
 .btn:hover {
   background-color: #e53935;
@@ -160,4 +160,8 @@ body, #root, .page-wrapper {
 @-o-keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+.img-responsive {
+  height: 250px;
 }
