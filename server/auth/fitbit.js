@@ -11,6 +11,7 @@ passport.use(new FitbitStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
   console.log('*************Profile****************', profile)
+  // console.log('*************Access Token****************', accessToken)
   const fitbitId = profile.id
   const firstName = profile._json.user.firstName
   const lastName = profile._json.user.lastName
@@ -42,8 +43,12 @@ function(accessToken, refreshToken, profile, done) {
     .then(fitbit => {
       // the tokens may change after a certain amount of time
       // here we are reassigning the refresh and access tokens
-      fitbit.accessToken = accessToken
-      fitbit.refreshToken = refreshToken
+      fitbit.update({
+        accessToken,
+        refreshToken
+      }, {
+        fields: ['accessToken', 'refreshToken']
+      })
 
       const tokens = {accessToken: fitbit.accessToken, refreshToken: fitbit.refreshToken}
 
@@ -70,9 +75,11 @@ function(accessToken, refreshToken, profile, done) {
           dayData.date = new Date(year, month, dayDate)
           fitbit.weekSteps.push(dayData)
         })
+        fitbit.update({weekSteps: fitbit.weekSteps})
         fitbit.weekSteps = fitbit.weekSteps.reverse().slice(0, 7)
         var todaysSteps = fitbit.weekSteps[0].steps
         fitbit.steps = todaysSteps
+        fitbit.update({steps: fitbit.steps})
 
         var currentDate = new Date()
         if (userToLogin.lastLoggedIn.getFullYear() !== currentDate.getFullYear()
@@ -81,6 +88,8 @@ function(accessToken, refreshToken, profile, done) {
           userToLogin.lastLoggedIn = currentDate
           userToLogin.lastLoggedInSteps = fitbit.steps
           fitbit.totalSteps += fitbit.steps
+          userToLogin.update({lastLoggedIn: userToLogin.lastLoggedIn, lastLoggedInSteps: userToLogin.lastLoggedInSteps})
+          fitbit.update({totalSteps: fitbit.totalSteps})
         }
         // update steps every time user logs in for that day
         if (userToLogin.lastLoggedIn.getFullYear() === currentDate.getFullYear()
@@ -89,10 +98,13 @@ function(accessToken, refreshToken, profile, done) {
           if (fitbit.totalSteps === 0) {
             fitbit.totalSteps += fitbit.steps
             userToLogin.lastLoggedInSteps = fitbit.steps
+            userToLogin.update({lastLoggedInSteps: userToLogin.lastLoggedInSteps})
+            fitbit.update({totalSteps: fitbit.totalSteps})
           } else {
             var newDifference = fitbit.steps - userToLogin.lastLoggedInSteps
             userToLogin.lastLoggedInSteps += newDifference
             fitbit.totalSteps += newDifference
+            fitbit.update({totalSteps: fitbit.totalSteps})
           }
         }
       })
@@ -104,16 +116,6 @@ function(accessToken, refreshToken, profile, done) {
         const monthAverageSteps = stepsData.reduce((accumulator, day) => accumulator + Number(day.value), 0) / 30
         console.log("*****************Month Average Steps****************", monthAverageSteps)
         fitbit.update({monthAverageSteps})
-        stepsData.forEach(day => {
-          var dayData = {}
-          var oneDay = day.dateTime.split('-')
-          var year = Number(oneDay[0])
-          var month = Number(oneDay[1]) - 1
-          var dayDate = Number(oneDay[2])
-          dayData.steps = Number(day.value)
-          dayData.date = new Date(year, month, dayDate)
-          fitbit.weekSteps.push(dayData)
-        })
       })
 
       helper.getActivityTimeSeries(tokens, {}, '3m', 'steps')
@@ -123,16 +125,6 @@ function(accessToken, refreshToken, profile, done) {
         const threeMonthAverageSteps = stepsData.reduce((accumulator, day) => accumulator + Number(day.value), 0) / 90
         console.log("*****************Three Month Average Steps****************", threeMonthAverageSteps)
         fitbit.update({threeMonthAverageSteps})
-        stepsData.forEach(day => {
-          var dayData = {}
-          var oneDay = day.dateTime.split('-')
-          var year = Number(oneDay[0])
-          var month = Number(oneDay[1]) - 1
-          var dayDate = Number(oneDay[2])
-          dayData.steps = Number(day.value)
-          dayData.date = new Date(year, month, dayDate)
-          fitbit.weekSteps.push(dayData)
-        })
       })
 
       helper.getActivityTimeSeries(tokens, {}, '6m', 'steps')
@@ -142,16 +134,6 @@ function(accessToken, refreshToken, profile, done) {
         const sixMonthAverageSteps = stepsData.reduce((accumulator, day) => accumulator + Number(day.value), 0) / 180
         console.log("*****************Six Month Average Steps****************", sixMonthAverageSteps)
         fitbit.update({sixMonthAverageSteps})
-        stepsData.forEach(day => {
-          var dayData = {}
-          var oneDay = day.dateTime.split('-')
-          var year = Number(oneDay[0])
-          var month = Number(oneDay[1]) - 1
-          var dayDate = Number(oneDay[2])
-          dayData.steps = Number(day.value)
-          dayData.date = new Date(year, month, dayDate)
-          fitbit.weekSteps.push(dayData)
-        })
       })
 
       helper.getActivityTimeSeries(tokens, {}, '1y', 'steps')
@@ -161,16 +143,6 @@ function(accessToken, refreshToken, profile, done) {
         const oneYearAverageSteps = stepsData.reduce((accumulator, day) => accumulator + Number(day.value), 0) / 365
         console.log("*****************One Year Average Steps****************", oneYearAverageSteps)
         fitbit.update({oneYearAverageSteps})
-        stepsData.forEach(day => {
-          var dayData = {}
-          var oneDay = day.dateTime.split('-')
-          var year = Number(oneDay[0])
-          var month = Number(oneDay[1]) - 1
-          var dayDate = Number(oneDay[2])
-          dayData.steps = Number(day.value)
-          dayData.date = new Date(year, month, dayDate)
-          fitbit.weekSteps.push(dayData)
-        })
       })
       done(null, userToLogin)
     })

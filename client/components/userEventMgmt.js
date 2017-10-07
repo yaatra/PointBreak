@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchEventsForUser, deleteEventThunk} from '../store'
 import history from '../history'
-
+import { NavLink } from 'react-router-dom'
 
 /**
  * COMPONENT

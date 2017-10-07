@@ -60,6 +60,37 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
+router.post('/join', (req, res, next) => {
+
+  AssociatedEvent.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      eventId: req.body.eventId,
+      type: req.body.type
+    }
+  })
+  .then((event, created) => {
+    return event[0]
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+router.post('/follow', (req, res, next) => {
+  AssociatedEvent.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      eventId: req.body.eventId,
+      type: req.body.type
+    }
+  })
+  .then((event, created) => {
+    return event[0]
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
 // Create an event
 router.post('/:userId', (req, res, next) => {
   Event.create(req.body)
@@ -71,66 +102,6 @@ router.post('/:userId', (req, res, next) => {
         type: 'created'
       }
     })
-  })
-  .then(event => res.json(event))
-  .catch(next)
-})
-
-router.post('/join', (req, res, next) => {
-  AssociatedEvent.findOrCreate({
-    where: {
-      userId: req.body.userId,
-      eventId: req.body.eventId
-    },
-    defaults: {
-      type: req.body.type
-    }
-  })
-  .then((event, created) => {
-    if (!created && event.type === 'created') {
-      event[0].update({
-        type: req.body.type
-      }, {
-        fields: ['type'],
-        returning: true
-      })
-      .then(event => res.json(event))
-    } else if (!created && event.type === 'followed') {
-      AssociatedEvent.created(req.body)
-      .then(event => res.json(event))
-    }
-
-    return event[0]
-  })
-  .then(event => res.json(event))
-  .catch(next)
-})
-
-router.post('/follow', (req, res, next) => {
-  AssociatedEvent.findOrCreate({
-    where: {
-      userId: req.body.userId,
-      eventId: req.body.eventId
-    },
-    defaults: {
-      type: req.body.type
-    }
-  })
-  .then((event, created) => {
-    if (!created && event.type === 'created') {
-      event[0].update({
-        type: req.body.type
-      }, {
-        fields: ['type'],
-        returning: true
-      })
-      .then(event => res.json(event))
-    } else if (!created && event.type === 'pendingJoin') {
-      AssociatedEvent.created(req.body)
-      .then(event => res.json(event))
-    }
-
-    return event[0]
   })
   .then(event => res.json(event))
   .catch(next)
@@ -149,6 +120,30 @@ router.put('/:id', (req, res, next) => {
     res.json(event)
   })
   .catch(next)
+})
+
+router.delete('/pending/:type/:userId/:eventId', (req, res, next) => {
+  AssociatedEvent.findOne({
+    where: req.params
+  })
+  .then(event => {
+    return event.destroy()
+  })
+  .then(() => {
+    res.sendStatus(200)
+  })
+})
+
+router.delete('/followed/:type/:userId/:eventId', (req, res, next) => {
+  AssociatedEvent.findOne({
+    where: req.params
+  })
+  .then(event => {
+    return event.destroy()
+  })
+  .then(() => {
+    res.sendStatus(200)
+  })
 })
 
 // Delete an events
