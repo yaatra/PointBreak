@@ -289,9 +289,11 @@ let data = {
 }
 
 //Force sync the db, and then create the data in the two tables.
-Fitbit.sync({
-  force: true
-})
+database.sync({force:true})
+.then(() => Fitbit.sync({
+    force: true
+  })
+)
 .then(() => {
   return Promise.all(
     data.fitbitData.map(fitbit => {

@@ -18,3 +18,5 @@ export {default as SocialConnection} from './socialConnection'
 export {default as UsersList} from './usersList'
 export {default as OtherUserProfile} from './otherUserProfile'
 export {default as UserEventMgmt} from './userEventMgmt'
+export {default as CreateEvent} from './createEvent'
+
