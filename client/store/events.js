@@ -1,4 +1,5 @@
 import axios from "axios"
+import history from "../history"
 
 const GET_EVENT = "GET_EVENT"
 const GET_YELP_EVENT = "GET_YELP_EVENT"
