@@ -45,7 +45,6 @@ router.get('/user/:id', (req, res, next) => {
   .catch(next)
 })
 
-
 // Get one events
 router.get('/:id', (req, res, next) => {
   Event.findOne({
@@ -61,9 +60,79 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
+// TEST ROUTE
+router.post('/eventStatusChange', (req, res, next) => {
+  console.log(req.body)
+  res.json(req.body)
+})
+
+
+router.post('/join', (req, res, next) => {
+  AssociatedEvent.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      eventId: req.body.eventId
+    },
+    defaults: {
+      type: req.body.type
+    }
+  })
+  .then((event, created) => {
+    if (!created && event.type !== req.body.type) {
+      event[0].update({
+        type: req.body.type
+      }, {
+        fields: ['type'],
+        returning: true
+      })
+      .then(event => res.json(event))
+    }
+
+    return event[0]
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+router.post('/follow', (req, res, next) => {
+  AssociatedEvent.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      eventId: req.body.eventId
+    },
+    defaults: {
+      type: req.body.type
+    }
+  })
+  .then((event, created) => {
+    if (!created && event.type !== req.body.type) {
+      event[0].update({
+        type: req.body.type
+      }, {
+        fields: ['type'],
+        returning: true
+      })
+      .then(event => res.json(event))
+    }
+
+    return event[0]
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
 // Create an event
-router.post('/', (req, res, next) => {
+router.post('/:userId', (req, res, next) => {
   Event.create(req.body)
+  .then((event) => {
+    AssociatedEvent.findOrCreate({
+      where: {
+        userId: req.params.userId,
+        eventId: event.id,
+        type: 'created'
+      }
+    })
+  })
   .then(event => res.json(event))
   .catch(next)
 })
@@ -84,11 +153,18 @@ router.put('/:id', (req, res, next) => {
 })
 
 // Delete an events
-router.delete('/:id', (req, res, next) => {
-  Event.destroy({
+router.delete('/:eventId/:userId', (req, res, next) => {
+  AssociatedEvent.destroy({
     where: {
-      id: req.params.id
+      eventId: req.params.eventId
     }
+  })
+  .then(() => {
+    Event.destroy({
+      where: {
+        id: req.params.eventId
+      }
+    })
   })
   .then(function() {
     res.sendStatus(200)

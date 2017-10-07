@@ -114,10 +114,10 @@ class AutoCompleteSearch extends React.Component {
       type: "text",
       value: this.state.address,
       onChange: this.handleChange,
-      onBlur: () => { 
+      onBlur: () => {
         //console.log('Blur event!');
       },
-      onFocus: () => { 
+      onFocus: () => {
         //console.log('Focused!');
       },
       autoFocus: true,
@@ -152,7 +152,7 @@ class AutoCompleteSearch extends React.Component {
  */
 const mapState = (state) => {
   return {
-    location: state.location,
+    location: state.location
   }
 }
 const mapDispatch = (dispatch) => {

@@ -8,6 +8,7 @@ import {logout} from '../store'
 const Navbar = (props) => {
     const {handleClick, isLoggedIn, email} = props
 
+
     return(<div className="nav-wrapper">
         <div className="container-fluid header-bg">
           <div className="row">
@@ -59,6 +60,40 @@ const Navbar = (props) => {
               }
               </ul>
             </div>       
+ {/*
+    return(<nav className="navbar navbar-default">
+        <div className="container-fluid">
+        <ul className="nav navbar-nav navbar-left">
+            <li>
+            <Link to='/'>Main</Link>
+            </li>
+            </ul>
+        {
+          isLoggedIn
+            ? <ul className="nav navbar-nav navbar-right">
+              {/* The navbar will show these links after you log in */}
+              <li>
+              <Link to='/home'>User Home</Link>
+              </li>
+              <li>
+              <Link to='/manageEvents'>Your admin console</Link>
+              </li>
+              <li>
+              <a href='#' onClick={handleClick}>Logout</a>
+              </li>
+            </ul>
+            : <ul className="nav navbar-nav navbar-right">
+              {/* The navbar will show these links before you log in */}
+              <li>
+              <Link to='/login'>Login</Link>
+              </li>
+              <li>
+              <Link to='/signup'>Sign Up</Link>
+              </li>
+              </ul>
+        }
+
+*/}
         </div>
         </nav></div>)
 
