@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     // send everything to anyone who asks!
     include: [{
       all: true,
-      nested: true
+      //nested: true
     }]
   })
   .then(languages => res.json(languages))

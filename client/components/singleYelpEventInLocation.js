@@ -12,21 +12,21 @@ class SingleYelpEventInLocation extends Component {
   }
 
   render() {
-    const {event} = this.props
-    const {categories} = event
-    const {hours} = event
-    const {location} = event
-    const {photos} = event
-
+    const {singleYelpEvent, pendingJoinEvent, followedEvent} = this.props
+    const {categories} = singleYelpEvent
+    const {hours} = singleYelpEvent
+    const {location} = singleYelpEvent
+    const {photos} = singleYelpEvent
+    console.log("****************Single Yelp Event*********************", singleYelpEvent)
     return (
       <div className="container">
         <div className="jumbotron">
-          {event.name}
+          {singleYelpEvent.name}
           <hr />
-          <img src={event.image_url || event.image} className="img-fluid" />
+          <img src={singleYelpEvent.image_url || singleYelpEvent.image} className="img-fluid" />
           <div>Location: {location ? location.address1 : null}</div>
-          <div>Phone: {event.phone}</div>
-          <div>Price: {event.price}</div>
+          <div>Phone: {singleYelpEvent.phone}</div>
+          <div>Price: {singleYelpEvent.price}</div>
           <div>Hours: {hours ? hours[0].hours_type : null}</div>
           {
             hours ? hours[0].open.map(open => {
@@ -81,26 +81,44 @@ class SingleYelpEventInLocation extends Component {
             <span className="sr-only">Next</span>
           </a>
         </div>
-        <a className="btn btn-primary btn-lg" href="#" role="button">JOIN</a>
-        <a className="btn btn-primary btn-lg" href="#" role="button">FOLLOW</a>
+        <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? joinEvent(event, 'pendingJoin', user.id, singleYelpEvent.id) : history.push('/login')}>
+        {
+          pendingJoinEvent.id ?
+          'PENDING' :
+          'JOIN'
+        }
+        </a>
+        <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? followEvent(event, 'followed', user.id, singleYelpEvent.id) : history.push('/login')}>
+        {
+          followedEvent.id ?
+          'FOLLOWING' :
+          'FOLLOW'
+        }
+        </a>
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  event: state.event.singleYelpEvent
+  user: state.user,
+  singleYelpEvent: state.events.singleYelpEvent,
+  pendingJoinEvent: state.events.pendingJoinEvent,
+  followedEvent: state.events.followedEvent
 })
 
 const mapDispatch = dispatch => ({
   fetchYelpEvent(id) {
     dispatch(fetchYelpEvent(id))
   },
-  joinEvent() {
+  joinEvent(event, type, userId, eventId) {
+    event.preventDefault()
 
+    dispatch(joinEvent(type, userId, eventId))
   },
-  followEvent() {
-
+  followEvent(event, type, userId, eventId) {
+    event.preventDefault()
+    dispatch(followEvent(type, userId, eventId))
   }
 })
 

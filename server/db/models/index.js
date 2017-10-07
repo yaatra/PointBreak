@@ -1,6 +1,7 @@
 const User = require('./user')
 const Fitbit = require('./fitbit')
 const Event = require('./event')
+const Message = require('./Message')
 const Category = require('./category')
 const Destination = require('./destination')
 const AssociatedEvent = require('./associatedEvent')
@@ -23,8 +24,15 @@ const Language = require('./languages')
  * instead of: const User = require('../db/models/user')
  */
 
-User.belongsToMany(Event, {through: AssociatedEvent})
-Event.belongsToMany(User, {through: AssociatedEvent})
+// User.belongsToMany(Event, {through: AssociatedEvent})
+// Event.belongsToMany(User, {through: AssociatedEvent})
+// AssociatedEvent.belongsTo(User)
+// AssociatedEvent.belongsTo(Event)
+
+AssociatedEvent.belongsTo(User)
+AssociatedEvent.belongsTo(Event)
+User.hasMany(AssociatedEvent)
+Event.hasMany(AssociatedEvent)
 
 User.belongsToMany(Category, {through: PreferredCategory})
 Category.belongsToMany(User, {through: PreferredCategory})
@@ -43,6 +51,10 @@ Language.belongsToMany(User, {through: AssociatedLanguage})
 
 User.belongsTo(Fitbit, {as: 'fitbitInfo'})
 
+Message.belongsTo(User)
+
+Message.belongsTo(Event)
+
 
 module.exports = {
   User,
@@ -51,6 +63,7 @@ module.exports = {
   Category,
   Destination,
   Language,
+  Message,
   AssociatedEvent,
   PreferredCategory,
   PreferredDestination,

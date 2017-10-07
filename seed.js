@@ -5,7 +5,7 @@ const {User, Event, Category,
    Destination, AssociatedEvent,
    PreferredCategory,
    PreferredDestination,
-   Language, AssociatedLanguage, Fitbit} = db
+   Language, AssociatedLanguage, Message, Fitbit} = db
 
 //Create seed data
 let data = {
@@ -16,7 +16,6 @@ let data = {
     {id: 4, accessToken: 1312, weekAverageSteps: 9000, monthAverageSteps: 55000}
   ],
   userData: [
-
     {firstName: 'Eren', lastName: 'Chen', gender: 'female', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
     {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, avatar: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
     {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
@@ -48,10 +47,18 @@ let data = {
     {city: 'Rio de Janeiro', state: 'State of Rio de Janeiro', country: 'Brazil', latitude: -22.9068467, longitude: -43.17289649999998}
   ],
   associatedEventData: [
-    {userId: 1, eventId: 2, type: 'selected'},
-    {userId: 2, eventId: 1, type: 'followed'},
-    {userId: 3, eventId: 4, type: 'selected'},
-    {userId: 4, eventId: 3, type: 'followed'}
+    {userId: 1, eventId: 1, type: 'selected'},
+    {userId: 1, eventId: 2, type: 'created'},
+    {userId: 1, eventId: 7, type: 'created'},
+    {userId: 2, eventId: 2, type: 'followed'},
+    {userId: 2, eventId: 1, type: 'selected'},
+    {userId: 2, eventId: 3, type: 'created'},
+    {userId: 2, eventId: 4, type: 'created'},
+    {userId: 2, eventId: 5, type: 'created'},
+    {userId: 2, eventId: 6, type: 'created'},
+    {userId: 3, eventId: 3, type: 'selected'},
+    {userId: 3, eventId: 4, type: 'followed'},
+    {userId: 4, eventId: 4, type: 'followed'}
   ],
   preferredCategoryData: [
     {userId: 1, categoryId: 1},
@@ -269,6 +276,15 @@ let data = {
     {userId: 3, languageId: 40},
     {userId: 4, languageId: 40},
   ],
+  MessageData: [
+    {content: "Hi", userId: 1, eventId: 1},
+    {content: "What time is the game?", userId: 1, eventId: 1},
+    {content: "Hello", userId: 2, eventId: 1},
+    {content: "It's at 9:30PM", userId: 2, eventId: 1},
+    {content: "Hi guys", userId: 3, eventId: 2},
+    {content: "Anyone here?", userId: 3, eventId: 2},
+    {content: "Hello", userId: 4, eventId: 2},
+  ]
 
 }
 
@@ -370,6 +386,16 @@ Fitbit.sync({
   return Promise.all(
     data.AssociatedLanguageData.map(associatedLanguage => {
       return AssociatedLanguage.create(associatedLanguage)
+    })
+)})
+.then(() => console.log('completed AssociatedLanguage sync'))
+.then(() => Message.sync({
+  force: true
+}))
+.then(() => {
+  return Promise.all(
+    data.MessageData.map(message => {
+      return Message.create(message)
     })
 )})
 .then(() => console.log('completed AssociatedLanguage sync'))

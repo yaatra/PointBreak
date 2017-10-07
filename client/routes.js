@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, HomePage, AllEventsInLocation, SingleEventInLocation, SingleYelpEventInLocation, OtherUserProfile} from './components'
+import {Main, Login, Signup, UserHome, HomePage, AllEventsInLocation, SingleEventInLocation, SingleYelpEventInLocation, OtherUserProfile, UserEventMgmt} from './components'
 import {me} from './store'
 
 /**
@@ -34,6 +34,7 @@ class Routes extends Component {
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
                   <Route path='/publicProfile/:id' component={OtherUserProfile} />
+                  <Route path='/manageEvents' component={UserEventMgmt} />
                   <Route path='/home' component={UserHome} />
                 </Switch>
             }

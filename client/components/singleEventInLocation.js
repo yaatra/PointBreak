@@ -7,7 +7,7 @@ class SingleEventInLocation extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id
-    const fetchEvent = this.props.fetchEvent
+    const {fetchEvent} = this.props
 
     fetchEvent(id)
   }
@@ -16,7 +16,7 @@ class SingleEventInLocation extends Component {
     const {user, singleEvent, joinEvent, followEvent, pendingJoinEvent, followedEvent} = this.props
     const {category} = singleEvent
     const {users} = singleEvent
-    // console.log(users)
+
     return (
       <div className="container">
         <div className="jumbotron">
@@ -70,9 +70,9 @@ class SingleEventInLocation extends Component {
 
 const mapState = state => ({
   user: state.user,
-  singleEvent: state.event.singleEvent,
-  pendingJoinEvent: state.event.pendingJoinEvent,
-  followedEvent: state.event.followedEvent
+  singleEvent: state.events.singleEvent,
+  pendingJoinEvent: state.events.pendingJoinEvent,
+  followedEvent: state.events.followedEvent
 })
 
 const mapDispatch = dispatch => ({
@@ -86,7 +86,7 @@ const mapDispatch = dispatch => ({
   },
   followEvent(event, type, userId, eventId) {
     event.preventDefault()
-    followEvent(type, userId, eventId)
+    dispatch(followEvent(type, userId, eventId))
   }
 })
 
