@@ -87,13 +87,16 @@ router.post('/join', (req, res, next) => {
     }
   })
   .then((event, created) => {
-    if (!created && event.type !== req.body.type) {
+    if (!created && event.type === 'created') {
       event[0].update({
         type: req.body.type
       }, {
         fields: ['type'],
         returning: true
       })
+      .then(event => res.json(event))
+    } else if (!created && event.type === 'followed') {
+      AssociatedEvent.created(req.body)
       .then(event => res.json(event))
     }
 
@@ -114,13 +117,16 @@ router.post('/follow', (req, res, next) => {
     }
   })
   .then((event, created) => {
-    if (!created && event.type !== req.body.type) {
+    if (!created && event.type === 'created') {
       event[0].update({
         type: req.body.type
       }, {
         fields: ['type'],
         returning: true
       })
+      .then(event => res.json(event))
+    } else if (!created && event.type === 'pendingJoin') {
+      AssociatedEvent.created(req.body)
       .then(event => res.json(event))
     }
 

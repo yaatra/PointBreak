@@ -48,7 +48,7 @@ class SingleEventInLocation extends Component {
             }) :
             null
           }
-          <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? joinEvent(event, 'pendingJoin', user.id, singleEvent.id) : history.push('/login')}>
+          <a className="btn btn-primary btn-lg" href="#" role="button" onClick={pendingJoinEvent.id ? event => removeEvent(event) : user.id ? joinEvent(event, 'pendingJoin', user.id, singleEvent.id) : history.push('/login')}>
           {
             pendingJoinEvent.id ?
             'PENDING' :
@@ -81,12 +81,14 @@ const mapDispatch = dispatch => ({
   },
   joinEvent(event, type, userId, eventId) {
     event.preventDefault()
-
     dispatch(joinEvent(type, userId, eventId))
   },
   followEvent(event, type, userId, eventId) {
     event.preventDefault()
     dispatch(followEvent(type, userId, eventId))
+  },
+  removeEvent(event) {
+
   }
 })
 
