@@ -44,9 +44,9 @@ export class CreateEvent extends Component {
     newEvent.day = evt.target.Day.value
     newEvent.recurrence = evt.target.Recurrence.value
     newEvent.difficulty = evt.target.Difficulty.value
-    newEvent.userId = this.props.user.id
+
     console.log('****', newEvent)
-    this.props.createEvent(newEvent)
+    this.props.createEvent(newEvent, this.props.user.id)
   }
 
   render () {
@@ -170,8 +170,8 @@ const mapState = (state) => {
 }
 const mapDispatch = (dispatch) => {
   return {
-    createEvent (event) {
-      dispatch(createEventThunk(event))
+    createEvent (event, userId) {
+      dispatch(createEventThunk(event, userId))
     }
   }
 }

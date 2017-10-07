@@ -62,9 +62,17 @@ router.get('/:id', (req, res, next) => {
 })
 
 // Create an event
-router.post('/', (req, res, next) => {
-
+router.post('/:userId', (req, res, next) => {
   Event.create(req.body)
+  .then((event) => {
+    AssociatedEvent.findOrCreate({
+      where: {
+        userId: req.params.userId,
+        eventId: event.id,
+        type: 'created'
+      }
+    })
+  })
   .then(event => res.json(event))
   .catch(next)
 })
