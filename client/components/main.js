@@ -16,15 +16,9 @@ const Main = (props) => {
 
   return (
     <div>
-      <div className='body-wrapper'>
-      <div className="page-loader">
-      <div className="main-wrapper">
       <Navbar />
       {/* <HomePage /> */}
       {children}
-      </div>
-      </div>
-      </div>
     </div>
   )
 }
