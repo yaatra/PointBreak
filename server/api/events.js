@@ -45,7 +45,6 @@ router.get('/user/:id', (req, res, next) => {
   .catch(next)
 })
 
-
 // Get one events
 router.get('/:id', (req, res, next) => {
   Event.findOne({
@@ -72,6 +71,60 @@ router.post('/:userId', (req, res, next) => {
         type: 'created'
       }
     })
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+router.post('/join', (req, res, next) => {
+  AssociatedEvent.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      eventId: req.body.eventId
+    },
+    defaults: {
+      type: req.body.type
+    }
+  })
+  .then((event, created) => {
+    if (!created && event.type !== req.body.type) {
+      event[0].update({
+        type: req.body.type
+      }, {
+        fields: ['type'],
+        returning: true
+      })
+      .then(event => res.json(event))
+    }
+
+    return event[0]
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+router.post('/follow', (req, res, next) => {
+  AssociatedEvent.findOrCreate({
+    where: {
+      userId: req.body.userId,
+      eventId: req.body.eventId
+    },
+    defaults: {
+      type: req.body.type
+    }
+  })
+  .then((event, created) => {
+    if (!created && event.type !== req.body.type) {
+      event[0].update({
+        type: req.body.type
+      }, {
+        fields: ['type'],
+        returning: true
+      })
+      .then(event => res.json(event))
+    }
+
+    return event[0]
   })
   .then(event => res.json(event))
   .catch(next)
