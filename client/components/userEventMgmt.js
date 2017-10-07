@@ -68,7 +68,7 @@ export class UserEventMgmt extends Component {
                     {createdEvents.map(event => (
                       <tr key={event.id}>
                         <td>{event.eventId}</td>
-                        <td>{event.event.name}</td>
+                        <td><NavLink to={`/locations/${event.eventId}`}>{event.event.name}</NavLink></td>
                         <td>{event.event.difficulty}</td>
                         <td>{event.event.description.length > 20 ? event.event.description.substring(0, 20) + '...' : event.event.description}</td>
                         <td><button className="btn btn-danger" value={event.eventId} onClick={this.handleDelete}>X</button></td>

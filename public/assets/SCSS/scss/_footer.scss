@@ -1,0 +1,316 @@
+/*=== 4. FOOTER ===*/
+footer{
+	background-attachment: fixed;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	padding-bottom:0;
+	position: relative;
+} 
+
+/*=== 4.2 FOOTER TOP ===*/
+.footerInfo{
+	padding: 96px 0 60px 0;
+	.col-sm-3,.col-sm-7 {
+		
+		@include tablet{
+			padding: 0 15px;
+		}
+	}
+	.paddingLeft{
+		padding-left: 15px;
+		@include tablet {
+			padding-left: 15px;
+		}
+		@include desktops {
+			padding-left: 40px;
+		}
+	}
+}
+.footerText{
+	padding-bottom: 18px;
+	.footerLogo{
+		margin-bottom: 40px;
+		display: block;
+		img{
+			width: auto;
+		}
+	}
+	p{
+		line-height: 24px;
+		color: $white-color;
+		margin-bottom: 30px;
+		font-size: 14px;
+		@include tablet{
+			font-size: 12px;
+		}
+		@include desktops{
+			font-size: 14px;
+		}
+	}
+	.input-group{
+		width: 100%;
+	}
+	.form-control, .input-group-addon{
+		width: 65%;
+    border-radius: 0;
+    height: 40px;
+    box-shadow: none;
+		color: $text-color;
+		background-color: $white-color;
+		border: 1px solid $white-color;
+		font-size: 14px;
+		@include tablet{
+			font-size: 12px;
+		}
+		@include desktops{
+			font-size: 14px;
+		}
+	}
+	.form-control:focus{
+		border: 1px solid $primary-color;
+	}
+	.input-group-addon{
+		width: 35%;
+		background-color: $primary-color;
+		color: $white-color;
+		font-weight: 700;
+		text-transform: uppercase;
+		border: 1px solid $primary-color;
+	}
+}
+.list-contact{
+	li{
+		position: relative;
+		padding-left: 28px;
+		line-height: 21px;
+		color: $white-color;
+		font-size: 14px;
+		margin-bottom: 10px;
+		i.fa{
+			position: absolute;
+			top: 0;
+			left: 0;
+			line-height: 21px;
+			font-size: 14px;
+		}
+		a{
+			color: $white-color;
+			font-size: 14px;
+			line-height: 21px;
+			&:hover{
+				color: $primary-color;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+.footerInfoTitle{
+	h4{
+		font-size: 20px;
+		line-height: 27px;
+		margin-top: 35px;
+		font-weight: 500;
+		color: $white-color;
+		@include tablet {
+			margin-top: 0px;
+			
+		}
+	}
+}
+.useLink{
+	@include mobile-xs {
+		margin-bottom: 25px;
+	}
+	ul{
+		li{
+			margin: 0 0 10px 0;
+			@include tablet{
+				margin: 0 0 10px 0;
+			}
+			@include desktops{
+				margin: 0 0 15px 0;
+			}
+			a{
+				line-height: 24px;
+				color: #cfcfcf;
+				font-size: 14px;
+				i{
+					margin-right: 10px;
+				}
+				&:hover{
+					color: $primary-color;
+					text-decoration: underline;
+				}
+				@include tablet{
+					font-size: 12px;
+				}
+				@include desktops{
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+.footerGallery{
+	padding-left: 0;
+	@include tablet{
+		padding-left: 15px;
+	}
+	.col-xs-4{
+		padding: 0 15px 15px 15px;
+		@include tablet{
+			padding: 0 10px 10px 0;
+		}
+	}
+	a{
+		display: block;
+		width: 100%;
+		text-align: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		height: 75px;
+	}
+}
+
+
+/*=== 4.2 COPY RIGHT ===*/
+.copyRight{
+	.socialLink{
+		text-align: center;
+		margin: 0 0 25px 0;
+		@include tablet{
+			text-align: right;
+			margin: 0;
+		}
+		li{
+			a{
+				color: rgba($white-color, .5);
+				font-size: 13px;
+				padding: 0;
+				width: 38px;
+				height: 38px;
+				border-radius: 100%;
+				display: block;
+				border: 1px solid rgba($white-color, .25);
+				background-color: transparent;
+				text-align: center;
+				line-height: 38px;
+  			&:hover{
+  				color: $white-color;
+  				background-color: $primary-color;
+  				border-color: $primary-color;
+  			}
+			}
+		}
+	}
+}
+.copyRightWrapper{
+	padding: 20px 0;
+	border-top: 1px solid rgba($white-color, .25);
+}
+.copyRightText{
+	p{
+		margin-bottom: 20px;
+		color: rgba($white-color, .70);
+		margin-bottom: 0;
+		text-align: center;
+		@include tablet{
+			margin-bottom: 0;
+			text-align: left;
+		}
+		a{
+			color:$text-color;
+			text-decoration: underline !important;
+			&:hover{
+				color: $primary-color;
+			}
+		}
+	}
+}
+/*=== 4.3 FOOTER DASHBOARD ===*/
+.copyRightDashboard{
+	background-color: $white-color; 
+	border-top: 1px solid $border-color;
+	padding: 30px 0;
+	p{
+		margin-bottom: 0;
+	}
+}
+
+/*=== 4.4 FOOTER WHITE ===*/
+.footerWhite{
+	background-color: $white-color;
+	.footerText{
+		p{
+			color: $secondary-color;
+		}
+	}
+	.list-contact{
+		li{
+			color: $secondary-color;
+			a{
+				color: $secondary-color;
+			}
+		}
+	}
+	.footerText{
+		.footerLogo{
+			margin-bottom: 29px;
+		}
+	}
+	.footerInfoTitle{
+		h4{
+			color: $title-color;
+			margin: 25px 0 20px 0;
+			@include tablet {
+				margin: 0 0 20px 0;
+			}
+		}
+	} 
+	.useLink{
+		ul{
+			li{
+				a{
+					color: $secondary-color;
+					&:hover{
+						color: $primary-color;
+					}
+				}
+			}
+		}
+	}
+	.copyRightText{
+		p{
+			color: $secondary-color;
+			a{
+				color: $secondary-color;
+				&:hover{
+					color: $primary-color;
+				}
+			}
+		}
+	}
+	.copyRight{
+		.socialLink{
+			li{
+				a{
+					color: $secondary-color;
+					border-color: #e5e5e5;
+					&:hover{
+						color: $white-color;
+						border-color: $primary-color;
+						background-color: $primary-color;
+					}
+				}
+			}
+		}
+	}
+	.copyRightWrapper{
+		border-top-color: $border-color;
+	}
+}

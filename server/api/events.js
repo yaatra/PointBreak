@@ -61,7 +61,6 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.post('/join', (req, res, next) => {
-
   AssociatedEvent.findOrCreate({
     where: {
       userId: req.body.userId,
