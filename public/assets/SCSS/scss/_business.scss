@@ -1,0 +1,525 @@
+/*=== 8. BUSINESS ===*/
+.businessIntro{
+	border-bottom: 1px solid $border-color;
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	@include tablet{
+		padding-bottom: 45px;
+		margin-bottom: 45px;
+	} 
+	h2{
+		font-size: 30px;
+		font-weight: 400;
+		margin: 0 0 20px 0;
+		text-transform: capitalize;
+	}
+	p{
+		margin-bottom: 0;
+	}
+}
+.locationSelect{
+	label{
+		font-weight: 400;
+		margin-bottom: 7px;
+	}
+}
+.businessLink{
+	display: block;
+	width: 100%;
+	float: left;
+	margin: 25px 0 0 0;
+	@include tablet{
+		margin: 30px 0 0 0;
+	}
+	h3{
+		font-weight: 300;
+		text-transform: capitalize;
+		font-size: 20px;
+	}
+	ul.list-inline{
+		li{
+			margin-bottom: 12px;
+			width: 100%;
+			@include tablet{
+				width: 49%;
+			}
+			@include desktops{
+				width: 33%;
+			}
+			a{
+				color: $secondary-color;
+				&:hover{
+					color: $primary-color;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+.locationSelect {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+.businessAdd{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	padding-bottom:0;
+	position: relative;
+	border-radius: 4px;
+	position: relative;	
+	width: 100%;
+	float: none;
+	height: auto;
+	@include tablet{
+		width: 100%;
+		float: right;
+		height: auto;
+	}
+	@include desktops{
+		width: 321px;
+		float: right;
+		height: 400px;
+	}
+	.addMask{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		background-color: rgba($black-color, .5);
+		@include mobile-xs{
+			padding: 15px;
+		}
+		@include tablet{
+			padding: 35px 20px;
+		}
+		@include desktops{
+			padding: 70px 30px;
+		}
+	}
+	h2{
+		color: #fffefe;
+		font-size: 32px;
+		font-weight: 500;
+		text-transform: capitalize;
+	}
+	p{
+		color: $white-color;
+		font-size: 16px;
+		margin: 0 0 25px 0;
+		@include tablet{
+			margin: 0 0 45px 0;
+		}
+	}
+	a.btn-primary{
+		padding: 15px;
+		@include tablet{
+			padding: 15px 30px;
+		}
+	}
+}
+.signUpFormArea{
+	.priceTableTitle{
+		text-align: left;
+		padding: 0 0 0 0;
+		h2{
+			margin-bottom: 20px;
+			text-transform: capitalize;
+		}
+		p{
+			margin: 0;
+			a{
+				text-decoration: underline;
+				color: $primary-color;
+			}
+		}
+	}
+}
+.formSection{
+	border-top: 1px solid $border-color;
+	width: 100%;
+	float: left;
+	margin-top: 35px;
+	padding-top: 40px;
+	@include tablet{
+		margin-top: 20px;
+		padding-top: 50px;
+	}
+	h3{
+		font-weight: 300;
+		font-size: 20px;
+		text-transform: capitalize;
+		margin-bottom: 25px;
+	}
+	label{
+		font-size: 13px;
+		a{
+			text-decoration: underline;
+			color: $primary-color;
+		}
+	}
+	.control-label{
+		font-size: 14px;
+		width: 100%;
+		font-weight: 400;
+	}
+	p{
+		span{
+			font-size: 15px;
+			color: $title-color;
+		}
+		a{
+			text-decoration: underline;
+			color: $primary-color;
+		}
+	}
+}
+.cardBox{
+	padding: 20px 10px;
+	border: 1px solid $border-color;
+	border-radius: 4px;
+	margin-bottom: 25px;
+	position: relative;
+	display: inline-block;
+	.list-inline{
+		li{
+			padding: 5px;
+			@include tablet{
+				padding: 0 5px;
+			}
+		}
+	}
+}
+.paymentMethod{
+	padding: 10px;
+	background-color: $white-color;
+	position: absolute;
+	left: 10px;
+	top: -20px;
+}
+
+.pricingIntro{
+	margin-bottom: 25px;
+	@include tablet{
+		margin-bottom: 50px;
+	}
+	p{
+		color: $title-color;
+		font-size: 16px;
+		text-align: center;
+		margin: 0;
+	}
+}
+.priceTableWrapper{
+	border: 1px solid $border-color;
+	border-radius: 4px;
+	margin-bottom: 45px;
+	@include tablet{
+		margin-bottom: 0;
+	}
+}
+.priceTableTitle{
+	padding: 25px 0;
+	text-align: center;
+	h2{
+		font-weight: 400;
+		margin: 0;
+		font-size: 24px;
+		@include tablet{
+			font-size: 30px;
+		}
+		small{
+			display: block;
+			color: $secondary-color;
+			font-size: 13px;
+			font-style: italic;
+			margin-top: 12px;
+		}
+	}
+}
+.priceAmount{
+	padding: 30px 0;
+	background-color: #f5f5f5;
+	h2{
+		text-align: center;
+		font-weight: 400;
+		font-size: 50px;
+		line-height: 44px;
+		margin-bottom: 0;
+		small{
+			font-size: 18px;
+		}
+	}
+}
+.priceInfo{
+	padding: 15px;
+	@include tablet{
+		padding: 25px;
+	}
+	@include desktops{
+		padding: 25px 50px;
+	}
+	.list-unstyled{
+		li{
+			color: $title-color;
+			font-size: 15px;
+			margin-bottom: 10px;
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.priceShorting{
+		margin-bottom: 55px;
+		float: left;
+		width: 100%;
+		>li {
+			p {
+				font-size: 15px;
+				margin-left: 25px;
+				@include tablet {
+					font-size: 15px;
+				}
+				@include desktops {
+					font-size: 15px;
+				}
+			}
+			ul {
+				padding-left: 25px;
+				li {
+					line-height: 24px;
+					i {
+						font-size: 15px;
+						margin-top: 5px;
+					}
+					&.active {
+						> i {
+							color: $primary-color;
+						}
+					}
+				}
+			}
+			i {
+				color: #d9d9d9;
+				font-size: 18px;
+				margin-right: 10px;
+				float: left;
+				margin-top: 3px;
+			}
+			&.active {
+				> i {
+					color: $primary-color;
+				}
+				p {
+					color: #222222;
+				}
+			}
+		}
+	}
+}
+.priceBtn{
+    text-align: center;
+  	margin-top: 25px;
+    @include tablet{
+    	margin-top: 50px;
+    }
+	.btn-primary{
+		background-color: transparent;
+		border: 1px solid $border-color;
+		color: $secondary-color;
+		padding: 17px 30px;
+		font-size: 14px;
+		&:hover, &:active:focus, &:active:hover{
+			background-color: $primary-color;
+			border: 1px solid $primary-color;
+			color: $white-color;
+		}
+	}
+}
+.advancedSupport{
+	.priceShorting{
+		margin-bottom: 20px;
+	}
+	&.active{
+		border-color: $primary-color;
+		.priceAmount{
+			background-color: $primary-color;
+			h2{
+				color: #fffefe;
+				small{
+					color: #fffefe;
+				}
+			}
+		} 
+		.checkbox label{
+			color: $title-color;
+			font-size: 15px;
+		}
+		.btn-primary{
+			background-color: $primary-color;
+			border: 1px solid $primary-color;
+			color: $white-color;
+			padding: 17px 30px;
+			font-size: 14px;
+			&:hover, &:active:focus, &:active:hover{
+				border-color: $primary-color;
+				border: 1px solid $primary-color;
+				color: $white-color;
+			}
+		}
+	}
+	p{
+		font-size: 13px;
+		a{
+			text-decoration: underline;
+		}
+	}
+}
+.signUpMessage{
+	text-align: center;
+	margin-top: 10px;
+	@include tablet{
+		margin-top: 70px;
+	}
+	p{
+		font-size: 16px;
+		margin-bottom: 0;
+		color: $title-color;
+		a{
+			text-decoration: underline;
+		}
+	}
+}
+.signUpSection{
+	padding: 50px 0;
+	@include tablet{
+		padding: 70px 0;
+	}
+}
+.priceTableSection{
+	padding: 50px 0;
+	@include tablet{
+		padding: 93px 0;
+	}
+}
+/*
+.checkbox input[type="checkbox"]:focus + label::before, 
+.checkbox input[type="radio"]:focus + label::before,
+input[type=file]:focus, 
+input[type=checkbox]:focus, 
+input[type=radio]:focus,
+.radio input[type="radio"]:focus + label::before{
+  outline: 0;
+}
+.checkbox{
+	label{
+		&::before{
+			border-color: #d9d9d9;
+		}
+		&::after{
+			color: $white-color;
+			background-color: #d9d9d9;
+			line-height: 16px;
+		}
+	}
+}
+.radio{
+	label{
+		&::before{
+			border-color: #d9d9d9;
+		}
+		&::after{
+			color: $white-color;
+			background-color: #d9d9d9;
+			line-height: 16px;
+		}
+	}
+}
+*/
+
+/*
+.checkbox-radio {
+  margin: 12px 0;
+  input {
+    &[type=checkbox]:not(old), &[type=radio]:not(old) {
+      width: 2em;
+      margin: 0;
+      padding: 0;
+      font-size: 1em;
+      opacity: 0;
+    }
+    &[type=checkbox]:not(old) + label, &[type=radio]:not(old) + label {
+      display: inline-block;
+      margin-left: -2em;
+      line-height: 17px;
+      font-weight: 400;
+      color: $secondary-color;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    &[type=checkbox]:not(old) + label > span {
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      margin: 0 12px 0 0;
+      border: none;
+      border-radius: 4px;
+      background-color: #d9d9d9;
+      vertical-align: bottom;
+    }
+    &[type=radio]:not(old) + label > span {
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      margin: 0 7px 0 0;
+      border: 1px solid $border-color;
+      border-radius: 100%;
+      background-color: transparent;
+      vertical-align: bottom;
+      text-align: center;
+      line-height: 17px;
+    }
+    &[type=checkbox]:not(old):checked + label > span:before {
+      content: '\f00c';
+      font-family:'FontAwesome';
+      display: block;
+      width: 17px;
+      color: $white-color;
+      font-size: 11px;
+      line-height: 17px;
+      text-align: center;
+      font-weight: normal;
+    }
+    &[type=radio]:not(old):checked + label > span > span {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border: none;
+      border-radius: 100%;
+      background-color: $border-color;
+    }
+  }
+  &.checkOffer{
+  	input{
+  		&[type=checkbox]:not(old) + label > span{
+  			background-color: $primary-color;
+  		}
+  		&[type=radio]:not(old) + label > span{
+  			border-color: $primary-color;
+  		}
+  		&[type=radio]:not(old):checked + label > span > span{
+  			background-color: $primary-color;
+  		}
+  	}
+  }
+  &.marginCheck{
+  	margin-left: 25px;
+  }
+}
+*/
