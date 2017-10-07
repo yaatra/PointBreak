@@ -10,16 +10,18 @@ const {User, Event, Category,
 //Create seed data
 let data = {
   fitbitData: [
-    {id: 1, accessToken: 1312, weekAverageSteps: 5000, monthAverageSteps: 30000},
-    {id: 2, accessToken: 1312, weekAverageSteps: 7000, monthAverageSteps: 35000},
-    {id: 3, accessToken: 1312, weekAverageSteps: 8000, monthAverageSteps: 49000},
-    {id: 4, accessToken: 1312, weekAverageSteps: 9000, monthAverageSteps: 55000}
+    {id: 1, accessToken: 1312, weekSteps: [{steps: 6000}, {steps: 3000}, {steps: 7000}, {steps: 8000}, {steps: 1000}, {steps: 7000}, {steps: 6500}], weekAverageSteps: 5000, monthAverageSteps: 30000, threeMonthAverageSteps: 0},
+    {id: 2, accessToken: 1312,  weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 7000, monthAverageSteps: 35000, threeMonthAverageSteps: 0},
+    {id: 3, accessToken: 1312, weekSteps: [{steps: 10000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 10000}], weekAverageSteps: 8000, monthAverageSteps: 49000, threeMonthAverageSteps: 0},
+    {id: 4, accessToken: 1312, weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 9000, monthAverageSteps: 55000, threeMonthAverageSteps: 0},
+    {id: 5, accessToken: 1312, weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 9000, monthAverageSteps: 55000, threeMonthAverageSteps: 0}
   ],
   userData: [
-    {firstName: 'Eren', lastName: 'Chen', gender: 'female', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
-    {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 97.7, height: 4, weight: 320, age: 90, avatar: 'https://i.ytimg.com/vi/aIN6BTToTP4/maxresdefault.jpg'},
-    {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'},
-    {firstName: 'David', lastName: 'Eiber', gender: 'female', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, bmi: 23.7, height: 6.1, weight: 180, age: 25, avatar: 'https://pbs.twimg.com/profile_images/582688964613566464/CTzZir9c.jpg'}
+    {firstName: 'Eren', lastName: 'Chen', gender: 'male', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, fitbitInfoId: 1, bmi: 23.7, height: 6.1, weight: 190, age: 27, avatar: '/images/student.png'},
+    {firstName: 'Ranjeet', lastName: 'Sodhi', gender: 'male', email: 'ranjeet@gmail.com', password: '123', isAdmin: true, isProfessional: false, fitbitInfoId: 2, bmi: 22.7, height: 6, weight: 175, age: 38, avatar: '/images/man1.png'},
+    {firstName: 'Bojan', lastName: 'Jovanovic', gender: 'male', email: 'bojan@gmail.com', password: '123', isAdmin: true, isProfessional: true, fitbitInfoId: 3, bmi: 21.5, height: 6.1, weight: 170, age: 26, avatar: '/images/man2.png'},
+    {firstName: 'David', lastName: 'Eiber', gender: 'male', email: 'david@gmail.com', password: '123', isAdmin: true, isProfessional: false, fitbitInfoId: 4, bmi: 23.7, height: 6.1, weight: 170, age: 25, avatar: '/images/boy.png'},
+    {firstName: 'Eli', lastName: 'Zabeth', gender: 'female', email: 'eli@gmail.com', password: '123', isAdmin: false, isProfessional: false, fitbitInfoId: 5, bmi: 20.7, height: 5.1, weight: 115, age: 25, avatar: '/images/girl.png'}
   ],
   eventData: [
     {name: 'Race The Rabbit', image: 'https://i.ytimg.com/vi/x_CFMV_BSPE/maxresdefault.jpg', description: 'Racing event in Bangkok', date: '2017-11-03 14:34:22', difficulty: 7, categoryId: 1, destinationId: 1, location: 'New York, NY, United States', lat:40.7127837, lng:-74.00594130000002 },
@@ -58,7 +60,9 @@ let data = {
     {userId: 2, eventId: 6, type: 'created'},
     {userId: 3, eventId: 3, type: 'selected'},
     {userId: 3, eventId: 4, type: 'followed'},
-    {userId: 4, eventId: 4, type: 'followed'}
+    {userId: 4, eventId: 4, type: 'followed'},
+    {userId: 5, eventId: 2, type: 'followed'},
+    {userId: 5, eventId: 3, type: 'followed'}
   ],
   preferredCategoryData: [
     {userId: 1, categoryId: 1},
@@ -69,6 +73,8 @@ let data = {
     {userId: 3, categoryId: 1},
     {userId: 4, categoryId: 4},
     {userId: 4, categoryId: 2},
+    {userId: 5, categoryId: 3},
+    {userId: 5, categoryId: 4},
   ],
   preferredDestinationData: [
     {userId: 1, destinationId: 4},
@@ -82,6 +88,9 @@ let data = {
     {userId: 3, destinationId: 6},
     {userId: 4, destinationId: 1},
     {userId: 4, destinationId: 4},
+    {userId: 5, destinationId: 7},
+    {userId: 5, destinationId: 5},
+    {userId: 5, destinationId: 6},
   ],
   languageData: [
     {"code":"ab","name":"Abkhaz","nativeName":"аҧсуа"},
@@ -275,6 +284,8 @@ let data = {
     {userId: 3, languageId: 140},
     {userId: 3, languageId: 40},
     {userId: 4, languageId: 40},
+    {userId: 5, languageId: 47},
+    {userId: 5, languageId: 40},
   ],
   MessageData: [
     {content: "Hi", userId: 1, eventId: 1},
@@ -290,6 +301,7 @@ let data = {
 
 //Force sync the db, and then create the data in the two tables.
 database.sync({force:true})
+.then(() => console.log('Database FORCE TRUE completed'))
 .then(() => Fitbit.sync({
     force: true
   })
