@@ -26,13 +26,7 @@ const EventsList = props => {
                   <span className="label label-primary"><i className="fa fa-heart-o" aria-hidden="true"></i> 10 k</span>
                   <span className="label label-primary"><i className="fa fa-camera" aria-hidden="true"></i> 8</span>
                 </div>
-{/*
-              <div className='thumbnail col-sm-3' key={event.id}>
-                  {event.name}
-                  <hr />
-                  <NavLink to={typeof event.id === 'number' ? `/locations/${event.id}` : `/locations/yelp/${event.id}`}><img src={event.image_url || event.image} className='img-responsive' /></NavLink>
               </div>
-*/}
           </figure>
           <div className="figureBody">
           	<h2><a href="category-grid.html">{event.name}<i className="fa fa-check-circle" aria-hidden="true"></i></a></h2>
@@ -43,9 +37,9 @@ const EventsList = props => {
           	<p>{event.description}</p>
           </div>          
           </article>
+        
         </div>)
       })}
-
       </div>
     </div>
   )
