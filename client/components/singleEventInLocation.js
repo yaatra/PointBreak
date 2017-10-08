@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchEvent, joinEvent, followEvent} from '../store'
 import history from "../history"
+import Chat from './chat'
 
 class SingleEventInLocation extends Component {
 
@@ -16,7 +17,6 @@ class SingleEventInLocation extends Component {
     const {user, singleEvent, joinEvent, followEvent, pendingJoinEvent, followedEvent} = this.props
     const {category} = singleEvent
     const {users} = singleEvent
-
     return (
       <div className="container">
         <div className="jumbotron">
@@ -62,6 +62,11 @@ class SingleEventInLocation extends Component {
             'FOLLOW'
           }
           </a>
+          {
+            singleEvent.id ?
+            <Chat eventId={singleEvent.id} />:
+            null
+          }
         </div>
       </div>
     )

@@ -60,22 +60,6 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
-// Create an event
-router.post('/:userId', (req, res, next) => {
-  Event.create(req.body)
-  .then((event) => {
-    AssociatedEvent.findOrCreate({
-      where: {
-        userId: req.params.userId,
-        eventId: event.id,
-        type: 'created'
-      }
-    })
-  })
-  .then(event => res.json(event))
-  .catch(next)
-})
-
 router.post('/join', (req, res, next) => {
   AssociatedEvent.findOrCreate({
     where: {
@@ -125,6 +109,22 @@ router.post('/follow', (req, res, next) => {
     }
 
     return event[0]
+  })
+  .then(event => res.json(event))
+  .catch(next)
+})
+
+// Create an event
+router.post('/:userId', (req, res, next) => {
+  Event.create(req.body)
+  .then((event) => {
+    AssociatedEvent.findOrCreate({
+      where: {
+        userId: req.params.userId,
+        eventId: event.id,
+        type: 'created'
+      }
+    })
   })
   .then(event => res.json(event))
   .catch(next)
