@@ -51,8 +51,9 @@ Language.belongsToMany(User, {through: AssociatedLanguage})
 
 User.belongsTo(Fitbit, {as: 'fitbitInfo'})
 
-Message.belongsTo(User)
+User.hasMany(Message)
 
+Message.belongsTo(User)
 Message.belongsTo(Event)
 
 

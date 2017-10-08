@@ -23,7 +23,7 @@ export class CreateEvent extends Component {
     return (
     <span className="input-group-btn">
         <button type="button" className="btn btn-outline blue ml1" onClick={props.onClick} >
-            <i className="fa fa-calendar"></i>
+          <i className="fa fa-calendar" />
         </button>
     </span>
   )
@@ -45,7 +45,6 @@ export class CreateEvent extends Component {
     newEvent.recurrence = evt.target.Recurrence.value
     newEvent.difficulty = evt.target.Difficulty.value
 
-    console.log('****', newEvent)
     this.props.createEvent(newEvent, this.props.user.id)
   }
 
@@ -68,11 +67,11 @@ export class CreateEvent extends Component {
                   <div className="col-md-12">
                     <div className="form-group">
                         <label>Name</label>
-                        <input type="text" name ="Name" className="form-control border-input" placeholder="Name" />
+                        <input type="text" name ="Name" className="form-control border-input" placeholder="Event name" />
                     </div>
                     <div className="form-group">
                       <label>Description</label>
-                      <input type="text" name ="Description" className="form-control border-input" placeholder="Description" />
+                      <input type="text" name ="Description" className="form-control border-input" placeholder="Event description" />
                     </div>
                   </div>
                 </div>
@@ -80,7 +79,7 @@ export class CreateEvent extends Component {
                   <div className="col-md-12">
                     <div className="form-group">
                         <label>Image URL</label>
-                        <input type="text" name ="imgUrl" className="form-control border-input" placeholder="imgUrl" />
+                        <input type="text" name ="imgUrl" className="form-control border-input" placeholder="Event image URL" />
                     </div>
 
                     <div className="form-group">
@@ -103,7 +102,7 @@ export class CreateEvent extends Component {
 
                     <div className="form-group">
                       <label>Day of the week</label>
-                      <select className="form-control border-input" name ="Day" placeholder="Difficulty">
+                      <select className="form-control border-input" name ="Day" placeholder="Day of the week">
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
                         <option value="Wednesday">Wednesday</option>
@@ -116,8 +115,8 @@ export class CreateEvent extends Component {
 
                     <div className="form-group">
                       <label>Recurrence</label>
-                      <select className="form-control border-input" name ="Recurrence" placeholder="Difficulty">
-                        <option value="one day">One day</option>
+                      <select className="form-control border-input" name ="Recurrence" placeholder="Recurrence">
+                        <option value="one day">No recurrence</option>
                         <option value="daily">Daily</option>
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
@@ -126,17 +125,17 @@ export class CreateEvent extends Component {
 
                     <div className="form-group">
                       <label>Difficulty</label>
-                      <select className="form-control border-input" name ="Difficulty" placeholder="Difficulty">
+                      <select className="form-control border-input" name ="Difficulty" placeholder="Difficulty level">
                         <option value="1">1 - Easy</option>
-                        <option value="2">2</option>
-                        <option value="3">3 - Low Intensity</option>
-                        <option value="4">4</option>
+                        <option value="2">2 - Easy Level 2</option>
+                        <option value="3">3 - Lower Intensity</option>
+                        <option value="4">4 - Low Intensity</option>
                         <option value="5" >5 - Medium</option>
-                        <option value="6">6 - </option>
-                        <option value="7">7</option>
+                        <option value="6">6 - Medium Level 2</option>
+                        <option value="7">7 - Slightly Hard</option>
                         <option value="8">8 - Hard</option>
-                        <option value="9">9</option>
-                        <option value="10">10 - Very Hard</option>
+                        <option value="9">9 - Very Hard</option>
+                        <option value="10">10 - Extreme</option>
                       </select>
                     </div>
                     <div className="form-group">
