@@ -68,12 +68,16 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export const getFitbitDataThunk = (fitbitId) => dispatch =>
-    axios.get(`api/users/fitbit/${fitbitId}`)
-    .then(res => res.data)
-    .then(fitbitData => dispatch(getFitbitData(fitbitData)))
-    .catch(err => console.log(err))
-
+export const getFitbitDataThunk = (fitbitId) => dispatch => {
+    if (fitbitId) {
+      axios.get(`api/users/fitbit/${fitbitId}`)
+      .then(res => res.data)
+      .then(fitbitData => dispatch(getFitbitData(fitbitData)))
+      .catch(err => console.log(err))
+    } else {
+      return null
+    }
+}
 /**
  * REDUCER
  */

@@ -19,7 +19,7 @@ export class UserHome extends Component {
   }
   componentDidMount(){
     const userID = this.props.user.id
-    const fitbitinfoId = this.props.user.fitbitInfoId
+    const fitbitinfoId = this.props.user.fitbitInfoId || null
     console.log('****** Fitbit ID: ', fitbitinfoId)
     this.props.getAllUserData(userID, fitbitinfoId)
   }
@@ -32,7 +32,7 @@ export class UserHome extends Component {
   }
 
   render () {
-    if (this.props.events.length && this.props.user) {
+    // if (this.props.events.length && this.props.user) {
       let selectedEvents = this.props.events.map(e => {
         if(e.type === 'selected') return e.event
       }).filter(el => el !== undefined)
@@ -48,9 +48,9 @@ export class UserHome extends Component {
         {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events"  /> : null}
       </div>
     )
-  } else {
-    return null
-  }
+  // } else {
+  //   return (<div><p>ERROR: This user can't be loaded - missing data</p></div>)
+  // }
 }
 }
 
@@ -68,8 +68,8 @@ const mapDispatch = (dispatch) => {
   return {
     getAllUserData(userId, fitbitinfoId) {
       dispatch(loadUserData(userId))
-      dispatch(getFitbitDataThunk(fitbitinfoId))
       dispatch(fetchEventsForUser(userId))
+      fitbitinfoId ? dispatch(getFitbitDataThunk(fitbitinfoId)) : null
     }
   }
 }
