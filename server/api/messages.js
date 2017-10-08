@@ -14,7 +14,11 @@ router.get("/", (req, res, next) => {
 //get message by channelID
 router.get('/:eventId', (req, res, next) => {
   Message.findAll({
-    where: {eventId: req.params.eventId}
+    where: {eventId: req.params.eventId},
+    include: [{
+      all: true,
+      // nested: true
+    }]
   })
   .then(messages => res.json(messages))
   .catch(next)
