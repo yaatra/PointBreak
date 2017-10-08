@@ -1,22 +1,48 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postMessage, writeMessage } from '../store'
 
-function NewMessageEntry(props) {
-  const { name, newMessageEntry, handleChange, handleSubmit } = props
+class NewMessageEntry extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      messageEntry: ''
+    }
+
+    this.handleSubmitLocal = this.handleSubmitLocal.bind(this)
+    this.handleChangeLocal = this.handleChangeLocal.bind(this)
+  }
+
+  handleSubmitLocal(evt){
+    evt.preventDefault()
+    const message = {
+      content: this.state.messageEntry,
+      userId: this.props.userId,
+      eventId: this.props.eventId
+    }
+    console.log(message)
+    const user = this.props.user
+    this.props.handleSubmit(message, user)
+  }
+
+  handleChangeLocal(evt){
+    this.setState({ messageEntry: evt.target.value })
+  }
+
+  render(){
+  // const { user, newMessageEntry, event, handleChange } = props
 
   return (
     <form
       id="new-message-form"
-      onSubmit={evt => handleSubmit(name, newMessageEntry, evt)}
-    >
+      onSubmit={this.handleSubmitLocal}>
       <div className="input-group input-group-lg">
         <input
           className="form-control"
           type="text"
           name="content"
-          value={newMessageEntry}
-          onChange={handleChange}
+          value={this.newMessageEntry}
+          onChange={this.handleChangeLocal}
           placeholder="Enter text..."
         />
         <span className="input-group-btn">
@@ -28,11 +54,14 @@ function NewMessageEntry(props) {
     </form>
   )
 }
+}
 
 const mapStateToProps = function(state, ownProps) {
   return {
     newMessageEntry: state.newMessageEntry,
-    name: state.name
+    user: state.user,
+    userId: state.user.id,
+    eventId: state.events.singleEvent.id
   }
 }
 
@@ -42,11 +71,11 @@ const mapDispatchToProps = function(dispatch, ownProps) {
 
       dispatch(writeMessage(evt.target.value))
     },
-    handleSubmit(name, content, evt) {
-      evt.preventDefault()
+    handleSubmit(message, user) {
+      //evt.preventDefault()
 
-      const { eventId } = ownProps
-      dispatch(postMessage({ name, content, eventId }))
+      //const { eventId } = ownProps
+      dispatch(postMessage(message, user))
       dispatch(writeMessage(''))
     }
   }

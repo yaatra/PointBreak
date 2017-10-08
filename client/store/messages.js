@@ -32,12 +32,13 @@ export function fetchMessages(eventId) {
   }
 }
 
-export function postMessage(message) {
+export function postMessage(message, user) {
   return function thunk(dispatch) {
     return axios
       .post('/api/messages', message)
       .then(res => res.data)
       .then(newMessage => {
+        newMessage.user = user      
         const action = getMessage(newMessage)
         dispatch(action)
         socket.emit('new-message', newMessage)
