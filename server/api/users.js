@@ -1,6 +1,31 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Fitbit} = require('../db/models')
 module.exports = router
+
+
+router.get('/fitbit/:id', (req, res, next) => {
+  Fitbit.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(fitbitData => res.json(fitbitData))
+  .catch(next)
+})
+
+router.get('/:id', (req, res, next) => {
+  User.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: [{
+      all: true,
+      // nested: true
+    }]
+  })
+  .then(user => res.json(user))
+  .catch(next)
+})
 
 router.get('/', (req, res, next) => {
   User.findAll({
@@ -13,20 +38,6 @@ router.get('/', (req, res, next) => {
     }]
   })
   .then(users => res.json(users))
-  .catch(next)
-})
-
-router.get('/:id', (req, res, next) => {
-  User.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [{
-      all: true,
-      //nested: true
-    }]
-  })
-  .then(user => res.json(user))
   .catch(next)
 })
 
