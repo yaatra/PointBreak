@@ -7,6 +7,7 @@ module.exports = (io) => {
     })
 
     socket.on('new-message', message => {
+      console.log("new-message**socket in server", message)
       socket.broadcast.emit('new-message', message)
     })
 
