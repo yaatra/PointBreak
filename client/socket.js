@@ -1,14 +1,16 @@
-import io from 'socket.io-client'
-import store, { getMessage} from './store'
+import io from 'socket.io-client';
+import store, { getMessage } from './store';
 
-const socket = io(window.location.origin)
+const socket = io(window.location.origin);
 
 socket.on('connect', () => {
-  console.log('I am now connected to the server!')
+  console.log('I am now connected to the server!');
 
   socket.on('new-message', message => {
-    store.dispatch(getMessage(message))
-  })
-})
+    if (message.eventId === Number(window.location.pathname.split('/')[2])) {
+      store.dispatch(getMessage(message));
+    }
+  });
+});
 
-export default socket
+export default socket;
