@@ -10,7 +10,8 @@ const UserDetails = (props) => {
   let contentData = []
   let i = 0
 
-  if (user.fitbitInfo.weekSteps !== undefined) {
+  if (user.fitbitInfoId && user.fitbitInfoId.weekSteps !== undefined) {
+    console.log('Inside the user-detail component. FitbitInfoId: ',user.fitbitInfoId, ' User Steps: ', user.fitbitInfoId.weekSteps)
     user.fitbitInfo.weekSteps.forEach(dailySteps => {
         let obj = {
             'label': weekdays[i],
@@ -114,7 +115,7 @@ const UserDetails = (props) => {
         <h5>Languages</h5>
         { user.languages ? user.languages.map(lang => <p key={lang.id}>{lang.name}</p>) : null}
         <hr />
-        {user.fitbitInfo.monthAverageSteps ?
+        {user.fitbitInfoId && user.fitbitInfo.monthAverageSteps ?
           <div>
           <h5>Fitbit summary Info</h5>
           <p>{user.fitbitInfo.monthAverageSteps} average monthly steps</p>
