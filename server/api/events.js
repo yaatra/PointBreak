@@ -148,3 +148,23 @@ router.delete('/followed/:type/:userId/:eventId', (req, res, next) => {
     res.sendStatus(200)
   })
 })
+
+// Delete an events
+router.delete('/:eventId/:userId', (req, res, next) => {
+  AssociatedEvent.destroy({
+    where: {
+      eventId: req.params.eventId
+    }
+  })
+  .then(() => {
+    Event.destroy({
+      where: {
+        id: req.params.eventId
+      }
+    })
+  })
+  .then(function() {
+    res.sendStatus(200)
+  })
+  .catch(next)
+})

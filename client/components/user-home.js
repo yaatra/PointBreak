@@ -31,11 +31,11 @@ export class UserHome extends Component {
       selectedEvents = events.map(e => {
         if (e.type === 'selected') return e.event
       }).filter(el => el !== undefined)
-      console.log('selected events: ', selectedEvents)
+
       followingEvents = events.map(e => {
         if (e.type === 'followed') return e.event
       }).filter(el => el !== undefined)
-      console.log('followed events: ', followingEvents)
+
     }
     return (
       <div className='container'>
