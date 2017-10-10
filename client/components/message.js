@@ -4,8 +4,12 @@ import { connect } from 'react-redux'
 import { loadUserData } from '../store'
 //loadUserData
 //user name and user avatar
-
 // const Message = () => {
+
+// Add componentWillRecieveProps lifecycle hook(next set of props = current props (if yes, ok, else fetch data again))
+// match.params.id
+//JUKE PART 3 has the solution.
+
 class Message extends Component {
   render() {
    const {message} = this.props
@@ -14,7 +18,7 @@ class Message extends Component {
    //console.log("*user*", user)
    //console.log("---message---", message)
     return (
- 
+
       <li className="media">
         <div className="media-body">
           <h4 className="media-heading">
@@ -35,7 +39,6 @@ class Message extends Component {
     )
   }
 }
-
 // const mapState = state => {
 //   return {
 //     user: state.user

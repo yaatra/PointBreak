@@ -30,8 +30,9 @@ const getFitbitData = fitbitData => ({type: GET_FITBIT_DATA, fitbitData})
 export const loadUserData = (userId) =>
 dispatch =>
   axios.get(`/api/users/${userId}`)
-    .then(res =>
-      dispatch(getUserData(res.data || defaultUser)))
+    .then(res => res.data)
+    .then(user =>
+      dispatch(getUserData(user)))
     .catch(err => console.log(err))
 
 export const loadOtherUserData = (userId) =>
@@ -45,7 +46,7 @@ export const me = () =>
   dispatch =>
     axios.get('/auth/me')
       .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
+        dispatch(getUser(res.data || user)))
       .catch(err => console.log(err))
 
 export const auth = (firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, method) =>
@@ -68,16 +69,12 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-export const getFitbitDataThunk = (fitbitId) => dispatch => {
-    if (fitbitId) {
-      axios.get(`api/users/fitbit/${fitbitId}`)
-      .then(res => res.data)
-      .then(fitbitData => dispatch(getFitbitData(fitbitData)))
-      .catch(err => console.log(err))
-    } else {
-      return null
-    }
-}
+export const getFitbitDataThunk = (fitbitId) => dispatch =>
+    axios.get(`api/users/fitbit/${fitbitId}`)
+    .then(res => res.data)
+    .then(fitbitData => dispatch(getFitbitData(fitbitData)))
+    .catch(err => console.log(err))
+
 /**
  * REDUCER
  */

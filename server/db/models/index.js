@@ -50,6 +50,7 @@ User.belongsToMany(Language, {through: AssociatedLanguage})
 Language.belongsToMany(User, {through: AssociatedLanguage})
 
 User.belongsTo(Fitbit, {as: 'fitbitInfo'})
+Fitbit.hasOne(User, {as: 'fitbitInfo'})
 
 User.hasMany(Message)
 

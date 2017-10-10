@@ -23,6 +23,20 @@ router.get('/:id', (req, res, next) => {
       // nested: true
     }]
   })
+  // .then(user => {
+  //   console.log('*** USER STUFF: ', user)
+
+  //   return Fitbit.findOne({
+  //     where: {
+  //       id: user.fitbitInfoId
+  //     }
+  //   })
+  //   .then(fitbitData => {
+  //     console.log('*** FITBIT STUFF: ', fitbitData)
+  //     user.fitbitInfo = fitbitData
+  //     return user
+  //   })
+  // })
   .then(user => res.json(user))
   .catch(next)
 })

@@ -3,14 +3,21 @@ import { connect } from "react-redux"
 import { fetchMessages, loadUserData } from "../store"
 import NewMessageEntry from "./newMessage"
 import Message from "./Message"
-// import MessagesList from './MessagesList'
-
 class Chat extends Component {
   componentDidMount() {
     const { fetchMessages } = this.props
     fetchMessages(this.props.eventId)
     // const {loadUserData} = this.props
     // loadUserData(userId)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const nextEventId = nextProps.eventId
+    const currentEventId = this.props.eventId
+
+    if (nextEventId !== currentEventId) {
+      this.props.fetchMessages(nextEventId)
+    }
   }
 
   render() {
@@ -33,12 +40,10 @@ class Chat extends Component {
     )
   }
 }
-
 const mapStateToProps = state => ({
   messages: state.messages,
   // user: state.user
 })
-
 const mapDispatchToProps = dispatch => ({
   fetchMessages(eventId) {
     dispatch(fetchMessages(eventId))
@@ -48,7 +53,6 @@ const mapDispatchToProps = dispatch => ({
   //   dispatch(loadUserData(userId))
   // }
 })
-
 // const mapState = state => {
 //   return {
 //     user: state.user
@@ -61,5 +65,4 @@ const mapDispatchToProps = dispatch => ({
 //     }
 //   }
 // }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Chat)

@@ -10,11 +10,11 @@ const {User, Event, Category,
 //Create seed data
 let data = {
   fitbitData: [
-    {id: 1, accessToken: 1312, weekSteps: [{steps: 6000}, {steps: 3000}, {steps: 7000}, {steps: 8000}, {steps: 1000}, {steps: 7000}, {steps: 6500}], weekAverageSteps: 5000, monthAverageSteps: 30000, threeMonthAverageSteps: 0},
-    {id: 2, accessToken: 1312,  weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 7000, monthAverageSteps: 35000, threeMonthAverageSteps: 0},
-    {id: 3, accessToken: 1312, weekSteps: [{steps: 10000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 10000}], weekAverageSteps: 8000, monthAverageSteps: 49000, threeMonthAverageSteps: 0},
-    {id: 4, accessToken: 1312, weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 9000, monthAverageSteps: 55000, threeMonthAverageSteps: 0},
-    {id: 5, accessToken: 1312, weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 9000, monthAverageSteps: 55000, threeMonthAverageSteps: 0}
+    {accessToken: '1312', weekSteps: [{steps: 6000}, {steps: 3000}, {steps: 7000}, {steps: 8000}, {steps: 1000}, {steps: 7000}, {steps: 6500}], weekAverageSteps: 5000, monthAverageSteps: 30000, threeMonthAverageSteps: 0},
+    {accessToken: '1312',  weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 7000, monthAverageSteps: 35000, threeMonthAverageSteps: 0},
+    {accessToken: '1312', weekSteps: [{steps: 10000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 10000}], weekAverageSteps: 8000, monthAverageSteps: 49000, threeMonthAverageSteps: 0},
+    {accessToken: '1312', weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 9000, monthAverageSteps: 55000, threeMonthAverageSteps: 0},
+    {accessToken: '1312', weekSteps: [{steps: 9000}, {steps: 10000}, {steps: 12000}, {steps: 8000}, {steps: 9000}, {steps: 7000}, {steps: 9000}], weekAverageSteps: 9000, monthAverageSteps: 55000, threeMonthAverageSteps: 0}
   ],
   userData: [
     {firstName: 'Eren', lastName: 'Chen', gender: 'male', email: 'eren@gmail.com', password: '123', isAdmin: true, isProfessional: true, fitbitInfoId: 1, bmi: 23.7, height: 6.1, weight: 190, age: 27, avatar: '/images/student.png'},

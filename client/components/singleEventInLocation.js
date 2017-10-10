@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchEvent, joinEvent, followEvent} from '../store'
-import history from "../history"
+import {fetchEvent, joinEvent, followEvent, removePendingEvent, removeFollowedEvent, loadUserData} from '../store'
+import history from '../history'
 import Chat from './chat'
 
 class SingleEventInLocation extends Component {
@@ -9,64 +9,67 @@ class SingleEventInLocation extends Component {
   componentDidMount() {
     const id = this.props.match.params.id
     const {fetchEvent} = this.props
-
     fetchEvent(id)
   }
 
-  render() {
+  render(){
     const {user, singleEvent, joinEvent, followEvent, pendingJoinEvent, followedEvent} = this.props
     const {category} = singleEvent
     const {users} = singleEvent
+
     return (
       <div className="container">
         <div className="jumbotron">
-          {singleEvent.name}
-          <hr />
-          <img src={singleEvent.image_url || singleEvent.image} className="img-fluid" />
-          <div>Description: {singleEvent.description}</div>
-          <div>Difficulty: {singleEvent.difficulty}</div>
-          <div>Location: {singleEvent.location}</div>
-          {
-            category ?
-            <div>Category Name: {category.name}</div> :
-            null
-          }
-          {
-            category ?
-            <div>Category Image: <img src={category.image} className="img-fluid" /></div> :
-            null
-          }
-          {
-            users ? users.map(user => {
-              return (
-                <div key={user.id}>
-                  <div><img src={user.avatar} style={{width: '300px', height: '300px'}} /></div>
-                  <div>{user.firstName} {user.lastName}</div>
-                  <div>Introduction: {user.introduction}</div>
-                </div>
-              )
-            }) :
-            null
-          }
-          <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? joinEvent(event, 'pendingJoin', user.id, singleEvent.id) : history.push('/login')}>
-          {
-            pendingJoinEvent.id ?
-            'PENDING' :
-            'JOIN'
-          }
-          </a>
-          <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? followEvent(event, 'followed', user.id, singleEvent.id) : history.push('/login')}>
-          {
-            followedEvent.id ?
-            'FOLLOWING' :
-            'FOLLOW'
-          }
-          </a>
-          {
-            singleEvent.id ?
-            <Chat eventId={singleEvent.id} />:
-            null
-          }
+        {
+          singleEvent.name ?
+            <div>
+              {singleEvent.name}
+              <hr />
+              <img src={singleEvent.image_url || singleEvent.image} className="img-fluid" />
+              <div>Description: {singleEvent.description}</div>
+              <div>Difficulty: {singleEvent.difficulty}</div>
+              <div>Location: {singleEvent.location}</div>
+              {
+                category ?
+                <div>Category Name: {category.name}</div> :
+                null
+              }
+              {
+                users ? users.map(user => {
+                  return (
+                    <div key={user.id}>
+                      <div><img src={user.avatar} style={{width: '300px', height: '300px'}} /></div>
+                      <div>{user.firstName} {user.lastName}</div>
+                      <div>Introduction: {user.introduction}</div>
+                    </div>
+                  )
+                }) :
+                null
+              }
+              <button className="btn btn-primary btn-lg" onClick={() => joinEvent(pendingJoinEvent.id, 'pendingJoin', user.id, singleEvent.id)}>
+              {
+                singleEvent.id === pendingJoinEvent.eventId ?
+                'PENDING' :
+                'JOIN'
+              }
+              </button>
+              <button className="btn btn-primary btn-lg" onClick={() => followEvent(followedEvent.id, 'followed', user.id, singleEvent.id)}>
+              {
+                singleEvent.id === followedEvent.eventId ?
+                'FOLLOWING' :
+                'FOLLOW'
+              }
+              </button>
+              {
+                singleEvent.id ?
+                <Chat eventId={singleEvent.id} /> :
+                null
+              }
+            </div> :
+            <div>
+              <h4>The event does not exist yet!</h4>
+            </div>
+        }
         </div>
       </div>
     )
@@ -84,14 +87,23 @@ const mapDispatch = dispatch => ({
   fetchEvent(id) {
     dispatch(fetchEvent(id))
   },
-  joinEvent(event, type, userId, eventId) {
-    event.preventDefault()
-
-    dispatch(joinEvent(type, userId, eventId))
+  joinEvent(pendingJoinEventId, type, userId, eventId) {
+    if (pendingJoinEventId) {
+      dispatch(removePendingEvent(type, userId, eventId))
+    } else if (userId) {
+      dispatch(joinEvent(type, userId, eventId))
+    } else {
+      history.push('/login')
+    }
   },
-  followEvent(event, type, userId, eventId) {
-    event.preventDefault()
-    dispatch(followEvent(type, userId, eventId))
+  followEvent(followedEventId, type, userId, eventId) {
+    if (followedEventId) {
+      dispatch(removeFollowedEvent(type, userId, eventId))
+    } else if (userId) {
+      dispatch(followEvent(type, userId, eventId))
+    } else {
+      history.push('/login')
+    }
   }
 })
 

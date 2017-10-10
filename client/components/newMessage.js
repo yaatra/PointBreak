@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { postMessage, writeMessage } from '../store';
-
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { postMessage, writeMessage } from '../store'
 class NewMessageEntry extends Component {
   constructor(props) {
     super(props)
@@ -11,7 +10,6 @@ class NewMessageEntry extends Component {
     this.handleSubmitLocal = this.handleSubmitLocal.bind(this)
     this.handleChangeLocal = this.handleChangeLocal.bind(this)
   }
-
   handleSubmitLocal(evt) {
     evt.preventDefault()
     const message = {
@@ -21,16 +19,13 @@ class NewMessageEntry extends Component {
     }
     const user = this.props.user
     this.props.handleSubmit(message, user)
-    this.setState({ messageEntry: "" })
+    this.setState({ messageEntry: '' })
   }
-
   handleChangeLocal(evt) {
     this.setState({ messageEntry: evt.target.value })
   }
-
   render() {
     // const { user, newMessageEntry, event, handleChange } = props
-
     return ( this.props.userId ? (
       <form id="new-message-form" onSubmit={this.handleSubmitLocal}>
         <div className="input-group input-group-lg">
@@ -52,7 +47,6 @@ class NewMessageEntry extends Component {
     )
   }
 }
-
 const mapStateToProps = function(state, ownProps) {
   return {
     newMessageEntry: state.newMessageEntry,
@@ -60,8 +54,7 @@ const mapStateToProps = function(state, ownProps) {
     userId: state.user.id,
     eventId: state.events.singleEvent.id
   }
-};
-
+}
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
     handleChange(evt) {
@@ -69,12 +62,10 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     },
     handleSubmit(message, user) {
       //evt.preventDefault()
-
       //const { eventId } = ownProps
       dispatch(postMessage(message, user))
       dispatch(writeMessage(''))
     }
   }
-};
-
+}
 export default connect(mapStateToProps, mapDispatchToProps)(NewMessageEntry)

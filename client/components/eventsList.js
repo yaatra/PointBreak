@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const EventsList = props => {
-  const {events, heading, size } = props
+  const {events, heading} = props
 
   return (
     <div className="container">
