@@ -13,12 +13,27 @@ import {Navbar, HomePage} from './'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
+  let cssClass = "nav-wrapper navbarWhite"
+  // if(props.match.path === '/') {
+  if (props.match.isExact) {
+    cssClass = "nav-wrapper"
+  } else {
+    cssClass = "nav-wrapper navbarWhite"
+  }
 
   return (
     <div>
-      <Navbar />
+      <div className='body-wrapper'>
+      <div className="page-loader">
+      <div className="main-wrapper">
+
+      <Navbar cssClass={cssClass} />
       {/* <HomePage /> */}
       {children}
+
+      </div>
+      </div>
+      </div>
     </div>
   )
 }

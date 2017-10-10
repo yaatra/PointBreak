@@ -1,0 +1,336 @@
+/*=== 12. RTL ===*/
+body{
+	&.rtl{
+		.copyRightText{
+			p{
+				text-align: center;
+				@include tablet{
+					text-align: right;
+				}
+			}
+		}
+		.copyRight{
+			.socialLink{
+				text-align: center;
+				@include tablet{
+					text-align: left;
+				}
+			}
+		}
+		.list-contact{
+			li{
+				padding-left: 0;
+				padding-right: 28px;
+				i.fa{
+					left: auto;
+					right: 0;
+				}
+			}
+		}
+		.captionItem{
+			li:last-child{
+				float: left;
+			}
+		}
+		.banerInfo{
+			.form-group{
+				margin: 0 0 0 20px;
+			}
+			.input-group-addon{
+				border-radius: 0 4px 4px 0;
+				border-right: none;
+				border-left: 1px solid $border-color;
+				&.addon-right{
+					border-radius: 4px 0 0 4px;
+				}
+			}
+		}
+		.navbar-default{
+			.navbar-nav{
+				&.navbar-right{
+					margin: 0;
+					@include tablet{
+						margin: 0 0 0 165px;
+					}
+				}
+			}
+		}
+		.navbar-btn{
+			right: auto;
+			left: 75px;
+			@include tablet{
+				right: auto;
+				left: 0;
+			}
+		}
+		.btn-transparent{
+			overflow: hidden;
+			span{
+				float: right;
+				text-align: right;
+			}
+			i.icon-listy{
+				float: right;
+				margin: 0 40px 0 10px;
+			}
+		}
+		.searchArea.banerInfo{
+			.input-group-addon{
+				border: 1px solid rgba($border-dark, .5);
+				&.addon-right{
+					border-right: none;
+				}
+			}
+			.searchPartTitle{
+				float: right;
+				border-radius: 0 4px 4px 0;
+			}
+		}
+		.searchBoxSelect{
+			.sbHolder{
+				border: 1px solid rgba($border-dark, .5);
+				border-right: none;
+				border-radius: 4px 0 0 4px;
+			}
+			.sbSelector:link, .searchBoxSelect .sbSelector:visited, .searchBoxSelect .sbSelector:hover{
+				text-align: right !important;
+			}
+			.sbToggle{
+				right: auto;
+				left: 12px;
+			}
+		}
+		.sidebarInner{
+			.form-control{
+				border: 1px solid $border-color;
+				border-left: none;
+			}
+		}
+		.categoryList{
+			li{
+				a{
+					.pull-right{
+						float: left !important;
+					}
+				}
+			}
+		}
+		.blogContent{
+			.caption{
+				.socialLink{
+					text-align: right;
+				}
+			}
+		}
+		.likeCount{
+			float: left;
+		}
+		.searchSelectboxes{
+			.sbHolder{
+				border: 1px solid $border-color;
+				border-right: none;
+				border-radius: 4px 0 0 4px;
+			}
+			.sbSelector:link, .searchBoxSelect .sbSelector:visited, .searchBoxSelect .sbSelector:hover{
+				text-align: right !important;
+			}
+			.sbToggle{
+				right: auto;
+				left: 12px;
+			}
+		}
+		.signUpFormArea{
+			.priceTableTitle{
+				text-align: right;
+			}
+		}
+		.contactSelect{
+			.sbToggle{
+				right: auto;
+				left: 12px;
+			}
+		}
+		.list-address{
+			li{
+				padding-left: 0;
+				padding-right: 33px;
+				i.fa{
+					left: auto;
+					right: 0;
+				}
+			}
+		}
+		.listingReview{
+			.btn-primary{
+				float: left;
+			}
+		}
+		.listingReview span, .listingReview .captionItem, .listingReview .rating{
+			float: right;
+		}
+		.listingReview{
+			.rating{
+				margin: 0 0 0 10px;
+			}
+			span{
+				margin: 0 0 0 20px;
+			}
+		}
+		.media.media-comment{
+			.media-left{
+				float: right;
+				padding: 0 10px 0 25px;
+			}
+		}
+		.img-rtl{
+			-ms-transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+			transform: rotateY(180deg);
+		}
+		.processArea{
+			.form-control{
+				padding: 6px 8px 6px 55px;
+			}
+			i.fa{
+				left: 0;
+				right: auto;
+			}
+		}
+		.dateSelect{
+			.form-control{
+				border: 1px solid $border-color;
+				border-left: none;
+			}
+		}
+		.checkbox-radio input[type=checkbox]:not(old) + label > span{
+			margin: 0 0 0 12px;
+		}
+		.checkbox-radio input[type=radio]:not(old) + label > span{
+			margin: 0 0 0 7px;
+		}
+		.checkbox-radio input[type=checkbox]:not(old) + label, 
+		.checkbox-radio input[type=radio]:not(old) + label{
+			margin-right: -2em;
+		}
+		.checkbox-radio.marginCheck{
+			margin: 12px 25px 12px 0;
+		}
+		.navbar-default.navbar-dashboard{
+			.input-group{
+				.form-control{
+					padding: 0 15px 0 0;
+				}
+			}
+		}
+		.mr0{
+			margin-left: 0 !important;
+		}
+		.panel-card{
+			.panel-heading{
+				.label{
+					float: left;
+				}
+			}
+		}
+		.panel-card{
+			.panel-body{
+				.resultInfo{
+					float: left;
+				}
+			}
+		}
+		.panel-card{
+			.panel-heading {
+				.rightContent{
+					float: left;
+				}
+			}
+		}
+		.dateRange{
+			margin: 0 0 0 30px;
+			float: right;
+		}
+		.recentUserInfo{
+			img{
+				float: right;
+				margin: 0 0 0 10px;
+			}
+		}
+		.itmeName{
+			.iconBox{
+				float: right;
+				margin: 0 0 0 10px;
+			}
+		}
+		.likeResult{
+			margin-right: 10px;
+			float: left;
+		}
+		.likePart{
+			i.primaryColor{
+				margin: 0 0 0 5px;
+			}
+		}
+		.panel-card .panel-heading .label.label-sm{
+			float: right;
+			margin: 16px 0 0 10px;
+		}
+		.searchSelectbox{
+			.sbToggle{
+				left: 12px;
+				right: auto;
+			}
+		}
+		.categoryBox{
+			h2{
+				a{
+					float: left;
+				}
+			}
+		}
+		.listCategory{
+			li{
+				a{
+					span{
+						float: right;
+					}
+				}
+			}
+		}
+		.countUpSection.countUpVerTwo{
+			.iconArea{
+				float: right;
+				margin: 0 0 0 20px;
+			}
+			.totalCount{
+				float: right;
+			}
+		}
+		.navbar-collapse ul.navbar-nav > li.dropdown > a:after{
+			right: auto;
+			left: 15px;
+			@include tablet{
+				right: 15px;
+				left: auto;
+			}
+		}
+		.howWorksInfo.text-left{
+			text-align: left;
+			@include tablet{
+				text-align: right;
+			}
+		}
+		.howWorksInfo.text-right{
+			text-align: left;
+		}
+		.locationSelect .sbToggle{
+			right: auto;
+			left: 10px;
+		}
+		.checkbox{
+			.pull-right.link{
+				float: left !important;
+			}
+		}
+	}
+}

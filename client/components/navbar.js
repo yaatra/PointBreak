@@ -6,42 +6,65 @@ import {logout} from '../store'
 
 
 const Navbar = (props) => {
-    const {handleClick, isLoggedIn, email} = props
+    const {handleClick, isLoggedIn, email, cssClass} = props
 
-    return(<nav className="navbar navbar-default">
-        <div className="container-fluid">
-        <ul className="nav navbar-nav navbar-left">
-            <li>
-            <Link to='/'>Main</Link>
-            </li>
-            </ul>
-        {
+
+    return(<div className={cssClass}>
+        <div className="container-fluid header-bg">
+          <div className="row">
+            <div className="col-lg-4 col-sm-4 col-xs-6 header-left empty">empty
+            </div>
+            <div className="col-lg-8 col-sm-8 col-xs-6 header-right empty">empty
+            </div>
+          </div>
+        </div>
+        <nav id="menuBar" className="navbar navbar-default lightHeader" role="navigation">
+        <div className="container">
+        <div className="navbar-header">
+              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <Link className="navbar-brand" to="/"><img src="assets/static/img/logo.png" alt="logo" /></Link>
+            </div>
+            <div className="collapse navbar-collapse navbar-ex1-collapse">
+              <ul className="nav navbar-nav navbar-right">
+              {
           isLoggedIn
             ? <ul className="nav navbar-nav navbar-right">
-              {/* The navbar will show these links after you log in */}
-              <li>
-              <Link to='/home'>User Home</Link>
-              </li>
-              <li>
-              <Link to='/manageEvents'>Your admin console</Link>
-              </li>
-              <li>
-              <a href='#' onClick={handleClick}>Logout</a>
-              </li>
-            </ul>
-            : <ul className="nav navbar-nav navbar-right">
-              {/* The navbar will show these links before you log in */}
-              <li>
-              <Link to='/login'>Login</Link>
-              </li>
-              <li>
-              <Link to='/signup'>Sign Up</Link>
-              </li>
+                {/* The navbar will show these links after you log in */}
+                <li className="active dropdown singleDrop">
+                  <a><Link to="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">home</Link></a>
+                </li>
+                <li>
+                <Link to='/home'>User Home</Link>
+                </li>
+                <li>
+                <Link to='/manageEvents'>Your admin console</Link>
+                </li>
+                <li>
+                <a href='#' onClick={handleClick}>Logout</a>
+                </li>
               </ul>
-        }
-
+              : <ul className="nav navbar-nav navbar-right">
+                <li className="active dropdown singleDrop">
+                <Link to="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">home</Link>
+                </li>
+                {/* The navbar will show these links before you log in */}
+                <li>
+                <Link to='/login'>Login</Link>
+                </li>
+                <li>
+                <Link to='/signup'>Sign Up</Link>
+                </li>
+                </ul>
+              }
+              </ul>
+            </div>
         </div>
-        </nav>)
+        </nav></div>)
 
 }
 

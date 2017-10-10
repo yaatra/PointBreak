@@ -11,17 +11,31 @@ export class HomePage extends Component {
     }
 
     render(){
-        // this.props.getAllEvents()
-        let trendingEvents = this.props.allEvents.splice(0, 4)
-        //console.log("fetchEvents:", fetchEvents)
-        //console.log("this.props:", this.props)
-        return (<div className='container'>
-            <h1>Home Page</h1>
-            <AutoCompleteSearch />
-            <div className='eventList'>
-            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" /> : null}
+        let trendingEvents = this.props.allEvents.slice(0, 4)
+
+        return (
+            <header id="pageTop" className="header">
+            <section className="clearfix homeBanner">
+            <div className="container">
+		    <div className="row">
+			<div className="col-xs-12">
+			<div className="banerInfo">
+                <h1>Explore. Discover. Share</h1>
+					<p>PointBreak gets you the best curated extreme sports events around you</p>
+
+                <AutoCompleteSearch />
+
             </div>
-        </div>
+            </div>
+            </div>
+            </div>
+            </section>
+            <div className='eventList'>
+
+            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" /> : null}
+
+            </div>
+            </header>
         )
     }
 }
