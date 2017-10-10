@@ -37,7 +37,7 @@ class UserDetails extends Component {
             <div className="col-sm-3">
             <h3>{user.firstName} {user.lastName}</h3><img src={user.avatar} height="300" width="300" />
             <p>Email: {user.email}</p>
-            <p>BMI: {user.bmi}</p>
+            <p>BMI: {user.bmi.toFixed(1)}</p>
             <p>Height: {user.height}</p>
             <p>Weight: {user.weight}</p>
             <p>Gender: {user.gender}</p>

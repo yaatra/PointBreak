@@ -36,16 +36,16 @@ router.post('/signup', (req, res, next) => {
   const selectedLanguages = req.body.selectedLanguages
   const selectedCategories = req.body.selectedCategories
   const selectedLocations = req.body.selectedLocations
-  const bmi = weight / (height * height) * 703
+  // const bmi = (703 * (weight) / (height * 12) * (height * 12)).toFixed(1)
 
-  const user = {firstName, lastName, email, password, height, weight, age, gender, bmi}
+  const user = {firstName, lastName, email, password, height, weight, age, gender}
   User.findOrCreate({
     where: {email},
     defaults: user
   })
     .spread((user, created) => {
       if (!created) {
-        user.update({password, height, weight, age, gender, bmi})
+        user.update({password, height, weight, age, gender})
       }
 
       user.update({weight, height, age, gender})

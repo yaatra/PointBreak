@@ -54,7 +54,10 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   bmi: {
-    type: Sequelize.DOUBLE
+    type: Sequelize.VIRTUAL,
+    get() {
+      return (703 * (this.weight) / ((this.height * 12) * (this.height * 12)))
+    }
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
