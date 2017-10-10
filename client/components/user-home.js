@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import UserDetails from './userDetails'
-import {loadUserData, fetchEventsForUser, getFitbitDataThunk} from '../store'
+import {fetchEventsForUser} from '../store'
 import {EventsList, SocialConnection} from './'
 
 /**
@@ -19,33 +19,36 @@ export class UserHome extends Component {
   }
   componentDidMount(){
     const userID = this.props.user.id
-    const fitbitinfoId = this.props.user.fitbitInfoId || null
-    console.log('****** Fitbit ID: ', fitbitinfoId)
-    this.props.getAllUserData(userID, fitbitinfoId)
-  }
-
-  componentWillReceiveProps(nextProps){
-    nextProps.events.forEach(e => {
-          if(e.type === 'selected') this.setState({ selectedEvents: [...this.state.selectedEvents, e.event] })
-          if(e.type === 'followed') this.setState({ followingEvents: [...this.state.followingEvents, e.event] })
-    })
+    this.props.getAllUserData(userID)
   }
 
   render () {
-    // if (this.props.events.length && this.props.user) {
-      let selectedEvents = this.props.events.map(e => {
-        if(e.type === 'selected') return e.event
+    let events = this.props.events
+    // let user = this.props.user
+    let selectedEvents = []
+    let followingEvents = []
+    if (events.length >= 0) {
+      selectedEvents = events.map(e => {
+        if (e.type === 'selected') return e.event
       }).filter(el => el !== undefined)
-      let followingEvents = this.props.events.map(e => {
-        if(e.type === 'followed') return e.event
+      console.log('selected events: ', selectedEvents)
+      followingEvents = events.map(e => {
+        if (e.type === 'followed') return e.event
       }).filter(el => el !== undefined)
-      console.log(selectedEvents)
+      console.log('followed events: ', followingEvents)
+    }
     return (
       <div className='container'>
-        <UserDetails user={this.props.user} />
-        <SocialConnection />
-        {followingEvents.length ? <EventsList events={followingEvents} heading="Following Events" /> : null}
-        {selectedEvents.length ? <EventsList events={selectedEvents} heading="Selected Events"  /> : null}
+        {this.props.user ?
+          (<div>
+            <UserDetails user={this.props.user} />
+            <SocialConnection />
+          </div>)
+          : <div><p>ERROR: This user can't be loaded - missing data</p></div>
+        }
+
+        {followingEvents.length >= 0 ? <EventsList events={followingEvents} heading="Following Events" /> : null}
+        {selectedEvents.length >= 0 ? <EventsList events={selectedEvents} heading="Selected Events"  /> : null}
       </div>
     )
   // } else {
@@ -60,16 +63,13 @@ export class UserHome extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    events: state.events.eventsForUser,
-    fitbitinfoId: state.user.fitbitInfoId
+    events: state.events.eventsForUser
   }
 }
 const mapDispatch = (dispatch) => {
   return {
-    getAllUserData(userId, fitbitinfoId) {
-      dispatch(loadUserData(userId))
+    getAllUserData(userId) {
       dispatch(fetchEventsForUser(userId))
-      fitbitinfoId ? dispatch(getFitbitDataThunk(fitbitinfoId)) : null
     }
   }
 }

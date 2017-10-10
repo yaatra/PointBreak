@@ -113,7 +113,7 @@ class AuthForm extends Component {
   }
 
   render() {
-    const {name, user, categories, languages, locations, displayName, handleSubmit, error} = this.props
+    const {isLoggedIn, name, user, categories, languages, locations, displayName, handleSubmit, error} = this.props
     const firstName = this.state.firstName
     const lastName = this.state.lastName
     const email = this.state.email
@@ -265,8 +265,14 @@ class AuthForm extends Component {
           <button type="submit" className="btn btn-primary">{displayName}</button>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
-        <a href="/auth/google">{displayName} with Google</a>
-        <a href="/auth/fitbit">{displayName} with Fitbit</a>
+        {
+          displayName === 'Sign Up'?
+          <div>
+            <a href="/auth/google">{displayName} with Google</a>
+            <a href="/auth/fitbit">{displayName} with Fitbit</a>
+          </div> :
+          null
+        }
       </div>
     )
   }

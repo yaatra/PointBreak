@@ -81,20 +81,6 @@ class SingleYelpEventInLocation extends Component {
             <span className="sr-only">Next</span>
           </a>
         </div>
-        <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? joinEvent(event, 'pendingJoin', user.id, singleYelpEvent.id) : history.push('/login')}>
-        {
-          pendingJoinEvent.id ?
-          'PENDING' :
-          'JOIN'
-        }
-        </a>
-        <a className="btn btn-primary btn-lg" href="#" role="button" onClick={event => user.id ? followEvent(event, 'followed', user.id, singleYelpEvent.id) : history.push('/login')}>
-        {
-          followedEvent.id ?
-          'FOLLOWING' :
-          'FOLLOW'
-        }
-        </a>
       </div>
     )
   }
