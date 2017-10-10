@@ -1,0 +1,28 @@
+/*=== 6. TERMS OF SERVICES ===*/
+.termsList{
+	li{
+		border-bottom: 1px solid $border-color;
+		padding-bottom: 25px;
+		margin-bottom: 25px;
+		@include tablet{
+			padding-bottom: 45px;
+			margin-bottom: 45px;
+		}
+		&:last-child{
+			border-bottom: none;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+		h3{
+			font-weight: 300;
+			font-size: 20px;
+			text-transform: capitalize;
+		}
+		p{
+			margin: 0;
+			a{
+				text-decoration: underline;
+			}
+		}
+	}
+}
