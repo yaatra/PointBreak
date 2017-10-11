@@ -326,7 +326,6 @@ const mapDispatch = (dispatch) => {
     },
     handleSubmit(event, firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, formName) {
       event.preventDefault()
-
       dispatch(auth(firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, formName))
     }
   }
