@@ -14,12 +14,9 @@ class Message extends Component {
   render() {
    const {message} = this.props
    const user = message.user
-   console.log("PROPS", this.props)
-   //console.log("*user*", user)
-   //console.log("---message---", message)
     return (
 
-      <li className="media">
+      <div className="media">
         <div className="media-body">
           <h4 className="media-heading">
             {' '}
@@ -29,13 +26,15 @@ class Message extends Component {
           </h4>
        {
          user ?
-         <div>{user.firstName} {user.lastName}</div> :
+         <div><h5>{user.firstName} {user.lastName}</h5></div> :
          null
        }
        {/* {this.props.message.userId} {this.props.message.content} */}
        {message.content}
         </div>
-      </li>
+        <div className="time-ago">
+        <span className="messageTime">{moment(message.createdAt).startOf('hour').fromNow()}</span></div>
+      </div>
     )
   }
 }
