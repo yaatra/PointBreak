@@ -93,8 +93,8 @@ class SignupAutoCompleteSearch extends React.Component {
 
   renderGeocodeSuccess(lat, lng) {
     return (
-      <div className="alert alert-success" role="alert">
-        <strong>Success!</strong> Geocoder found latitude and longitude: <strong>{lat}, {lng}</strong>
+      <div className="alert alert-success pull-left" role="alert">
+        <strong>Success!</strong> Geocoder found latitude and longitude: <strong>{lat}, {lng}</strong><br /><br /><em>Keep selecting preferred destinations if you're interested!</em>
       </div>
     )
   }
