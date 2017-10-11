@@ -24,19 +24,33 @@ class Chat extends Component {
     // const { messages, loadUserData, user} = this.props
     const { messages} = this.props
     return (
-      <div>
-        <div>
-        <ul className="media-list">
+      
+      <section className="clearfix interestArea">
+      <div className="container">
+      <div className="row">
+      <div className="col-xs-12">
+				<div className="panel panel-default panel-card">
+        <div className="panel-heading" id="message">
+						Messages 
+					</div>
+          <div className="panel-body panel-message">
+						<ul className="list-unstyled panel-list">
           {messages.map(message => (
-            <li key={message.id}>
-            {/* <Message message={message} user={user} /> */}
+            <li key={message.id} className="messageCommon recentMessage listWrapper">
+            <span className="messageInfo">
             <Message message={message} />
+            </span>
             </li>
           ))}
         </ul>
         </div>
         <NewMessageEntry />
       </div>
+      </div>
+      </div>
+        </div>
+      </section>
+
     )
   }
 }
