@@ -38,8 +38,8 @@ class NewMessageEntry extends Component {
             placeholder="Enter text..."
           />
           <span className="input-group-btn">
-            <button className="btn btn-default" type="submit">
-              Enter
+            <button className="btn label label-primary" type="submit">
+              Send Message
             </button>
           </span>
         </div>
