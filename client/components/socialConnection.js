@@ -12,8 +12,8 @@ class SocialConnection extends Component {
     render() {
         const {similarUsers} = this.props
         return (
-            <div>
-            {similarUsers.length ? <UsersList similarUsers={similarUsers} heading="People with similar interests" /> : null}
+            <div className="row">
+                    {similarUsers.length ? <UsersList similarUsers={similarUsers} heading="People with similar interests" /> : null}
             </div>
         )
     }

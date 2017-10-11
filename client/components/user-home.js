@@ -38,22 +38,24 @@ export class UserHome extends Component {
 
     }
     return (
-      <div className='container'>
+      <section className="clearfix bg-dark profileSection">
+      <div className="container">
         {this.props.user ?
           (<div>
             <UserDetails user={this.props.user} />
             <SocialConnection />
           </div>)
-          : <div><p>ERROR: This user can't be loaded - missing data</p></div>
+          :
+          (<div>
+            <p>ERROR: This user can't be loaded - missing data</p>
+          </div>)
         }
 
-        {followingEvents.length >= 0 ? <EventsList events={followingEvents} heading="Following Events" /> : null}
-        {selectedEvents.length >= 0 ? <EventsList events={selectedEvents} heading="Selected Events"  /> : null}
+        {followingEvents.length > 0 ? <EventsList events={followingEvents} heading="Following Events" fromUser="true" /> : null}
+        {selectedEvents.length > 0 ? <EventsList events={selectedEvents} heading="Selected Events"  fromUser="true" /> : null}
       </div>
+      </section>
     )
-  // } else {
-  //   return (<div><p>ERROR: This user can't be loaded - missing data</p></div>)
-  // }
 }
 }
 

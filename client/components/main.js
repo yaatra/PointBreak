@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Navbar, HomePage} from './'
+import {Navbar, Footer} from './'
 
 /**
  * COMPONENT
@@ -28,8 +28,8 @@ const Main = (props) => {
       <div className="main-wrapper">
 
       <Navbar cssClass={cssClass} />
-      {/* <HomePage /> */}
       {children}
+      <Footer />
 
       </div>
       </div>

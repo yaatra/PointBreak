@@ -9,7 +9,7 @@ const Navbar = (props) => {
     const {handleClick, isLoggedIn, email, cssClass} = props
 
 
-    return(<div className={cssClass}>
+    return (<div className={cssClass}>
         <div className="container-fluid header-bg">
           <div className="row">
             <div className="col-lg-4 col-sm-4 col-xs-6 header-left empty">empty
@@ -27,7 +27,11 @@ const Navbar = (props) => {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link className="navbar-brand" to="/"><img src="assets/static/img/logo.png" alt="logo" /></Link>
+              {cssClass === 'nav-wrapper' ?
+                <Link className="navbar-brand" to="/"><img src="assets/static/img/logo.png" alt="logo" /></Link>
+                :
+                <Link className="navbar-brand" to="/"><img src="assets/static/img/logo-blue.png" alt="logo" /></Link>
+              }
             </div>
             <div className="collapse navbar-collapse navbar-ex1-collapse">
               <ul className="nav navbar-nav navbar-right">
