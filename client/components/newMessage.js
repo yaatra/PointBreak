@@ -27,6 +27,8 @@ class NewMessageEntry extends Component {
   render() {
     // const { user, newMessageEntry, event, handleChange } = props
     return ( this.props.userId ? (
+      <div className="col-xs-12">
+      {/* <div className="dashboardBoxBg mb30"> */}
       <form id="new-message-form" onSubmit={this.handleSubmitLocal}>
         <div className="input-group input-group-lg">
           <input
@@ -43,7 +45,10 @@ class NewMessageEntry extends Component {
             </button>
           </span>
         </div>
-      </form>) : null
+      </form>
+      </div>
+      // </div>
+      ) : null
     )
   }
 }

@@ -18,17 +18,18 @@ class Message extends Component {
 
       <div className="media">
         <div className="media-body">
-          <h4 className="media-heading">
-            {' '}
-            {moment(message.createdAt).format(
-              'MMMM Do YYYY, h:mm:ss a'
-            )}
-          </h4>
-       {
+        {
          user ?
          <div><h5>{user.firstName} {user.lastName}</h5></div> :
          null
        }
+          <small className="media-heading">
+            {' '}
+            {moment(message.createdAt).format(
+              'MMMM Do YYYY, h:mm:ss a'
+            )}
+          </small><br/>
+   
        {/* {this.props.message.userId} {this.props.message.content} */}
        {message.content}
         </div>
