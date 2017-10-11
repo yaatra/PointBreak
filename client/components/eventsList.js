@@ -14,7 +14,7 @@ const EventsList = props => {
 
           {events.map(event => {
               return (
-                <div className={type === 'featured'  ? 'col-md-4 col-sm-6 col-xs-12 isotopeSelector featuredItem' : (type === 'yelp'  ? 'col-md-2 col-sm-6 col-xs-12 isotopeSelector featuredItem': 'col-md-3 col-sm-6 col-xs-12 isotopeSelector featuredItem')} key={event.id}>
+                <div className={type === 'featured'  ? 'col-md-4 col-sm-6 col-xs-12 isotopeSelector featuredItem' : (type === 'yelp'  ? 'col-md-3 col-sm-6 col-xs-12 isotopeSelector featuredItem': 'col-md-3 col-sm-6 col-xs-12 isotopeSelector featuredItem')} key={event.id}>
                   <Link to={typeof event.id === 'number' ? `/locations/${event.id}` : `/locations/yelp/${event.id}`}>
                     <article className="">
                     <figure>
@@ -34,9 +34,9 @@ const EventsList = props => {
                     {typeof event.id === 'number' && type !== 'userHome' &&
                       (<div>
                       <div className="figureBody">
-                        <h2><a href="category-grid.html">{event.name}<i className="fa fa-check-circle" aria-hidden="true" /></a></h2>
+                        <h5><a href="category-grid.html">{event.name}<i className="fa fa-check-circle" aria-hidden="true" /></a></h5>
                         <p>{event.date}, {event.location} <a href="category-grid.html" /></p>
-                        <h3>Difficulty: {event.difficulty}</h3>
+                        <h5>Difficulty: {event.difficulty}</h5>
                       </div>
                       <div className="figureFooter">
                         <p>{event.description.slice(0, 40) + '...'}</p>
@@ -51,7 +51,7 @@ const EventsList = props => {
                     {typeof event.id !== 'number' &&
                       (<div>
                       <div className="figureBody">
-                        <h2><a href="category-grid.html">{event.name}</a></h2>
+                        <h5><a href="category-grid.html">{event.name}</a></h5>
                         {<p>{event.phone} <a href="category-grid.html" /></p>}
                       </div>
                       <div className="figureFooter">
