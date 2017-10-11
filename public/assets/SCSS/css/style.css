@@ -297,7 +297,8 @@ section {
   letter-spacing: 1px; }
   @media (min-width: 768px) {
     .btn {
-      padding: 13px 0;
+      padding: 13px 30px;
+      margin-top: 0;
       font-size: 12px; } }
   @media (min-width: 992px) {
     .btn {
