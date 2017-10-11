@@ -39,25 +39,32 @@ export class UserEventMgmt extends Component {
 
 
     return (
-      <div className="content">
-        <div className="container-fluid">
-          <div className="row">
+      <section className="clearfix bg-dark profileSection">
+      <div className="container">
+
+
+
 
           {/*Create Event Button*/}
+          <div className="row">
           <div className="col-md-12">
-            <button className="btn btn-default" value={user.id} onClick={this.handleCreate}>Create an event</button>
+            <button className="btn btn-submit" value={user.id} onClick={this.handleCreate}>Create an event</button>
+          </div>
           </div>
           {/*End of create Event Button*/}
 
           {/* Code to show the user's created events below */}
           <div className="row">
             <div className="col-md-12">
+            <div className="table-wrapper table-responsive fixed-solution">
+
+
             {createdEvents[0] ?
-              <div>
+              <div className="sticky-table-header">
                 <h4>Event Management Console</h4>
                 <table className='table table-striped'>
                   <thead>
-                    <tr>
+                    <tr className="rowItem">
                       <th>Event Id</th>
                       <th>Event name</th>
                       <th>Event difficulty</th>
@@ -67,7 +74,7 @@ export class UserEventMgmt extends Component {
                   </thead>
                   <tbody>
                     {createdEvents.map(event => (
-                      <tr key={event.id}>
+                      <tr key={event.id}  className="rowItem">
                         <td>{event.eventId}</td>
                         <td><NavLink to={`/locations/${event.eventId}`}>{event.event.name}</NavLink></td>
                         <td>{event.event.difficulty}</td>
@@ -83,14 +90,16 @@ export class UserEventMgmt extends Component {
                 <h4>You have not created any events yet!</h4>
               </div>
             }
+
+            </div>
             </div>
           </div>
           {/* End of user created events */}
 
 
-          </div>
-        </div>
+
       </div>
+      </section>
     )
   }
 }

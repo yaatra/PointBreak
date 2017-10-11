@@ -262,7 +262,7 @@ class AuthForm extends Component {
           ) :
           null
         }
-          <button type="submit" className="btn btn-primary">{displayName}</button>
+          <button type="submit" className="btn btn-primary pull-left">{displayName}</button>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
         {
