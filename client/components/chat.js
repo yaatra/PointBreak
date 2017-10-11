@@ -24,9 +24,6 @@ class Chat extends Component {
     // const { messages, loadUserData, user} = this.props
     const { messages} = this.props
     return (
-      
-      <section className="clearfix interestArea">
-      <div className="container">
       <div className="row">
       <div className="col-xs-12">
 				<div className="panel panel-default panel-card">
@@ -48,8 +45,6 @@ class Chat extends Component {
       </div>
       </div>
       </div>
-        </div>
-      </section>
 
     )
   }
