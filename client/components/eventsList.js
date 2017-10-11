@@ -14,7 +14,7 @@ const EventsList = props => {
 
           {events.map(event => {
               return (
-                <div className={type === 'featured'  ? 'col-md-4 col-sm-6 col-xs-12 isotopeSelector featuredItem' : 'col-md-3 col-sm-6 col-xs-12 isotopeSelector featuredItem'} key={event.id}>
+                <div className={type === 'featured'  ? 'col-md-4 col-sm-6 col-xs-12 isotopeSelector featuredItem' : (type === 'yelp'  ? 'col-md-2 col-sm-6 col-xs-12 isotopeSelector featuredItem': 'col-md-3 col-sm-6 col-xs-12 isotopeSelector featuredItem')} key={event.id}>
                   <Link to={typeof event.id === 'number' ? `/locations/${event.id}` : `/locations/yelp/${event.id}`}>
                     <article className="">
                     <figure>
@@ -53,10 +53,9 @@ const EventsList = props => {
                       <div className="figureBody">
                         <h2><a href="category-grid.html">{event.name}</a></h2>
                         {<p>{event.phone} <a href="category-grid.html" /></p>}
-                        <h3>Rating: {event.rating}</h3>
                       </div>
                       <div className="figureFooter">
-                        <p>{event.location.display_address}</p>
+                        <p>Rating: {event.rating}</p>
                       </div>
                       </div>)
                     }
