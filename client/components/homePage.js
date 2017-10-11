@@ -20,7 +20,7 @@ export class HomePage extends Component {
 		    <div className="row">
 			<div className="col-xs-12">
 			<div className="banerInfo">
-                <h1>Explore. Discover. Share</h1>
+                <h1>Explore. Conquer. Discover</h1>
 					<p>PointBreak gets you the best curated extreme sports events around you</p>
 
                 <AutoCompleteSearch />

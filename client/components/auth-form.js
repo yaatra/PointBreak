@@ -126,154 +126,165 @@ class AuthForm extends Component {
     const selectedCategories = this.state.categories
     const selectedLocations = this.state.locations
     return (
-      <div className="container">
-        <form onSubmit={event => handleSubmit(event, firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, name)} name={name}>
-        {
-          user ? (
-            <div className="form-group row">
-              <label htmlFor="first-name" className="col-2 col-form-label">First Name</label>
-              <div className="col-10">
-                <input className="form-control" type="text" value={this.state.firstName} id="first-name" onChange={this.handleChange1} />
+      <section className={name === 'login' ? "clearfix loginSection" : "clearfix signUpSection"}>
+        <div className="container">
+          <div className="row">
+            <div className={name === 'login' ? "center-block col-md-5 col-sm-6 col-xs-12" : "center-block col-sm-8 col-xs-12"}>
+              <div className={name === 'login' ? "panel panel-default loginPanel" : "signUpFormArea"}>
+                {name === 'login' ? <div className="panel-heading text-center">Members log in</div> : null}
+                {
+                  name === 'signup' ?
+                  <div className="priceTableTitle">
+                    <h2>Account Registration</h2>
+                    <p>Please fill out the fields below to create your account. We will send your account information to the email address you enter. Your email address and information will NOT be sold or shared with any 3rd party. If you already have an account, please, <a href="/login">click here</a>.</p>
+                  </div> :
+                  null
+                }
+                  <div className={name === 'login' ? "panel-body" : "signUpForm"}>
+                    <form className={name === 'login' ? "loginForm" : ""} onSubmit={event => handleSubmit(event, firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, name)} name={name}>
+                    {name === 'signup' ?
+                      <div className="formSection">
+                        <h3>Contact Information</h3>
+                        <div className="row">
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="firstName" className="control-label">First Name*</label>
+                            <input type="text" className="form-control" value={this.state.firstName} id="firstName" onChange={this.handleChange1} />
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="lastName" className="control-label">Last Name*</label>
+                            <input type="text" className="form-control" value={this.state.lastName} id="lastName" onChange={this.handleChange2} />
+                          </div>
+                        </div>
+                      </div> :
+                      null
+                    }
+                    {
+                      name === 'signup' ?
+                      <div className="formSection">
+                        <h3>Account Information</h3>
+                        <div className="row">
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="emailAdress" className="control-label">Email Address*</label>
+                            <input type="email" className="form-control" value={this.state.email} id="emailAdress" onChange={this.handleChange3} />
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="passwordFirst" className="control-label">Password*</label>
+                            <input type="password" className="form-control" value={this.state.password} id="passwordFirst" onChange={this.handleChange4} />
+                          </div>
+                        </div>
+                      </div> :
+                      null
+                    }
+                    {
+                      name === 'signup' ?
+                      <div className="formSection">
+                        <h3>Personal Information</h3>
+                        <div className="row">
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="height" className="control-label">Height*</label>
+                            <input type="text" className="form-control" value={this.state.height} id="height" placeholder="...6.1 feet" onChange={this.handleChange5} />
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="weight" className="control-label">Weight*</label>
+                            <input type="text" className="form-control" value={this.state.weight} id="weight" placeholder="...182 lbs" onChange={this.handleChange6} />
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="age" className="control-label">Age*</label>
+                            <input type="text" className="form-control" value={this.state.age} id="age" onChange={this.handleChange7} />
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label className="control-label">Gender*</label>
+                            <div className="form-check">
+                              <label htmlFor="male" className="form-check-label">
+                                <input type="radio" className="form-check-input" name="optionsRadios" id="male" value="male" checked={this.state.gender === 'male'} onChange={this.handleChange8} />
+                                  &nbsp;&nbsp;Male
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <label htmlFor="female" className="form-check-label">
+                                <input type="radio" className="form-check-input" name="optionsRadios" id="female" value="female" checked={this.state.gender === 'female'} onChange={this.handleChange8} />
+                                  &nbsp;&nbsp;Female
+                              </label>
+                            </div>
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="language" className="control-label">Select Languages*</label>
+                            <select className="form-control" value={this.state.languages} id="language" multiple onChange={this.handleChange9}>
+                              <option value="None">None</option>
+                              {
+                                languages.map(language => {
+                                  return (
+                                    <option key={language.id} value={language.id}>{language.name}</option>
+                                  )
+                                })
+                              }
+                            </select>
+                          </div>
+                          <div className="form-group col-xs-12">
+                            <label htmlFor="category" className="control-label">Select Preferred Categories*</label>
+                            <select className="form-control" value={this.state.categories} id="category" multiple onChange={this.handleChange10}>
+                              <option value="None">None</option>
+                              {
+                                categories.map(category => {
+                                  return (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                  )
+                                })
+                              }
+                            </select>
+                          </div>
+                          <div className="form-group col-sm-6 col-xs-12">
+                            <label htmlFor="preferred-destination" className="control-label">Select Preferred Destination*</label>
+                            <SignupAutoCompleteSearch addLocation={this.addLocation}/>
+                          </div>
+                        </div>
+                      </div> :
+                      null
+                    }
+
+                    {
+                      name === 'login' ?
+                      <div>
+                        <div className="form-group">
+                          <label htmlFor="emailAdress">Email *</label>
+                          <input className="form-control" type="email" value={this.state.email} id="emailAdress" onChange={this.handleChange3} />
+                          <p className="help-block">Enter your email.</p>
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="passwordFirst">Password *</label>
+                          <input className="form-control" type="password" value={this.state.password} id="passwordFirst" onChange={this.handleChange4} />
+                          <p className="help-block">Enter the password that accompanies your email.</p>
+                        </div>
+                      </div> :
+                      null
+                    }
+
+                    <div className={name === 'login' ? "form-group" : "form-group col-xs-12 mb0"}>
+                      <button type="submit" className={name === 'login' ? "btn btn-primary pull-left" : "btn btn-primary"}>{displayName}</button>
+                    </div>
+                      {error && error.response && <div> {error.response.data} </div>}
+                    </form>
+                    {
+                      displayName !== 'Log In' && displayName !== 'Sign Up'?
+                      <div>
+                        <a href="/auth/google">{displayName} with Google</a>
+                        <a href="/auth/fitbit">{displayName} with Fitbit</a>
+                      </div> :
+                      null
+                    }
+                </div>
+                {
+                  name === 'login' ?
+                  <div className="panel-footer text-center">
+                    <p>Not a member yet? <a href="/signup" className="link">Sign up</a></p>
+                  </div> :
+                  null
+                }
               </div>
-            </div>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <div className="form-group row">
-              <label htmlFor="last-name" className="col-2 col-form-label">Last Name</label>
-              <div className="col-10">
-                <input className="form-control" type="text" value={this.state.lastName} id="last-name" onChange={this.handleChange2} />
-              </div>
-            </div>
-          ) :
-          null
-        }
-          <div className="form-group row">
-            <label htmlFor="email" className="col-2 col-form-label">Email</label>
-            <div className="col-10">
-              <input className="form-control" type="email" value={this.state.email} id="email" onChange={this.handleChange3} />
             </div>
           </div>
-          <div className="form-group row">
-            <label htmlFor="password" className="col-2 col-form-label">Password</label>
-            <div className="col-10">
-              <input className="form-control" type="password" value={this.state.password} id="password" onChange={this.handleChange4} />
-            </div>
-          </div>
-        {
-          user ? (
-            <div className="form-group row">
-              <label htmlFor="height" className="col-2 col-form-label">Height</label>
-              <div className="col-10">
-                <input className="form-control" type="text" value={this.state.height} id="height" placeholder="...6.1 feet" onChange={this.handleChange5} />
-              </div>
-            </div>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <div className="form-group row">
-              <label htmlFor="weight" className="col-2 col-form-label">Weight</label>
-              <div className="col-10">
-                <input className="form-control" type="text" value={this.state.weight} id="weight" onChange={this.handleChange6} />
-              </div>
-            </div>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <div className="form-group row">
-              <label htmlFor="age" className="col-2 col-form-label">Age</label>
-              <div className="col-10">
-                <input className="form-control" type="text" value={this.state.age} id="age" onChange={this.handleChange7} />
-              </div>
-            </div>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <fieldset className="form-group">
-              <legend>Gender</legend>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios1" value="male" checked={this.state.gender === 'male'} onChange={this.handleChange8} />
-                  Male
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios2" value="female" checked={this.state.gender === 'female'} onChange={this.handleChange8} />
-                  Female
-                </label>
-              </div>
-            </fieldset>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <div className="form-group">
-              <label htmlFor="language">Select Languages</label>
-              <select className="form-control" value={this.state.languages} id="language" multiple onChange={this.handleChange9}>
-                <option value="None">None</option>
-                {
-                  languages.map(language => {
-                    return (
-                      <option key={language.id} value={language.id}>{language.name}</option>
-                    )
-                  })
-                }
-              </select>
-            </div>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <div className="form-group">
-              <label htmlFor="category">Select Preferred Categories</label>
-              <select className="form-control" value={this.state.categories} id="category" multiple onChange={this.handleChange10}>
-                <option value="None">None</option>
-                {
-                  categories.map(category => {
-                    return (
-                      <option key={category.id} value={category.id}>{category.name}</option>
-                    )
-                  })
-                }
-              </select>
-            </div>
-          ) :
-          null
-        }
-        {
-          user ? (
-            <div className="form-group row">
-              <label htmlFor="preferred-destination" className="col-2 col-form-label">Select Preferred Destination</label>
-              <div className="col-10">
-                <SignupAutoCompleteSearch addLocation={this.addLocation}/>
-              </div>
-            </div>
-          ) :
-          null
-        }
-          <button type="submit" className="btn btn-primary pull-left">{displayName}</button>
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
-        {
-          displayName === 'Sign Up'?
-          <div>
-            <a href="/auth/google">{displayName} with Google</a>
-            <a href="/auth/fitbit">{displayName} with Fitbit</a>
-          </div> :
-          null
-        }
-      </div>
+        </div>
+      </section>
     )
   }
 }
@@ -288,7 +299,7 @@ class AuthForm extends Component {
 const mapLogin = (state) => {
   return {
     name: 'login',
-    displayName: 'Login',
+    displayName: 'Log In',
     error: state.user.error
   }
 }
@@ -315,7 +326,6 @@ const mapDispatch = (dispatch) => {
     },
     handleSubmit(event, firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, formName) {
       event.preventDefault()
-
       dispatch(auth(firstName, lastName, email, password, height, weight, age, gender, selectedLanguages, selectedCategories, selectedLocations, formName))
     }
   }
