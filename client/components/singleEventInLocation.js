@@ -42,9 +42,9 @@ class SingleEventInLocation extends Component {
             <section className="clearfix paddingAdjustTopBottom">
               <ul className="list-inline listingImage">
                 <li><img src={singleEvent.image_url || singleEvent.image} alt="Image Listing" className="img-responsive" /></li>
-                <li><img src="http://localhost:8080/assets/static/img/listing/listing-details-2.jpg" alt="Image Listing" className="img-responsive"/></li>
-                <li><img src="http://localhost:8080/assets/static/img/listing/listing-details-1.jpg" alt="Image Listing" className="img-responsive"/></li>
-                <li><img src="http://localhost:8080/assets/static/img/listing/listing-details-4.jpg" alt="Image Listing" className="img-responsive"/></li>
+                <li><img src="http://localhost:8080/assets/SCSS/img/listing/listing-details-2.jpg" alt="Image Listing" className="img-responsive"/></li>
+                <li><img src="http://localhost:8080/assets/SCSS/img/listing/listing-details-1.jpg" alt="Image Listing" className="img-responsive"/></li>
+                <li><img src="http://localhost:8080/assets/SCSS/img/listing/listing-details-4.jpg" alt="Image Listing" className="img-responsive"/></li>
               </ul>
             </section>
             <div>
