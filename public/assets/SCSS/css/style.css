@@ -286,8 +286,8 @@ section {
 .btn {
   font-family: 'Poppins', sans-serif;
   line-height: 14px;
-  padding: 15px 0;
-  margin: 10px;
+  padding: 15px 30px;
+  margin: 0 0 10px 0;
   color: #ffffff;
   font-weight: 500;
   border: none;
@@ -297,11 +297,12 @@ section {
   letter-spacing: 1px; }
   @media (min-width: 768px) {
     .btn {
-      padding: 13px 0;
+      padding: 13px 30px;
+      margin-top: 0;
       font-size: 12px; } }
   @media (min-width: 992px) {
     .btn {
-      padding: 15px 0;
+      padding: 15px 30px;
       font-size: 14px; } }
   .btn:focus, .btn.active, .btn:active:focus, .btn:hover {
     border: none;
