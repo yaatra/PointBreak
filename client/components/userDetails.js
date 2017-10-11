@@ -62,7 +62,7 @@ class UserDetails extends Component {
                         <h4>My interests</h4>
                         { user.categories ? user.categories.map(category => <p key={category.id}>{category.name}</p>) : null}
                         <hr />
-                        <h5>Preffered Destinations</h5>
+                        <h5>Preferred Destinations</h5>
                         { user.destinations ? user.destinations.map(destination => <p key={destination.id}>{destination.city}, {destination.state}, {destination.country}</p>) : null}
                         <hr />
                         <h5>Languages</h5>

@@ -47,7 +47,7 @@ class OtherUserProfile extends Component {
             </div>
           </div>
 
-          {eventsForUser.length ? <EventsList events={eventsForUser} heading={followingEventsHeading} fromUser="true" /> : null}
+          {eventsForUser.length ? <EventsList events={eventsForUser} heading={followingEventsHeading} fromUser="true" type="userHome" /> : null}
 
         </div>
       </section>
