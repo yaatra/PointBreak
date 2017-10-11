@@ -32,7 +32,7 @@ export class HomePage extends Component {
             </section>
             <div className='eventList'>
 
-            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" /> : null}
+            {this.props.allEvents ? <EventsList events={trendingEvents} heading="Trending Events" type="featured" /> : null}
 
             </div>
             </header>

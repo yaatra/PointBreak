@@ -26,9 +26,9 @@ export class AllEventsInLocation extends Component {
     let locationHeading = 'Extreme sports around ' + this.props.location.address
     return (
       <div className='eventList'>
-        {this.props.eventsByLocation ? <EventsList events={this.props.eventsByLocation} heading={locationHeading} /> : null}
+        {this.props.eventsByLocation ? <EventsList events={this.props.eventsByLocation} heading={locationHeading} type="own" /> : null}
 
-        {this.state.yelpEvents ? <EventsList events={this.state.yelpEvents} heading={`More things to do around ${this.props.location.address}`} size="150" /> : null}
+        {this.state.yelpEvents ? <EventsList events={this.state.yelpEvents} heading={`More things to do around ${this.props.location.address}`} type="yelp" /> : null}
       </div>
     )
   }

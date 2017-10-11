@@ -51,8 +51,8 @@ export class UserHome extends Component {
           </div>)
         }
 
-        {followingEvents.length > 0 ? <EventsList events={followingEvents} heading="Following Events" fromUser="true" /> : null}
-        {selectedEvents.length > 0 ? <EventsList events={selectedEvents} heading="Selected Events"  fromUser="true" /> : null}
+        {followingEvents.length > 0 ? <EventsList events={followingEvents} heading="Following Events" fromUser="true" type="userHome" /> : null}
+        {selectedEvents.length > 0 ? <EventsList events={selectedEvents} heading="Selected Events"  fromUser="true" type="userHome" /> : null}
       </div>
       </section>
     )
