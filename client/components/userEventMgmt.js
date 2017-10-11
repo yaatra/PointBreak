@@ -48,7 +48,7 @@ export class UserEventMgmt extends Component {
           {/*Create Event Button*/}
           <div className="row">
           <div className="col-md-12">
-            <button className="btn btn-submit" value={user.id} onClick={this.handleCreate}>Create an event</button>
+            <button className="btn btn-primary" value={user.id} onClick={this.handleCreate}>Create an event</button>
           </div>
           </div>
           {/*End of create Event Button*/}
@@ -79,7 +79,7 @@ export class UserEventMgmt extends Component {
                         <td><NavLink to={`/locations/${event.eventId}`}>{event.event.name}</NavLink></td>
                         <td>{event.event.difficulty}</td>
                         <td>{event.event.description.length > 20 ? event.event.description.substring(0, 20) + '...' : event.event.description}</td>
-                        <td><button className="btn btn-danger" value={event.eventId} onClick={this.handleDelete}>X</button></td>
+                        <td><button className="btn btn-primary" value={event.eventId} onClick={this.handleDelete}>X</button></td>
                       </tr>
                     ))}
                   </tbody>
