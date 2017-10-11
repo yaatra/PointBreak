@@ -18,22 +18,37 @@ class SingleEventInLocation extends Component {
     const {users} = singleEvent
 
     return (
-      <div className="container">
-        <div className="jumbotron">
+        <div>
         {
           singleEvent.name ?
-            <div>
-              {singleEvent.name}
-              <hr />
-              <img src={singleEvent.image_url || singleEvent.image} className="img-fluid" />
-              <div>Description: {singleEvent.description}</div>
-              <div>Difficulty: {singleEvent.difficulty}</div>
-              <div>Location: {singleEvent.location}</div>
-              {
+          <div>
+          <section className="clearfix paddingAdjustBottom">
+            <div className="container">
+              <div className="row">
+              <div className="listingTitleArea">
+                <h2>{singleEvent.name}</h2>
+                <p>{singleEvent.location}</p>
+                {
                 category ?
-                <div>Category Name: {category.name}</div> :
-                null
-              }
+                  <p>Category: {category.name}</p> :
+                  null
+                }
+                <p>Description:{singleEvent.description}</p>
+                <p>Difficulty: {singleEvent.difficulty}</p>
+              </div>
+              </div>
+            </div>
+            </section>
+            <section className="clearfix paddingAdjustTopBottom">
+              <ul className="list-inline listingImage">
+                <li><img src={singleEvent.image_url || singleEvent.image} alt="Image Listing" className="img-responsive" /></li>
+                <li><img src="http://localhost:8080/assets/static/img/listing/listing-details-2.jpg" alt="Image Listing" className="img-responsive"/></li>
+                <li><img src="http://localhost:8080/assets/static/img/listing/listing-details-1.jpg" alt="Image Listing" className="img-responsive"/></li>
+                <li><img src="http://localhost:8080/assets/static/img/listing/listing-details-4.jpg" alt="Image Listing" className="img-responsive"/></li>
+              </ul>
+            </section>
+            <div>
+
               {
                 users ? users.map(user => {
                   return (
@@ -65,13 +80,12 @@ class SingleEventInLocation extends Component {
                 <Chat eventId={singleEvent.id} /> :
                 null
               }
-            </div> :
+            </div></div> :
             <div>
               <h4>The event does not exist yet!</h4>
             </div>
         }
         </div>
-      </div>
     )
   }
 }

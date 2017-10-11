@@ -286,7 +286,7 @@ section {
 .btn {
   font-family: 'Poppins', sans-serif;
   line-height: 14px;
-  padding: 15px 0;
+  padding: 15px 30px;
   color: #ffffff;
   font-weight: 500;
   border: none;
@@ -300,7 +300,7 @@ section {
       font-size: 12px; } }
   @media (min-width: 992px) {
     .btn {
-      padding: 15px 0;
+      padding: 15px 30px;
       font-size: 14px; } }
   .btn:focus, .btn.active, .btn:active:focus, .btn:hover {
     border: none;
