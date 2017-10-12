@@ -28,9 +28,9 @@ const Navbar = (props) => {
                 <span className="icon-bar"></span>
               </button>
               {cssClass === 'nav-wrapper' ?
-                <Link className="navbar-brand" to="/"><img src="assets/SCSS/img/logo.png" alt="PointBreak" /></Link>
+                <Link className="navbar-brand" to="/"><img src="http://127.0.0.1/assets/SCSS/img/logo.png" alt="PointBreak" /></Link>
                 :
-                <Link className="navbar-brand" to="/"><img src="assets/SCSS/img/logo-blue.png" alt="PointBreak" /></Link>
+                <Link className="navbar-brand" to="/"><img src="http://127.0.0.1/assets/SCSS/img/logo-blue.png" alt="PointBreak" /></Link>
               }
             </div>
             <div className="collapse navbar-collapse navbar-ex1-collapse">
