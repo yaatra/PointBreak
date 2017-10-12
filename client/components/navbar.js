@@ -28,9 +28,9 @@ const Navbar = (props) => {
                 <span className="icon-bar"></span>
               </button>
               {cssClass === 'nav-wrapper' ?
-                <Link className="navbar-brand" to="/"><img src="http://localhost:8080/assets/SCSS/img/logo.png" alt="PointBreak" /></Link>
+                <Link className="navbar-brand" to="/"><img src="https://point-break.herokuapp.com/assets/SCSS/img/logo.png" alt="PointBreak" /></Link>
                 :
-                <Link className="navbar-brand" to="/"><img src="http://localhost:8080/assets/SCSS/img/logo-blue.png" alt="PointBreak" /></Link>
+                <Link className="navbar-brand" to="/"><img src="https://point-break.herokuapp.com/assets/SCSS/img/logo-blue.png" alt="PointBreak" /></Link>
               }
             </div>
             <div className="collapse navbar-collapse navbar-ex1-collapse">
