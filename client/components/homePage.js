@@ -11,7 +11,7 @@ export class HomePage extends Component {
     }
 
     render(){
-        let trendingEvents = this.props.allEvents.slice(0, 4)
+        let trendingEvents = this.props.allEvents.slice(0, 6)
 
         return (
             <header id="pageTop" className="header">
