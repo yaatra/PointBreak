@@ -44,8 +44,8 @@ let data = {
         { steps: 7000 },
         { steps: 9000 }
       ],
-      weekAverageSteps: 7000,
-      monthAverageSteps: 35000,
+      weekAverageSteps: 9000,
+      monthAverageSteps: 55000,
       threeMonthAverageSteps: 0
     },
     {
@@ -736,7 +736,7 @@ let data = {
     { userId: 3, categoryId: 3 },
     { userId: 3, categoryId: 1 },
     { userId: 4, categoryId: 4 },
-    { userId: 4, categoryId: 2 },
+    { userId: 4, categoryId: 3 },
     { userId: 5, categoryId: 3 },
     { userId: 5, categoryId: 4 },
     { userId: 6, categoryId: 1 },
@@ -761,8 +761,8 @@ let data = {
     { userId: 3, destinationId: 2 },
     { userId: 3, destinationId: 5 },
     { userId: 3, destinationId: 6 },
-    { userId: 4, destinationId: 1 },
-    { userId: 4, destinationId: 4 },
+    { userId: 4, destinationId: 7 },
+    { userId: 4, destinationId: 5 },
     { userId: 5, destinationId: 7 },
     { userId: 5, destinationId: 5 },
     { userId: 5, destinationId: 6 },
@@ -986,24 +986,18 @@ let data = {
     { code: 'za', name: 'Zhuang, Chuang', nativeName: 'Saɯ cueŋƅ, Saw cuengh' }
   ],
   AssociatedLanguageData: [
-    { userId: 1, languageId: 30 },
     { userId: 1, languageId: 32 },
-    { userId: 2, languageId: 59 },
-    { userId: 2, languageId: 46 },
+    { userId: 2, languageId: 51 },
     { userId: 3, languageId: 140 },
-    { userId: 3, languageId: 32 },
     { userId: 4, languageId: 121 },
-    { userId: 5, languageId: 47 },
+    { userId: 5, languageId: 51 },
     { userId: 5, languageId: 125 },
     { userId: 6, languageId: 30 },
     { userId: 7, languageId: 62 },
-    { userId: 7, languageId: 59 },
-    { userId: 8, languageId: 32 },
+    { userId: 8, languageId: 51 },
     { userId: 8, languageId: 140 },
-    { userId: 9, languageId: 53 },
-    { userId: 9, languageId: 1 },
-    { userId: 9, languageId: 47 },
-    { userId: 10, languageId: 40 }
+    { userId: 9, languageId: 32 },
+    { userId: 10, languageId: 51 }
   ],
   MessageData: [
     {
