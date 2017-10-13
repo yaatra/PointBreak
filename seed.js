@@ -536,7 +536,7 @@ let data = {
     {
       name: 'BMX',
       image:
-        'https://cdn-2.motorsport.com/images/amp/2QbekwWY/s6/nascar-cup-fontana-2016-start-austin-dillon-richard-childress-racing-chevrolet-leads.jpg'
+        'https://i.imgur.com/ajiX5Xv.jpg'
     },
     {
       name: 'Freediving',
