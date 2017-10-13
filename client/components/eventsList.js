@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 const EventsList = props => {
   const {events, heading, fromUser, type} = props
@@ -35,7 +36,9 @@ const EventsList = props => {
                       (<div>
                       <div className="figureBody">
                         <h5><a href="category-grid.html">{event.name}<i className="fa fa-check-circle" aria-hidden="true" /></a></h5>
-                        <p>{event.date}, {event.location} <a href="category-grid.html" /></p>
+                        <p>{moment(event.date).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}, {event.location} <a href="category-grid.html" /></p>
                         <h5>Difficulty: {event.difficulty}</h5>
                       </div>
                       <div className="figureFooter">
