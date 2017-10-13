@@ -409,7 +409,7 @@ let data = {
       lng: -157.85833330000003
     },
     {
-      name: 'Shark Cage Diving in Monauk',
+      name: 'Shark Cage Diving in Montauk',
       image:
         'https://img.grouponcdn.com/deal/tsAZzjjN9JuLXhmWbpTc/7h-700x420/v1/c700x420.jpg',
       description:
