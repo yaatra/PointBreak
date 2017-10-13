@@ -357,7 +357,7 @@ let data = {
     {
       name: 'BMX street ride Paris',
       image:
-        'https://i.imgur.com/u2FoT8a.jpg',
+        'https://i.imgur.com/ajiX5Xv.jpg',
       description:
         'BMX stands for ‘Bicycle Motocross’. Join BMX riders as we show each other around our favourite streets in the French capital. Street BMX is the art of riding a BMX bike through, and on, manmade obstacles, and gets creative with handrails, stairs, drops, ledges and other urban surroundings.',
       date: '2017-10-15 14:00:00',
