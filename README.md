@@ -21,8 +21,7 @@ https://www.youtube.com/watch?v=-lyMHeVR8RY
 
 
 ## Individual Event Page
-![alt text](http://www.sodhi.org/images/pointbreak/singleEvent.png)
-![alt text](http://www.sodhi.org/images/pointbreak/singleEvent2.png)
+![alt text](http://www.sodhi.org/images/pointbreak/singleEvent3.png)
 
 
 ## Event Management & Creation
