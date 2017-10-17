@@ -6,9 +6,12 @@ An extreme sport focused, fitness & social travel application – using the full
 ![alt text](http://www.sodhi.org/images/pointbreak/homePage.png)
 ![alt text](http://www.sodhi.org/images/pointbreak/homePage2.png)
 
-## User Home Page
+## User Profile Page
 ![alt text](http://www.sodhi.org/images/pointbreak/userHome.png)
 ![alt text](http://www.sodhi.org/images/pointbreak/userHome2.png)
+
+## Social connection
+![alt text](http://www.sodhi.org/images/pointbreak/otherUserProfile.png)
 
 ## Individual Event Page
 ![alt text](http://www.sodhi.org/images/pointbreak/singleEvent.png)
