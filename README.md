@@ -19,6 +19,8 @@ An extreme sport focused, fitness & social travel application – using the full
 
 ## Event Management & Creation
 ![alt text](http://www.sodhi.org/images/pointbreak/eventMgmt.png)
+
+## Create New Events
 ![alt text](http://www.sodhi.org/images/pointbreak/createEvent.png)
 
 ## New User Sign-up
