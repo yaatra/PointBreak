@@ -8,8 +8,7 @@ https://www.youtube.com/watch?v=-lyMHeVR8RY
 
 
 ## Home Page
-![alt text](http://www.sodhi.org/images/pointbreak/homePage.png)
-![alt text](http://www.sodhi.org/images/pointbreak/homePage2.png)
+![alt text](http://www.sodhi.org/images/pointbreak/homePage3.png)
 
 
 ## User Profile Page
