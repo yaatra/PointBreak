@@ -1,6 +1,6 @@
 # PointBreak
 
-An extreme sport focused, fitness & social travel application – using the fullstack of technologies (Sequelize, Express, Redux, React and D3)
+An extreme sport focused, fitness & social travel application – using the fullstack of technologies (Sequelize, Express, Redux, React and D3), as well as connecting with a number of external data sources including Yelp, Fitbit for users steps, and WeatherUnderground for weather data.
 
 
 ## Youtube - Screencast
