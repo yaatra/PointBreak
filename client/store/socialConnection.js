@@ -12,7 +12,8 @@ const FETCH_SIMILAR_USERS = 'FETCH_SIMILAR_USERS'
 
 // CODE LOGIC ----
 const currentUserPoints = user => {
-  let totalPoints = 0
+  let totalPoints = 12
+  // let totalPoints = 12
   if (user.categories.length || user.destinations.length || user.languages.length) {
     // 1 point per category
     totalPoints += user.categories.length
@@ -24,31 +25,50 @@ const currentUserPoints = user => {
     totalPoints += user.languages.length
     // 2 points for summary health
     totalPoints += user.fitbitInfoId ? 2 : 0
+    // 2 points for weight
+    totalPoints += user.weight ? 2 : 0
   }
   return totalPoints
 }
 
 const calculateUserMatch = (currentUser, userToCompare) => {
-   let matchingPoints = 0
+   let matchingPoints = 12
    // 1 point for every matching category
    if (currentUser.categories.length && userToCompare.categories.length) {
-    currentUser.categories.forEach(category => ((userToCompare.categories.includes(category)) ? matchingPoints++ : null))
+    //currentUser.categories.forEach(category => ((userToCompare.categories.includes(category)) ? matchingPoints++ : null))
+    let userToCompareCategories = {}
+    userToCompare.categories.forEach(category => userToCompareCategories[category.name] = category.name)
+    //console.log("CATEGORIES CATEGORIES CATEGORIES", userToCompareCategories)
+    currentUser.categories.forEach(category => {
+      if (userToCompareCategories[category.name] !== undefined) { matchingPoints++  }
+    })
    }
    // 1 point for every destination match
    if (currentUser.destinations.length && userToCompare.destinations.length) {
-    currentUser.destinations.forEach(destination => ((userToCompare.destinations.includes(destination)) ? matchingPoints++ : null))
+    let userToCompareDestiations = {}
+    userToCompare.destinations.forEach(dest => userToCompareDestiations[dest.id] = dest.id)
+    currentUser.destinations.forEach(dest => {
+      if (userToCompareDestiations[dest.id] !== undefined) { matchingPoints++  }
+    })
    }
    // 2 points if age is withing +- 7yrs of selected user, +- 7 - 12 1 point, else 0
    if (currentUser.age) {
-       if (Math.abs(currentUser.age - userToCompare.age) < 7) {
+       if (Math.abs(currentUser.age - userToCompare.age) < 10) {
           matchingPoints += 2
-       } else if (Math.abs(currentUser.age - userToCompare.age) > 7 && Math.abs(currentUser.age - userToCompare.age) < 12) {
+       } else if (Math.abs(currentUser.age - userToCompare.age) > 7 && Math.abs(currentUser.age - userToCompare.age) < 15) {
           matchingPoints++
        }
    }
    // 1 point for every language match
    if (currentUser.languages.length && userToCompare.languages.length) {
-    currentUser.languages.forEach(lang => ((userToCompare.languages.includes(lang)) ? matchingPoints++ : null))
+    let userToCompareLanguages = {}
+    userToCompare.languages.forEach(lang => userToCompareLanguages[lang.id] = lang.id)
+    for(let i=0; i<currentUser.languages.length; i++) {
+      if(userToCompareLanguages[currentUser.languages[i].id] !== undefined) {
+        matchingPoints += currentUser.languages.length;
+        break;
+      }
+    }
    }
    // 2 point if health score within 70 percent of selected user, 50 - 70 1 point, less < 50 0 points
    if (currentUser.fitbitInfoId && userToCompare.fitbitInfoId) {
@@ -61,12 +81,27 @@ const calculateUserMatch = (currentUser, userToCompare) => {
            }
        }
    }
+
+   // 0.25 points if weight difference is les then 30, 15, 10, 8
+   if(Math.abs(currentUser.weight - userToCompare.weight) < 30){
+    matchingPoints += 0.25
+   }
+   if(Math.abs(currentUser.weight - userToCompare.weight) < 15){
+    matchingPoints += 0.25
+   }
+   if(Math.abs(currentUser.weight - userToCompare.weight) < 10){
+    matchingPoints += 0.25
+   }
+   if(Math.abs(currentUser.weight - userToCompare.weight) < 8){
+    matchingPoints += 0.25
+   }
+
    return matchingPoints
 }
 
 const matchingFunction = (selectedUser, users) => {
-    // points for current user
     const matchingArray = []
+    // points for current user
     let currentPoints = currentUserPoints(selectedUser)
     users.forEach(user => {
         const matchingPoints = calculateUserMatch(selectedUser, user)
