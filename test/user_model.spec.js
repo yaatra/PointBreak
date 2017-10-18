@@ -63,7 +63,7 @@ describe('User model', () => {
       })
     })
 
-    it('requires `isAdmin` and `isProfessional`', function () {
+    it('defaults `isAdmin` and `isProfessional` to false', function () {
 
       return user.save()
       .then(function (savedUser) {

@@ -10,7 +10,9 @@ const Event = db.define('event', {
   },
   image: {
     type: Sequelize.TEXT,
-    isUrl: true
+    validate: {
+      isUrl: true
+    }
   },
   date: {
     type: Sequelize.DATE
