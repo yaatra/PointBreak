@@ -10,9 +10,9 @@ const UsersList = props => {
         {heading ? <div><h4>{heading}</h4><hr /></div> : null}
       </div>
       <div className="row">
-      {similarUsers.map(user => {
+      {similarUsers.map((user,i) => {
           return (
-            <div className="col-md-2 col-sm-5 col-xs-12">
+            <div key={i} className="col-md-2 col-sm-5 col-xs-12">
               <div className="dashboardBoxSmall mb30">
                 <div className="profileImageSmall">
                     <Link to={`/publicProfile/${user[1].id}`} >
