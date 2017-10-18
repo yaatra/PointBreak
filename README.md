@@ -1,6 +1,6 @@
 # PointBreak
 
-An extreme sport focused, fitness & social travel application – using the fullstack of technologies (Sequelize, Express, Redux, React, D3, Mocha and Chai)
+An extreme sport focused, fitness & social travel application – using the fullstack of technologies (Sequelize, Express, Redux, React and D3)
 
 
 ## Youtube - Screencast
